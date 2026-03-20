@@ -1,773 +1,802 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Reddit 時間線報告（Codex 版）</title>
-<style>
-:root {
-  --bg: #0b0f14;
-  --panel: #111827;
-  --panel-2: #18212f;
-  --text: #edf2f7;
-  --muted: #94a3b8;
-  --line: rgba(255,255,255,0.08);
-  --accent: #ff4500;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reddit 時間線 · 56 則貼文 · Tailwind CSS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        reddit: '#ff4500',
+        dark: { 900: '#0f1419', 800: '#1a1f2e', 700: '#252d3a' }
+      }
+    }
+  }
 }
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.03), transparent 30%), var(--bg);
-  color: var(--text);
-  font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-a { color: inherit; }
-.page { width: min(1320px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 40px; }
-.header { margin-bottom: 24px; }
-.back-link {
-  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; text-decoration: none;
-  color: var(--muted); transition: color .15s ease;
-}
-.back-link:hover { color: var(--text); }
-.badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
-  color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-}
-h1 { margin: 14px 0 8px; font-size: 34px; line-height: 1.15; }
-.subtitle { color: var(--muted); margin: 0; }
-.metrics { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-.metric {
-  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
-  padding: 12px 14px; min-width: 132px;
-}
-.metric .label { color: var(--muted); font-size: 12px; }
-.metric .value { color: var(--text); font-size: 18px; font-weight: 700; margin-top: 2px; }
-.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.card {
-  display: flex; flex-direction: column; gap: 10px; min-height: 168px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 70%), var(--panel);
-  border: 1px solid var(--line); border-radius: 18px; padding: 16px;
-}
-.card:hover { border-color: color-mix(in srgb, var(--accent) 38%, var(--line)); background: var(--panel-2); }
-.card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.index {
-  display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 34px;
-  padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 800;
-  color: white; background: var(--accent);
-}
-.kicker { color: var(--muted); font-size: 12px; }
-.title { font-size: 17px; font-weight: 700; line-height: 1.35; }
-.body { color: #dbe4ef; white-space: pre-wrap; }
-.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-.tag {
-  padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 12px;
-}
-.cta { margin-top: 4px; }
-.btn {
-  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700;
-  background: var(--accent); color: white; border-radius: 12px; padding: 10px 12px;
-}
-.footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
-@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .page { width: min(100vw - 20px, 1320px); } .grid { grid-template-columns: 1fr; } h1 { font-size: 28px; } }
-</style>
+</script>
 </head>
-<body>
-  <main class="page">
-    <header class="header">
-      <a class="back-link" href="./">← 返回日期列表</a>
-      <div class="badge">Reddit / Safari / Codex</div>
-      <h1>Reddit 時間線報告（Codex 版）</h1>
-      <p class="subtitle">依 Reddit 推送原因分類，並優先顯示繁中翻譯標題。</p>
-      <section class="metrics"><div class="metric"><div class="label">貼文數</div><div class="value">56</div></div><div class="metric"><div class="label">分類數</div><div class="value">1</div></div><div class="metric"><div class="label">滾動次數</div><div class="value">50</div></div><div class="metric"><div class="label">產生時間</div><div class="value">2026/03/20 23:43</div></div></section>
-    </header>
-    
-<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px"><a href="#cat-0" class="tag">📌 訂閱的社群 · 56</a></div>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <header class="mb-8">
+    <a href="./" class="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition">← 返回日期列表</a>
+    <div class="flex items-center gap-4 mb-4">
+      <svg viewBox="0 0 24 24" class="w-12 h-12 fill-reddit">
+        <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.705-.543-.8 2.747c1.816.07 3.48.632 4.654 1.474.44-.368 1.004-.592 1.62-.592a2.498 2.498 0 1 1 0 4.996c-.104 0-.203-.016-.303-.03-.33 1.688-2.147 3.09-4.693 3.535.115.22.18.468.18.73 0 .879-.713 1.593-1.592 1.593-.878 0-1.591-.714-1.591-1.592 0-.263.065-.511.18-.731-2.545-.445-4.362-1.847-4.693-3.535-.1.014-.199.03-.303.03a2.498 2.498 0 1 1 0-4.996c.616 0 1.18.224 1.62.592 1.175-.842 2.84-1.404 4.656-1.474l.8-2.747-2.705.543a1.25 1.25 0 0 1-2.498-.056 1.25 1.25 0 0 1 1.25-1.25c.57 0 1.05.388 1.203.916l3.3.66.3-.66a1.25 1.25 0 0 1 1.203-.916z"/>
+      </svg>
+      <div>
+        <h1 class="text-3xl font-bold text-white">Reddit 時間線報告</h1>
+        <p class="text-gray-400">56 則貼文 · 50 次滾動 · 推送類別分類 · 英翻中</p>
+      </div>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      
+      <a href="#cat-為你推薦" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        ✨ 為你推薦 (25)
+      </a>
+      
+      <a href="#cat-根據你最近的活動" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        📊 根據你最近的活動 (5)
+      </a>
+      
+      <a href="#cat-因為你之前曾造訪過這個社群" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        🔄 因為你之前曾造訪過這個社群 (4)
+      </a>
+      
+      <a href="#cat-因為你對類似主題表示感興趣" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        💡 因為你對類似主題表示感興趣 (1)
+      </a>
+      
+      <a href="#cat-你附近的爆紅內容" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        🔥 你附近的爆紅內容 (2)
+      </a>
+      
+      <a href="#cat-訂閱的社群" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        📌 訂閱的社群 (19)
+      </a>
+      
+    </div>
+  </header>
 
-<section id="cat-0" style="margin-bottom:28px">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin:0 0 12px 0">
-    <h2 style="margin:0;font-size:22px">📌 訂閱的社群</h2>
-    <span class="tag">56 則</span>
-  </div>
-  <div class="grid">
-    
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#1</span>
-          <span class="kicker">access Seedance 2.0</span>
-        </div>
-        <div class="title">【原文】access Seedance 2.0</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/Seedance_AI/comments/1rxxbnn/access_seedance_20/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#2</span>
-          <span class="kicker">GPT-5.4 mini just released</span>
-        </div>
-        <div class="title">【原文】GPT-5.4 mini just released</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ChatGPTcomplaints/comments/1rwddjh/gpt54_mini_just_released/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#3</span>
-          <span class="kicker">I built a multi-agent AI system you can actually read, modify, and own</span>
-        </div>
-        <div class="title">【原文】I built a multi-agent AI system you can actually read, modify, and own</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/AskClaw/comments/1ryuhto/i_built_a_multiagent_ai_system_you_can_actually/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#4</span>
-          <span class="kicker">Absolute garbage, do not fall for it</span>
-        </div>
-        <div class="title">【原文】Absolute garbage, do not fall for it</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ZaiGLM/comments/1rv7kb3/absolute_garbage_do_not_fall_for_it/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#5</span>
-          <span class="kicker">I made the Claude Code AI Logo Star for my desk</span>
-        </div>
-        <div class="title">【原文】I made the Claude Code AI Logo Star for my desk</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ClaudeAI/comments/1rymg3i/i_made_the_claude_code_ai_logo_star_for_my_desk/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#6</span>
-          <span class="kicker">Alibaba Coding Plan Review</span>
-        </div>
-        <div class="title">【原文】Alibaba Coding Plan Review</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ClaudeCode/comments/1ry2jml/alibaba_coding_plan_review/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#7</span>
-          <span class="kicker">Skill to Remove AI Slop from your Writing. Opensource (1k+ Stars)</span>
-        </div>
-        <div class="title">【原文】Skill to Remove AI Slop from your Writing. Opensource (1k+ Stars)</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/AskVibecoders/comments/1rxcpds/skill_to_remove_ai_slop_from_your_writing/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#8</span>
-          <span class="kicker">Codex Remote Control: Pocodex!</span>
-        </div>
-        <div class="title">【原文】Codex Remote Control: Pocodex!</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/codex/comments/1rvarpg/codex_remote_control_pocodex/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#9</span>
-          <span class="kicker">TEMM1E v3.1.0 — The AI Agent That Distills and Fine-Tunes Itself. Zero Added Cost.</span>
-        </div>
-        <div class="title">【原文】TEMM1E v3.1.0 — The AI Agent That Distills and Fine-Tunes Itself. Zero Added Cost.</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/AI_Agents/comments/1rxajx3/temm1e_v310_the_ai_agent_that_distills_and/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#10</span>
-          <span class="kicker">Neuralink Co-Founder Max Hodak: The Future Of Brain-Computer Interfaces | Y Combinator Podcast</span>
-        </div>
-        <div class="title">【原文】Neuralink Co-Founder Max Hodak: The Future Of Brain-Computer Interfaces | Y Combinator Podcast</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/artificial/comments/1rvcok4/neuralink_cofounder_max_hodak_the_future_of/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#11</span>
-          <span class="kicker">[DEAL] ChatGPT Plus 1-Year Official Upgrade - Only $14! (Save $226!) ⏳ Limited Stock!</span>
-        </div>
-        <div class="title">【原文】[DEAL] ChatGPT Plus 1-Year Official Upgrade - Only $14! (Save $226!) ⏳ Limited Stock!</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/DesignDev_hub/comments/1rveqda/deal_chatgpt_plus_1year_official_upgrade_only_14/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#12</span>
-          <span class="kicker">Email messages automation</span>
-        </div>
-        <div class="title">【原文】Email messages automation</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/n8n/comments/1rysgr0/email_messages_automation/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#13</span>
-          <span class="kicker">OpenViking is a high‑performance, open‑source vector database and retrieval stack from Volcengine that is designed for modern RAG and agent workflows. Below is a Reddit‑style article you can paste into /r/openclawinstall and tweak as needed.</span>
-        </div>
-        <div class="title">【原文】OpenViking is a high‑performance, open‑source vector database and retrieval stack from Volcengine that is designed f…</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/OpenClawInstall/comments/1rwu94t/openviking_is_a_highperformance_opensource_vector/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#14</span>
-          <span class="kicker">Meet Unsloth Studio, a new web UI for Local AI</span>
-        </div>
-        <div class="title">【原文】Meet Unsloth Studio, a new web UI for Local AI</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/unsloth/comments/1rw9jaa/meet_unsloth_studio_a_new_web_ui_for_local_ai/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#15</span>
-          <span class="kicker">Complete 20 Step Options Trading Pipeline with Bookkeeping and Trade Card Linking - DEMO!</span>
-        </div>
-        <div class="title">【原文】Complete 20 Step Options Trading Pipeline with Bookkeeping and Trade Card Linking - DEMO!</div>
-        <div class="meta">
-          <span class="tag">1</span>
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/VibeCodeDevs/comments/1rwuhg3/complete_20_step_options_trading_pipeline_with/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#16</span>
-          <span class="kicker">MLX Studio - Generate / Edit Images - Agentic Coding - Anthropic API (OpenClaw)</span>
-        </div>
-        <div class="title">【原文】MLX Studio - Generate / Edit Images - Agentic Coding - Anthropic API (OpenClaw)</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/Applesilicon/comments/1rxtfje/mlx_studio_generate_edit_images_agentic_coding/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#17</span>
-          <span class="kicker">This is how we say &quot;It’s none of your business&quot; in Chinese: 关你屁事 (savage F-word version)</span>
-        </div>
-        <div class="title">This is how we say &quot;It’s none of your business&quot; in Chinese: 关你屁事 (savage F-word version)</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ChineseLanguage/comments/1rx3pox/this_is_how_we_say_its_none_of_your_business_in/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#18</span>
-          <span class="kicker">Welcome to r/NemoClawAI — Your Hub for NVIDIA NemoClaw &amp; Autonomous AI Agents</span>
-        </div>
-        <div class="title">【原文】Welcome to r/NemoClawAI — Your Hub for NVIDIA NemoClaw &amp; Autonomous AI Agents</div>
-        <div class="meta">
-          <span class="tag">1</span>
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/OpenClawUseCases/comments/1rws0yz/welcome_to_rnemoclawai_your_hub_for_nvidia/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#19</span>
-          <span class="kicker">Built a middleware for AI agents to pay APIs in real time (instead of API keys)</span>
-        </div>
-        <div class="title">【原文】Built a middleware for AI agents to pay APIs in real time (instead of API keys)</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ArtificialInteligence/comments/1ry68b2/built_a_middleware_for_ai_agents_to_pay_apis_in/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#20</span>
-          <span class="kicker">皇军的好 简单明了</span>
-        </div>
-        <div class="title">皇军的好 简单明了</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/China_irl/comments/1rym6pr/%E7%9A%87%E5%86%9B%E7%9A%84%E5%A5%BD_%E7%AE%80%E5%8D%95%E6%98%8E%E4%BA%86/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#21</span>
-          <span class="kicker">Sending emails in Gmail</span>
-        </div>
-        <div class="title">【原文】Sending emails in Gmail</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ClaudeCowork/comments/1rvmxyv/sending_emails_in_gmail/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#22</span>
-          <span class="kicker">Eron: Chat for local and OpenAI-compatible models with iOS integrations</span>
-        </div>
-        <div class="title">【原文】Eron: Chat for local and OpenAI-compatible models with iOS integrations</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ollama/comments/1ryzn8d/eron_chat_for_local_and_openaicompatible_models/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#23</span>
-          <span class="kicker">Your local model can now render interactive charts, clickable diagrams, and forms that talk back to the AI — no cloud required</span>
-        </div>
-        <div class="title">【原文】Your local model can now render interactive charts, clickable diagrams, and forms that talk back to the AI — no clou…</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/LocalLLaMA/comments/1ryz423/your_local_model_can_now_render_interactive/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#24</span>
-          <span class="kicker">eh....potato patato</span>
-        </div>
-        <div class="title">【原文】eh....potato patato</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/OpenAI/comments/1rv3ofk/ehpotato_patato/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#25</span>
-          <span class="kicker">AI, Invasive Technology, and the Way of the Warrior</span>
-        </div>
-        <div class="title">【原文】AI, Invasive Technology, and the Way of the Warrior</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/artificial/comments/1rwxr19/ai_invasive_technology_and_the_way_of_the_warrior/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#26</span>
-          <span class="kicker">MiniMax M2.7 the now the default model on Zo, and its FREE.</span>
-        </div>
-        <div class="title">【原文】MiniMax M2.7 the now the default model on Zo, and its FREE.</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/ZoComputerClub/comments/1ryofgc/minimax_m27_the_now_the_default_model_on_zo_and/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#27</span>
-          <span class="kicker">Chatgpt plus/business and Gemini Pro with anti gravity 3.1 , Claude , Opus</span>
-        </div>
-        <div class="title">【原文】Chatgpt plus/business and Gemini Pro with anti gravity 3.1 , Claude , Opus</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/CheapGptplus/comments/1rwvxsr/chatgpt_plusbusiness_and_gemini_pro_with_anti/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#28</span>
-          <span class="kicker">First UniFi With a 10.0 CVE, Now ScreenConnect 9.0 CVE</span>
-        </div>
-        <div class="title">【原文】First UniFi With a 10.0 CVE, Now ScreenConnect 9.0 CVE</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/sysadmin/comments/1ryipfs/first_unifi_with_a_100_cve_now_screenconnect_90/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#29</span>
-          <span class="kicker">OpenClaw WebOS Project Dashboard</span>
-        </div>
-        <div class="title">【原文】OpenClaw WebOS Project Dashboard</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/openclaw/comments/1ryvszr/openclaw_webos_project_dashboard/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#30</span>
-          <span class="kicker">I mass-DMed 200 people on LinkedIn last week. 198 ignored me, 1 reported me, and 1 was my mom. Let's try this instead.</span>
-        </div>
-        <div class="title">【原文】I mass-DMed 200 people on LinkedIn last week. 198 ignored me, 1 reported me, and 1 was my mom. Let's try this instea…</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/micro_saas/comments/1rvms9n/i_massdmed_200_people_on_linkedin_last_week_198/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#31</span>
-          <span class="kicker">Perplexity, ChatGPT, Gemini, and Claude all cite content differently. Here's what 89,000 citations taught us.</span>
-        </div>
-        <div class="title">【原文】Perplexity, ChatGPT, Gemini, and Claude all cite content differently. Here's what 89,000 citations taught us.</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/AISEOInsider/comments/1rx78h9/perplexity_chatgpt_gemini_and_claude_all_cite/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#32</span>
-          <span class="kicker">Ooh, new drama just dropped 👀</span>
-        </div>
-        <div class="title">【原文】Ooh, new drama just dropped 👀</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/LocalLLaMA/comments/1ryv7rg/ooh_new_drama_just_dropped/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#33</span>
-          <span class="kicker">25+ Free Resources to Master AI Agents: The Ultimate Guide</span>
-        </div>
-        <div class="title">【原文】25+ Free Resources to Master AI Agents: The Ultimate Guide</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/AIinBusinessNews/comments/1ryqmgw/25_free_resources_to_master_ai_agents_the/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#34</span>
-          <span class="kicker">I tried Minimax M2.7 and GLM 5 Turbo with Openadapter and Opencode.</span>
-        </div>
-        <div class="title">【原文】I tried Minimax M2.7 and GLM 5 Turbo with Openadapter and Opencode.</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/LLMDevs/comments/1rx2zh9/i_tried_minimax_m27_and_glm_5_turbo_with/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#35</span>
-          <span class="kicker">guard-sh — an LLM-powered safety layer for your shell that intercepts risky commands before they run</span>
-        </div>
-        <div class="title">【原文】guard-sh — an LLM-powered safety layer for your shell that intercepts risky commands before they run</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/LLM/comments/1rx4oxz/guardsh_an_llmpowered_safety_layer_for_your_shell/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#36</span>
-          <span class="kicker">Bmalph: full planning-to-implementation pipeline for OpenCode (BMAD + Ralph)</span>
-        </div>
-        <div class="title">【原文】Bmalph: full planning-to-implementation pipeline for OpenCode (BMAD + Ralph)</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/opencodeCLI/comments/1rx02ty/bmalph_full_planningtoimplementation_pipeline_for/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#37</span>
-          <span class="kicker">Taipei is so beautiful &lt;3</span>
-        </div>
-        <div class="title">【原文】Taipei is so beautiful &lt;3</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/Taipei/comments/1rx5vmm/taipei_is_so_beautiful_3/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#38</span>
-          <span class="kicker">“Meta ends end-to-end encryption”, but people missed a detail that admits Meta has been spying you all along.</span>
-        </div>
-        <div class="title">【原文】“Meta ends end-to-end encryption”, but people missed a detail that admits Meta has been spying you all along.</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/cybersecurity/comments/1rw622c/meta_ends_endtoend_encryption_but_people_missed_a/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#39</span>
-          <span class="kicker">5 things Openclaw can do without any skills that most beginners don't know about</span>
-        </div>
-        <div class="title">【原文】5 things Openclaw can do without any skills that most beginners don't know about</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/better_claw/comments/1rvbfyh/5_things_openclaw_can_do_without_any_skills_that/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#40</span>
-          <span class="kicker">I vibe coded the first Expansive Reddit Alternative over 40,000 lines of code</span>
-        </div>
-        <div class="title">【原文】I vibe coded the first Expansive Reddit Alternative over 40,000 lines of code</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/vibecoders_/comments/1rw38oe/i_vibe_coded_the_first_expansive_reddit/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#41</span>
-          <span class="kicker">Host OpenClaw in Cloud for free</span>
-        </div>
-        <div class="title">【原文】Host OpenClaw in Cloud for free</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/clawdbot/comments/1rxkjfy/host_openclaw_in_cloud_for_free/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#42</span>
-          <span class="kicker">No new release in six days - major version update or is this project now in maintenance mode?</span>
-        </div>
-        <div class="title">【原文】No new release in six days - major version update or is this project now in maintenance mode?</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/openclaw/comments/1ryvi49/no_new_release_in_six_days_major_version_update/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#43</span>
-          <span class="kicker">Looking for 10 founders to automate repetitive tasks in their business. Save 10hr/week</span>
-        </div>
-        <div class="title">【原文】Looking for 10 founders to automate repetitive tasks in their business. Save 10hr/week</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/n8nbusinessautomation/comments/1rvbhhl/looking_for_10_founders_to_automate_repetitive/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#44</span>
-          <span class="kicker">UVC Builder API | Claude Opus 4.6 + Gemini 3.1 Pro | 10+ AI Models | Cursor / VS Code</span>
-        </div>
-        <div class="title">【原文】UVC Builder API | Claude Opus 4.6 + Gemini 3.1 Pro | 10+ AI Models | Cursor / VS Code</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/CheapGptplus/comments/1ry7yb8/uvc_builder_api_claude_opus_46_gemini_31_pro_10/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#45</span>
-          <span class="kicker">Abliterated Qwen 3.5 2B with extremely low KL</span>
-        </div>
-        <div class="title">【原文】Abliterated Qwen 3.5 2B with extremely low KL</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/AIDeveloperNews/comments/1rvkthr/abliterated_qwen_35_2b_with_extremely_low_kl/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#46</span>
-          <span class="kicker">I built an iOS app with zero coding experience</span>
-        </div>
-        <div class="title">【原文】I built an iOS app with zero coding experience</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/AppBusiness/comments/1rvca85/i_built_an_ios_app_with_zero_coding_experience/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#47</span>
-          <span class="kicker">&quot;I migrated from Openclaw -&gt; Hermes and so far, so good - Things &quot;just work&quot; a lot better&quot; ⏩ Been hearing lots of chatter about Hermes. Not sure if its hype or awesome. Thoughts?</span>
-        </div>
-        <div class="title">【原文】&quot;I migrated from Openclaw -&gt; Hermes and so far, so good - Things &quot;just work&quot; a lot better&quot; ⏩ Been hearing lots of ch…</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/LovingOpenSourceAI/comments/1rvc0kf/i_migrated_from_openclaw_hermes_and_so_far_so/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#48</span>
-          <span class="kicker">SK Group chairman predicts the DRAM shortage will continue through 2030 due to limited wafer capacity and long production lead times</span>
-        </div>
-        <div class="title">【原文】SK Group chairman predicts the DRAM shortage will continue through 2030 due to limited wafer capacity and long produ…</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/sysadmin/comments/1ry3mgs/sk_group_chairman_predicts_the_dram_shortage_will/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#49</span>
-          <span class="kicker">在🇯🇵日本住了8年，我们全家为什么选择搬走</span>
-        </div>
-        <div class="title">在🇯🇵日本住了8年，我们全家为什么选择搬走</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/China_irl/comments/1rxv2x7/%E5%9C%A8%E6%97%A5%E6%9C%AC%E4%BD%8F%E4%BA%868%E5%B9%B4%E6%88%91%E4%BB%AC%E5%85%A8%E5%AE%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9%E6%90%AC%E8%B5%B0/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#50</span>
-          <span class="kicker">Gold is down in case you didn’t read the other 500 posts</span>
-        </div>
-        <div class="title">【原文】Gold is down in case you didn’t read the other 500 posts</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/Gold/comments/1rxz8jg/gold_is_down_in_case_you_didnt_read_the_other_500/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#51</span>
-          <span class="kicker">Experimental AI agent breaks out of test environment, Mines crypto without permission</span>
-        </div>
-        <div class="title">【原文】Experimental AI agent breaks out of test environment, Mines crypto without permission</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/artificial/comments/1ryo8er/experimental_ai_agent_breaks_out_of_test/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#52</span>
-          <span class="kicker">Open Swarm — run thousands of parallel AI agents with 150+ internet tools (open source)</span>
-        </div>
-        <div class="title">【原文】Open Swarm — run thousands of parallel AI agents with 150+ internet tools (open source)</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/OpenSourceAI/comments/1rux0fj/open_swarm_run_thousands_of_parallel_ai_agents/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#53</span>
-          <span class="kicker">RAG without vectors or embeddings using git for both storage and retrieval</span>
-        </div>
-        <div class="title">【原文】RAG without vectors or embeddings using git for both storage and retrieval</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/Rag/comments/1rwtrgq/rag_without_vectors_or_embeddings_using_git_for/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#54</span>
-          <span class="kicker">Your AI agents can now learn entire skill trees from the web.</span>
-        </div>
-        <div class="title">【原文】Your AI agents can now learn entire skill trees from the web.</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/StartupMind/comments/1rw1z7t/your_ai_agents_can_now_learn_entire_skill_trees/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#55</span>
-          <span class="kicker">Forget API Pay as you go Costs -- Use Coding plans and save 90%</span>
-        </div>
-        <div class="title">【原文】Forget API Pay as you go Costs -- Use Coding plans and save 90%</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/openclawsetup/comments/1rwyhwx/forget_api_pay_as_you_go_costs_use_coding_plans/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-      <article class="card">
-        <div class="card-top">
-          <span class="index">#56</span>
-          <span class="kicker">Anthropic lost the Pentagon but won over America</span>
-        </div>
-        <div class="title">【原文】Anthropic lost the Pentagon but won over America</div>
-        <div class="meta">
-          
-          
-        </div>
-        <div class="cta"><a class="btn" href="https://www.reddit.com/r/Anthropic/comments/1rxjhws/anthropic_lost_the_pentagon_but_won_over_america/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
-      </article>
-  </div>
-</section>
-    <footer class="footer">來源：Safari/Reddit timeline (codex) · 分類方式：推送來源而非內容主題</footer>
-  </main>
+  
+  <section id="cat-為你推薦" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">✨ 為你推薦</h2>
+      <span class="text-gray-500 text-sm">25 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#5</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我如何用 Claude 4.6 自動化 12 年的手動 LinkedIn 銷售推廣</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/aiToolForBusiness/comments/1ru6i5k/how_i_finally_automated_12_years_of_manual/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#6</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Seedance 2.0 AI 影片生成的終極提示詞庫剛在 GitHub 發布</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/StartupMind/comments/1rwy58v/the_ultimate_prompt_library_for_seedance_20_ai/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#9</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">oldNokia Ultrareal・Flux2.Klein 9b LoRA（AI 圖像模型）</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/StableDiffusion/comments/1rutgoa/oldnokia_ultrareal_flux2klein_9b_lora/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#11</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">倒飛訓練 7.4</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/RedditGames/comments/1ryfe4k/upsidown_flight_training_74/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#12</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">NVIDIA GTC 2026 第二天：不再只是炒作，而是現實開始顯現</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/costlyinfra/comments/1rwoeis/day_2_at_nvidia_gtc_2026_felt_less_like_hype_and/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#13</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">OpenClaw v2026.3.12 剛剛發布！</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/myclaw/comments/1ru8l4s/openclaw_v2026312_just_launched/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#16</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">使用 mlx-tune 直接在你的 Mac 上微調 LLM</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Applesilicon/comments/1rw5elt/finetune_llms_directly_on_your_mac_with_mlxtune/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#17</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">這就是一個 AI 奇點信仰機器人新創的部落格文章長什麼樣子</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/accelerate/comments/1ruzfir/this_is_what_the_blogpost_of_an_aisingularity/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#18</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">這是我作為產品設計師使用的 Cursor 規則</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/cursor/comments/1rv7zqp/here_are_cursor_rules_i_use_as_product_designer/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#23</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我取消 ChatGPT 後無法讀取自己的資料，所以我做了一個檢視器</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ChatGPTcomplaints/comments/1rumtkn/i_cancelled_chatgpt_and_couldnt_read_my_own_data/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#25</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Bmalph：結構化規劃 + 自主編碼循環，原生支援 OpenCode</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/opencode/comments/1rx04b6/bmalph_structured_planning_autonomous_coding_loop/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#26</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">🚀【免費】Google AI Ultra – 25k 點數贈送</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/PremiumDealsHub/comments/1rwb5wp/free_google_ai_ultra_25k_credits_giveaway/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#29</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">更新：我現在已經用一些中國 AI 工具進行 vibe coding 並比較了差異</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/vibecoding/comments/1rvugpg/update_i_have_now_since_vibe_coded_with_some/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#31</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">If you’re starting a SaaS in 2026, do this (how we hit $1M ARR in 9 months)•If you’re starting a SaaS in 2026,…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/microsaas/comments/1rv63cu/if_youre_starting_a_saas_in_2026_do_this_how_we/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#32</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Agents：你必須用 Claude Code 來建立 agent 嗎？還是可以直接從 Claw bot 平台做？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/clawdbot/comments/1rwbfl0/agents/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#33</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Unsloth Studio 在 Product Hunt 上發布！</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/unsloth/comments/1rx1nr0/unsloth_studio_launches_on_product_hunt/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#35</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 用對了可以便宜 50-70%！基準測試結果</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/OpenSourceeAI/comments/1rvmsl5/claude_code_can_become_5070_cheaper_if_you_use_it/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#37</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">需要幫忙</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/augmentedreality/comments/1rxntix/help_needed/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#38</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">比較不同 AI 模型，你覺得哪個表現最好？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/GPT3/comments/1rxv2rd/comparing_different_ai_models_which_do_you_think/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#40</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我做了一個 OpenClaw 的行動應用程式 — Clawket</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/OpenClawUseCases/comments/1rw7q0n/i_built_a_mobile_app_for_openclaw_clawket/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#42</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我可以給你 1 年 Perplexity AI Pro 100% 折扣碼（正規方法），請私訊</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/PremiumDealsHub/comments/1rw6jfv/i_can_give_you_1_year_perplexity_ai_pro_100/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#43</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Ollama 現在是 OpenClaw 的官方供應商，所有模型都能無縫搭配使用</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AgentsOfAI/comments/1rv6vkk/ollama_is_now_an_official_provider_for_openclaw/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#48</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">AI API - 存取所有最佳模型</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AI_Deal_Cave/comments/1rwrvt2/ai_api_access_all_best_models/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#53</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">PromptToMars — AI 提示詞平台，用於生成器、優化器和可重複使用的預設</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ShowYourApp/comments/1rwxdp7/prompttomars_a_ai_prompt_platform_for_generators/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#55</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">訓練聊天機器人</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/LocalLLM/comments/1rw82mg/training_a_chatbot/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-根據你最近的活動" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">📊 根據你最近的活動</h2>
+      <span class="text-gray-500 text-sm">5 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#2</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">有人能從頭解釋 OpenClaw 和 AI 自動化嗎？（像我這種完全新手）</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/OpenClawUseCases/comments/1rwblzm/can_someone_explain_openclaw_ai_automation_from/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#8</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 技巧：從基礎到進階（開源專案 5k+ 星）</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AskVibecoders/comments/1rvgy7n/claude_code_tips_from_basics_to_advance/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#39</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Foundry：我個人使用的 AI 編排控制平面，用於最少人機互動的端到端模組</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AIDeveloperNews/comments/1rwnxa8/foundry_my_personaluse_ai_orchestration/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#51</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我們上線接受訂單了！今天就能即時部署你的 OpenClaw，完整存取權限！</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/openclawsetup/comments/1ry0iom/were_live_and_taking_orders_instant_deploy_your/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#56</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">5 個真正能帶來改變的實用技能！！</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AskClaw/comments/1rwz5op/5_useful_skills_which_can_really_make_a_difference/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-因為你之前曾造訪過這個社群" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">🔄 因為你之前曾造訪過這個社群</h2>
+      <span class="text-gray-500 text-sm">4 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#3</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">【交易】Cursor Pro 一年版・私人帳號・70 美元</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/eDeals/comments/1ryf55y/deaal_cursor_pro_1_year_private_70_paypalbinance/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#21</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">LinkedIn Career 3 個月（5 美元）啟用後付款</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/eDeals/comments/1rvp71x/linkedin_career_3_months_5_payment_after/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#47</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我用 ltx2.3、veo 和 grok 創作了我自己的電影預告片</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/artificial/comments/1ryid19/i_used_ltx23_veo_and_grok_to_create_my_own/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#49</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">NETFLIX 4K UHD 6 美元（PayPal）</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/eDeals/comments/1ryfodl/netflix_4k_uhd_6_paypal/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-因為你對類似主題表示感興趣" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">💡 因為你對類似主題表示感興趣</h2>
+      <span class="text-gray-500 text-sm">1 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#45</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Stryker 資安事件的鑑識分析（可能揭露初始入侵途徑）</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/cybersecurity/comments/1rwssna/forensics_on_the_stryker_breach_possibly/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-你附近的爆紅內容" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">🔥 你附近的爆紅內容</h2>
+      <span class="text-gray-500 text-sm">2 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#4</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">兩會期间“我”因为成为上访人员的密接，而被遣送回原籍•兩會期间“我”因为成为上访人员的密接，而被遣送回原籍</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/China_irl/comments/1rxjobx/%E4%B8%A4%E4%BC%9A%E6%9C%9F%E9%97%B4%E6%88%91%E5%9B%A0%E4%B8%BA%E6%88%90%E4%B8%BA%E4%B8%8A%E8%AE%BF%E4%BA%BA%E5%91%98%E7%9A%84%E5%AF%86%E6%8E%A5%E8%80%8C%E8%A2%AB%E9%81%A3%E9%80%81%E5%9B%9E%E5%8E%9F%E7%B1%8D/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#19</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">尬住了 波蘭前总统在民進黨举办的“玉山論壇”上称中国必须统一•尬住了 波蘭前总统在民進黨举办的“玉山論壇”上称中国必须统一</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/China_irl/comments/1rxu93g/%E5%B0%AC%E4%BD%8F%E4%BA%86_%E6%B3%A2%E5%85%B0%E5%89%8D%E6%80%BB%E7%BB%9F%E5%9C%A8%E6%B0%91%E8%BF%9B%E5%85%9A%E4%B8%BE%E5%8A%9E%E7%9A%84%E7%8E%89%E5%B1%B1%E8%AE%BA%E5%9D%9B%E4%B8%8A%E7%A7%B0%E4%B8%AD%E5%9B%BD%E5%BF%85%E9%A1%BB%E7%BB%9F%E4%B8%80/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-訂閱的社群" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">📌 訂閱的社群</h2>
+      <span class="text-gray-500 text-sm">19 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#1</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">新模型 MiniMax 2.7 發布了，來試試 vibe coding？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/vibecoders_/comments/1rwxpn5/new_model_minimax_27_is_released_shall_we_try_for/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#7</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">最常用的 Claude Code 開發工作流程</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ClaudeAI/comments/1ry9aqa/most_used_claude_code_development_workflows/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#10</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Gemini 3.1 Pro 知識截止日期為 2024 年底</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/google_antigravity/comments/1rx2umj/gemini_31pro_knowledge_cutoff_late_2024/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#14</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">到底是什麼讓你選擇 OpenClaw 而不是 Claude Code？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/openclaw/comments/1rxx2q9/what_actually_convinces_you_to_reach_for_openclaw/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#15</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我整理了 48 個設計技能檔案，附帶自訂風格供 Claude 使用</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ClaudeAI/comments/1rx7v8i/i_built_a_list_of_48_design_skill_files_with/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#20</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我厭倦了猜測哪個本地 LLM 比較好，所以做了一個小型基準測試工具 ModelSweep</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ollama/comments/1rybn00/i_got_tired_of_guessing_which_local_llm_was/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#22</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我們做了一份免費摘要，將 AI 安全研究論文翻譯成白話文</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/artificial/comments/1rycyzn/we_built_a_free_digest_that_translates_ai/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#24</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">奇虎 360 的 AI 產品外洩了平台的 SSL 金鑰，由自家 CA 簽發，因詐欺被禁</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/sysadmin/comments/1rvjad6/qihoo_360s_ai_product_leaked_the_platforms_ssl/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#27</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Antigravity 對 Claude 模型的限制是怎麼運作的？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/google_antigravity/comments/1rwdiqv/how_do_the_antigravity_limits_work_for_the_claude/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#28</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">卡達拉斯拉凡天然氣設施——全球最大液化天然氣廠在伊朗飛彈襲擊後起火</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/oil/comments/1rxpeyj/ras_laffan_gas_facility_in_qatar_which_is_the/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#30</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">所以沒人在下載這個模型囉？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1rxbtyj/so_nobodys_downloading_this_model_huh/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#34</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">🛒 可用帳號</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/CheapGptplus/comments/1rv6my7/wts_premium_ai_accounts_google_ai_ultra_free/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#36</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">給那些厭倦每次都寫相同 ML 樣板程式碼的人</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/artificial/comments/1rvrbjv/i_built_a_visual_draganddrop_ml_trainer_no_code/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#41</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">首先：CLAUDE.md 的不同類型</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/LLMDevs/comments/1rwh2yd/your_claudemd_files_in_subdirectories_might_not/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#44</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">推出 GPT-5.4 mini 和 nano</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/OpenAI/comments/1rwcn2y/introducing_gpt54_mini_and_nano/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#46</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">為什麼大家都用 Mac Mini 跑 OpenClaw？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/openclaw/comments/1ry1tws/why_does_everyone_use_mac_minis_for_openclaw/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#50</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 現在給的使用量比 Codex 多</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/codex/comments/1rv5v63/claude_code_gives_more_usage_than_codex_now/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#52</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">M1 Max 上用 Ollama 還是 LM Studio 來管理和運行本地 LLM 比較好？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ollama/comments/1rxahs7/ollama_vs_lm_studio_for_m1_max_to_manage_and_run/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#54</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">今日得知：Windows SYSTEM 帳號現在改用 SystemTemp 存放暫存檔</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/sysadmin/comments/1rv65in/til_windows_system_account_now_uses/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+
+  <footer class="mt-12 pt-6 border-t border-gray-800 text-gray-600 text-sm">
+    生成時間：2026-03-20T01:54:54.052Z · OpenClaw · Tailwind CSS · 推送類別分類 · 英文標題翻譯為繁體中文
+  </footer>
+</div>
 </body>
 </html>
