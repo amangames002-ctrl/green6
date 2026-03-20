@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reddit 時間線報告（Codex 版）</title>
+<style>
+:root {
+  --bg: #0b0f14;
+  --panel: #111827;
+  --panel-2: #18212f;
+  --text: #edf2f7;
+  --muted: #94a3b8;
+  --line: rgba(255,255,255,0.08);
+  --accent: #ff4500;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.03), transparent 30%), var(--bg);
+  color: var(--text);
+  font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+a { color: inherit; }
+.page { width: min(1320px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 40px; }
+.header { margin-bottom: 24px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+h1 { margin: 14px 0 8px; font-size: 34px; line-height: 1.15; }
+.subtitle { color: var(--muted); margin: 0; }
+.metrics { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.metric {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 12px 14px; min-width: 132px;
+}
+.metric .label { color: var(--muted); font-size: 12px; }
+.metric .value { color: var(--text); font-size: 18px; font-weight: 700; margin-top: 2px; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.card {
+  display: flex; flex-direction: column; gap: 10px; min-height: 168px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 70%), var(--panel);
+  border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+}
+.card:hover { border-color: color-mix(in srgb, var(--accent) 38%, var(--line)); background: var(--panel-2); }
+.card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.index {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 34px;
+  padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 800;
+  color: white; background: var(--accent);
+}
+.kicker { color: var(--muted); font-size: 12px; }
+.title { font-size: 17px; font-weight: 700; line-height: 1.35; }
+.body { color: #dbe4ef; white-space: pre-wrap; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.tag {
+  padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 12px;
+}
+.cta { margin-top: 4px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700;
+  background: var(--accent); color: white; border-radius: 12px; padding: 10px 12px;
+}
+.footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .page { width: min(100vw - 20px, 1320px); } .grid { grid-template-columns: 1fr; } h1 { font-size: 28px; } }
+</style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="badge">Reddit / Safari / Codex v1</div>
+      <h1>Reddit 時間線報告（Codex 版）</h1>
+      <p class="subtitle">Safari 抓取 · 三欄排版 · 不覆蓋 GLM5 版本</p>
+      <section class="metrics"><div class="metric"><div class="label">貼文數</div><div class="value">56</div></div><div class="metric"><div class="label">滾動次數</div><div class="value">50</div></div><div class="metric"><div class="label">總耗時</div><div class="value">1分54秒</div></div><div class="metric"><div class="label">產生時間</div><div class="value">2026/03/20 20:06</div></div></section>
+    </header>
+    <section class="grid">
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#1</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Real Cost Breakdown of a 1,000-User AI App</div>
+    <div class="body">根據你最近的活動</div>
+    <div class="meta"><span class="tag">社群 Real Cost Breakdown of a 1,000-User AI App</span><span class="tag">第 1 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/costlyinfra/comments/1rykg1v/real_cost_breakdown_of_a_1000user_ai_app/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#2</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">10% MiniMax API Coding Plan Coupon Code Starting at $10 Expires 1 May</div>
+    <div class="body">Dealing and Saving Money</div>
+    <div class="meta"><span class="tag">社群 10% MiniMax API Coding Plan Coupon Code Starting at $10 Expires 1 May</span><span class="tag">第 1 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/eDeals/comments/1rvffpv/10_minimax_api_coding_plan_coupon_code_starting/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#3</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">How to run subagents in Codex. Simply Explained.</div>
+    <div class="body">Become the best vibecoder in the world!</div>
+    <div class="meta"><span class="tag">社群 How to run subagents in Codex. Simply Explained.</span><span class="tag">第 1 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/AskVibecoders/comments/1rwf8ci/how_to_run_subagents_in_codex_simply_explained/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#4</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">包主席杀疯了，前总装备部副部长被撤下院士简历</div>
+    <div class="body">你附近的爆紅內容</div>
+    <div class="meta"><span class="tag">社群 包主席杀疯了，前总装备部副部长被撤下院士简历</span><span class="tag">第 1 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/China_irl/comments/1ry6ub8/%E5%8C%85%E4%B8%BB%E5%B8%AD%E6%9D%80%E7%96%AF%E4%BA%86%E5%89%8D%E6%80%BB%E8%A3%85%E5%A4%87%E9%83%A8%E5%89%AF%E9%83%A8%E9%95%BF%E8%A2%AB%E6%92%A4%E4%B8%8B%E9%99%A2%E5%A3%AB%E7%AE%80%E5%8E%86/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#5</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">ACTIVATE CHATGPT PLUS + GEMINI AI PRO (2TB) + YOUTUBE PREMIUM</div>
+    <div class="body">Upvote this</div>
+    <div class="meta"><span class="tag">社群 ACTIVATE CHATGPT PLUS + GEMINI AI PRO (2TB) + YOUTUBE PREMIUM</span><span class="tag">第 1 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/discountools/comments/1rwylui/activate_chatgpt_plus_gemini_ai_pro_2tb_youtube/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#6</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Stop building agents. Start building web apps.</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 Stop building agents. Start building web apps.</span><span class="tag">第 1 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/LLMDevs/comments/1rved0m/stop_building_agents_start_building_web_apps/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#7</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Which is the best model out there now?</div>
+    <div class="body">Let's fly with Copilot</div>
+    <div class="meta"><span class="tag">社群 Which is the best model out there now?</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/GithubCopilot/comments/1rw4rty/which_is_the_best_model_out_there_now/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#8</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">ProperPDF — Offline PDF editor with on-device AI. Zero cloud. Zero tracking.</div>
+    <div class="body">Postet hier eure neuen Apps und beschreibt welches Problem Ihr löst.</div>
+    <div class="meta"><span class="tag">社群 ProperPDF — Offline PDF editor with on-device AI. Zero cloud. Zero tracking.</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/AppsWebappsFullstack/comments/1rykr1w/properpdf_offline_pdf_editor_with_ondevice_ai/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#9</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">I built a visual drag-and-drop ML trainer (no code required). Free &amp; open source.</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 I built a visual drag-and-drop ML trainer (no code required). Free &amp; open source.</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/AIDeveloperNews/comments/1ruhd1o/i_built_a_visual_draganddrop_ml_trainer_no_code/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#10</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Pretty sure I’m not using Claude to its full potential - what plugins/connectors are worth it?</div>
+    <div class="body">Check Claude service status.</div>
+    <div class="meta"><span class="tag">社群 Pretty sure I’m not using Claude to its full potential - what plugins/connectors are worth it?</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/ClaudeAI/comments/1rxswkv/pretty_sure_im_not_using_claude_to_its_full/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#11</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">25+ Free Resources to Master AI Agents: The Ultimate Guide</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 25+ Free Resources to Master AI Agents: The Ultimate Guide</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/AIAGENTSNEWS/comments/1ryqme5/25_free_resources_to_master_ai_agents_the/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#12</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">MiroFish just hit #1 on GitHub Trending. It spawns thousands of AI agents with personalities and memory to simulate how…</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 MiroFish just hit #1 on GitHub Trending. It spawns thousands of AI agents with personalities and memory to simulate how markets and public opinion will move before it happens. Here is what OpenClaw users need to know.</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/OpenClawInstall/comments/1rwv2kq/mirofish_just_hit_1_on_github_trending_it_spawns/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#13</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">PromptToMars — a AI prompt platform for generators, optimizers, and reusable presets</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 PromptToMars — a AI prompt platform for generators, optimizers, and reusable presets</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/ShowYourApp/comments/1rwxdp7/prompttomars_a_ai_prompt_platform_for_generators/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#14</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Can anyone help??</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 Can anyone help??</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/Seedance_AI/comments/1rx25q8/can_anyone_help/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#15</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">My Dream Setup: How I Gave My Claude Code Persistent Memory, a Self-Updating Life Dashboard, and an Autonomous Thinking…</div>
+    <div class="body">weekly limit reached.</div>
+    <div class="meta"><span class="tag">社群 My Dream Setup: How I Gave My Claude Code Persistent Memory, a Self-Updating Life Dashboard, and an Autonomous Thinking Loop That Ingests All of My Inboxes and Calendars, Thinks Every Hour, and Automatically Briefs Me AND Itself Every New Session. No Third-Party Tools Required!</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/ClaudeCode/comments/1rw717v/my_dream_setup_how_i_gave_my_claude_code/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#16</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Recent Trip to Guangzhou</div>
+    <div class="body">你附近的爆紅內容</div>
+    <div class="meta"><span class="tag">社群 Recent Trip to Guangzhou</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/guangzhou/comments/1rxtrgf/recent_trip_to_guangzhou/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#17</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">沙特阿拉伯外交大臣费萨尔·本·法尔汉批评伊朗:嘴上喊伊斯兰，手上打的全是穆斯林国家</div>
+    <div class="body">你附近的爆紅內容</div>
+    <div class="meta"><span class="tag">社群 沙特阿拉伯外交大臣费萨尔·本·法尔汉批评伊朗:嘴上喊伊斯兰，手上打的全是穆斯林国家</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/China_irl/comments/1rxrrin/%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%A4%96%E4%BA%A4%E5%A4%A7%E8%87%A3%E8%B4%B9%E8%90%A8%E5%B0%94%E6%9C%AC%E6%B3%95%E5%B0%94%E6%B1%89%E6%89%B9%E8%AF%84%E4%BC%8A%E6%9C%97%E5%98%B4%E4%B8%8A%E5%96%8A%E4%BC%8A%E6%96%AF%E5%85%B0%E6%89%8B%E4%B8%8A%E6%89%93%E7%9A%84%E5%85%A8%E6%98%AF%E7%A9%86%E6%96%AF%E6%9E%97%E5%9B%BD%E5%AE%B6/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#18</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">&quot;Unsloth Studio - a new open-source web app that lets you run, train, compare, and export hundreds of LLMs locally with…</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 &quot;Unsloth Studio - a new open-source web app that lets you run, train, compare, and export hundreds of LLMs locally with much lower VRAM usage while also turning files like PDFs, CSVs, and DOCXs into training datasets.&quot; ⏩ Would you be checking this out?</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/LovingOpenSourceAI/comments/1rx53pn/unsloth_studio_a_new_opensource_web_app_that_lets/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#19</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">ACTIVATE SPOTIFY PREMIUM + CAPCUT PRO + NETFLIX 4K</div>
+    <div class="body">Dealing and Saving Money</div>
+    <div class="meta"><span class="tag">社群 ACTIVATE SPOTIFY PREMIUM + CAPCUT PRO + NETFLIX 4K</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/eDeals/comments/1ry2t7q/activate_spotify_premium_capcut_pro_netflix_4k/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#20</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Agent Orchestration | How to conserve usage.</div>
+    <div class="body">OpenAI status</div>
+    <div class="meta"><span class="tag">社群 Agent Orchestration | How to conserve usage.</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/codex/comments/1rxq8xs/agent_orchestration_how_to_conserve_usage/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#21</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Does anyone actually switch between AI models mid-conversation? And if so, what happens to your context?</div>
+    <div class="body">因為你之前曾造訪過這個社群</div>
+    <div class="meta"><span class="tag">社群 Does anyone actually switch between AI models mid-conversation? And if so, what happens to your context?</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/artificial/comments/1rv6tfi/does_anyone_actually_switch_between_ai_models/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#22</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">I built a Claude skill that writes perfect prompts for any AI tool. Stop burning credits on bad prompts. The most reques…</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 I built a Claude skill that writes perfect prompts for any AI tool. Stop burning credits on bad prompts. The most requested features just got added 🔥</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/PromptEngineering/comments/1rwbm98/i_built_a_claude_skill_that_writes_perfect/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#23</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">🚀 Built a CLI for multi-project parallel task management — come check it out!</div>
+    <div class="body">根據你最近的活動</div>
+    <div class="meta"><span class="tag">社群 🚀 Built a CLI for multi-project parallel task management — come check it out!</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/clawdbot/comments/1rx9o95/built_a_cli_for_multiproject_parallel_task/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#24</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Ollama cloud vs chatgpt for coding.</div>
+    <div class="body">I have chatgpt plus. But now i am thinking to move to ollama cloud as new models like glm 5, mini max 2.7 getting great reviews. How are the models compare to 5.3/5.4 at chatgpt? I…</div>
+    <div class="meta"><span class="tag">社群 Ollama cloud vs chatgpt for coding.</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/ollama/comments/1rypslq/ollama_cloud_vs_chatgpt_for_coding/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#25</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">I built a self-hosted server +iOS/Telegram client for Claude Code &amp; Codex that actually feels like using them on PC — an…</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 I built a self-hosted server +iOS/Telegram client for Claude Code &amp; Codex that actually feels like using them on PC — anyone interested?</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/AI_Agents/comments/1rwulgs/i_built_a_selfhosted_server_iostelegram_client/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#26</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Which Raspberry Pi should I buy to run Open claw projects</div>
+    <div class="body">I am new to coding, but I am interested in AI. I want to run my experiments on another separate computer, and from what I have seen raspberry pi seems like a good option. Roughly h…</div>
+    <div class="meta"><span class="tag">社群 Which Raspberry Pi should I buy to run Open claw projects</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/openclaw/comments/1rysfx8/which_raspberry_pi_should_i_buy_to_run_open_claw/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#27</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">10 best AI-powered integration tools for Claude</div>
+    <div class="body">In the trenches...</div>
+    <div class="meta"><span class="tag">社群 10 best AI-powered integration tools for Claude</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/Agent_AI/comments/1rw0r39/10_best_aipowered_integration_tools_for_claude/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#28</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Initiative and ownership &gt;&gt;&gt; knowledge</div>
+    <div class="body">So this was pretty cool. We recently promoted a help desk person I'll call “Sally.” She's 24, with about four and a half years of experience (total) to be an engineer on my team. S…</div>
+    <div class="meta"><span class="tag">社群 Initiative and ownership &gt;&gt;&gt; knowledge</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/sysadmin/comments/1rw6nk9/initiative_and_ownership_knowledge/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#29</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Tried MiniMax M2.7 impressive performance on real-world tasks</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 Tried MiniMax M2.7 impressive performance on real-world tasks</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/ArtificialInteligence/comments/1rxnk70/tried_minimax_m27_impressive_performance_on/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#30</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Even some of the best DevSecOps companies are basically saying they can barely fend off new, sophisticated invisible cha…</div>
+    <div class="body">因為你對類似主題表示感興趣</div>
+    <div class="meta"><span class="tag">社群 Even some of the best DevSecOps companies are basically saying they can barely fend off new, sophisticated invisible character AI attacks.</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/cybersecurity/comments/1rviz0s/even_some_of_the_best_devsecops_companies_are/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#31</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">I have three questions for open claw</div>
+    <div class="body">Is open claw not good for me to own on my pc I use daily? Can I theoretically make open claw play call of duty for me to get every single camo on every weapon in just one day? Is i…</div>
+    <div class="meta"><span class="tag">社群 I have three questions for open claw</span><span class="tag">第 6 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/openclaw/comments/1rynja4/i_have_three_questions_for_open_claw/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#32</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Apperntly qwen knows what will happen even in future 😭</div>
+    <div class="body">Opensource</div>
+    <div class="meta"><span class="tag">社群 Apperntly qwen knows what will happen even in future 😭</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/Qwen_AI/comments/1rv0ihw/apperntly_qwen_knows_what_will_happen_even_in/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#33</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">I built 100 runnable OpenClaw workflows</div>
+    <div class="body">根據你最近的活動</div>
+    <div class="meta"><span class="tag">社群 I built 100 runnable OpenClaw workflows</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/AskClaw/comments/1rwy5k4/i_built_100_runnable_openclaw_workflows/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#34</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Federal Cyber Experts Thought Microsoft’s Cloud Was “a Pile of Shit.” They Approved It Anyway.</div>
+    <div class="body">https://www.propublica.org/article/microsoft-cloud-fedramp-cybersecurity-government Crosspost link: https://www.reddit.com/r/cybersecurity/comments/1rx162t/federal_cyber_experts_th…</div>
+    <div class="meta"><span class="tag">社群 Federal Cyber Experts Thought Microsoft’s Cloud Was “a Pile of Shit.” They Approved It Anyway.</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/sysadmin/comments/1rxdjjl/federal_cyber_experts_thought_microsofts_cloud/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#35</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">MiniMax M2.7 Release: New Self-Evolving AI Model with Major Benchmark Gains</div>
+    <div class="body">Your #1 Source for Latest AI News &amp; Tool Updates 🔥</div>
+    <div class="meta"><span class="tag">社群 MiniMax M2.7 Release: New Self-Evolving AI Model with Major Benchmark Gains</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/aicuriosity/comments/1rx8r2v/minimax_m27_release_new_selfevolving_ai_model/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#36</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">10 Best Free AI Tools You Can Use Right Now</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 10 Best Free AI Tools You Can Use Right Now</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/bestaitools2025/comments/1rvkuk6/10_best_free_ai_tools_you_can_use_right_now/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#37</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Users who’ve seriously used both GPT-5.4 and Claude Opus 4.6: where does each actually win?</div>
+    <div class="body">https://www.openai.com/ - https://help.openai.com/</div>
+    <div class="meta"><span class="tag">社群 Users who’ve seriously used both GPT-5.4 and Claude Opus 4.6: where does each actually win?</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/OpenAI/comments/1rxhdzi/users_whove_seriously_used_both_gpt54_and_claude/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#38</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Cloudy Taipei 101</div>
+    <div class="body">你附近的爆紅內容</div>
+    <div class="meta"><span class="tag">社群 Cloudy Taipei 101</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/Taipei/comments/1ry2d99/cloudy_taipei_101/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#39</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">How I use AI through a repeatable and programmable workflow to stop fixing the same mistakes over and over</div>
+    <div class="body">因為你之前曾造訪過這個社群</div>
+    <div class="meta"><span class="tag">社群 How I use AI through a repeatable and programmable workflow to stop fixing the same mistakes over and over</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/artificial/comments/1rxd6q2/how_i_use_ai_through_a_repeatable_and/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#40</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">OSX &amp; Windows App with Own API Keys</div>
+    <div class="body">Talk to Claude</div>
+    <div class="meta"><span class="tag">社群 OSX &amp; Windows App with Own API Keys</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/Anthropic/comments/1rxedho/osx_windows_app_with_own_api_keys/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#41</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">HW for local LLM for coding</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 HW for local LLM for coding</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/LocalLLM/comments/1rw1g71/hw_for_local_llm_for_coding/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#42</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">You don't need cash for Seoul subway anymore!</div>
+    <div class="body">KoreaTravel Guru</div>
+    <div class="meta"><span class="tag">社群 You don't need cash for Seoul subway anymore!</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/koreatravel/comments/1ryke9i/you_dont_need_cash_for_seoul_subway_anymore/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#43</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">The Open-Source Tool I Keep Coming Back to for WhatsApp Bots with n8n</div>
+    <div class="body">根據你最近的活動</div>
+    <div class="meta"><span class="tag">社群 The Open-Source Tool I Keep Coming Back to for WhatsApp Bots with n8n</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/n8n/comments/1rx3gds/the_opensource_tool_i_keep_coming_back_to_for/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#44</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Welcome to r/NemoClawAI — Your Hub for NVIDIA NemoClaw &amp; Autonomous AI Agents</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 Welcome to r/NemoClawAI — Your Hub for NVIDIA NemoClaw &amp; Autonomous AI Agents</span><span class="tag">分數 1</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/OpenClawUseCases/comments/1rws0yz/welcome_to_rnemoclawai_your_hub_for_nvidia/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#45</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Firmware crosspet v1.16.13</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 Firmware crosspet v1.16.13</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/xteinkereader/comments/1rv36pf/firmware_crosspet_v11613/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#46</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">I tried using Kimi as a therapist and it was terrible, zero chill, zero warmth, wouldn’t stop bringing up the timestamps…</div>
+    <div class="body">I tried using Kimi as a therapist and it was terrible, zero chill, zero warmth, wouldn’t stop bringing up the timestamps of my messages and overly analyzing my wording like crazy</div>
+    <div class="meta"><span class="tag">社群 I tried using Kimi as a therapist and it was terrible, zero chill, zero warmth, wouldn’t stop bringing up the timestamps of my messages and overly analyzing my wording like crazy</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/kimi/comments/1rwt7me/i_tried_using_kimi_as_a_therapist_and_it_was/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#47</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">PLEASE help me understand this. Can someone explain OpenClaw &amp; AI automation from scratch (like I’m a complete beginner)…</div>
+    <div class="body">ing</div>
+    <div class="meta"><span class="tag">社群 PLEASE help me understand this. Can someone explain OpenClaw &amp; AI automation from scratch (like I’m a complete beginner)?</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/myclaw/comments/1rwbdic/please_help_me_understand_this_can_someone/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#48</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Introducing PalmScript, a vibe-coded language for signal research and strategy execution</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 Introducing PalmScript, a vibe-coded language for signal research and strategy execution</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/ai_trading/comments/1rwvkyn/introducing_palmscript_a_vibecoded_language_for/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#49</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">156 free skills you can install into Cursor right now - front-end, memory management, seo and marketing and more</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 156 free skills you can install into Cursor right now - front-end, memory management, seo and marketing and more</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/cursor/comments/1rv1xpt/156_free_skills_you_can_install_into_cursor_right/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#50</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">guard-sh — an LLM-powered safety layer for your shell that intercepts risky commands before they run</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 guard-sh — an LLM-powered safety layer for your shell that intercepts risky commands before they run</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/LLM/comments/1rx4oxz/guardsh_an_llmpowered_safety_layer_for_your_shell/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#51</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Agent Cockpit — open source macOS desktop companion for OpenCode</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 Agent Cockpit — open source macOS desktop companion for OpenCode</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/opencodeCLI/comments/1rworhm/agent_cockpit_open_source_macos_desktop_companion/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#52</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Qwen 3.5 397b (180gb) scores 93% on MMLU</div>
+    <div class="body">https://x.com/localllamasub</div>
+    <div class="meta"><span class="tag">社群 Qwen 3.5 397b (180gb) scores 93% on MMLU</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/LocalLLaMA/comments/1rypm8m/qwen_35_397b_180gb_scores_93_on_mmlu/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#53</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Perplexity, ChatGPT, Gemini, and Claude all cite content differently. Here's what 89,000 citations taught us.</div>
+    <div class="body">為你推薦</div>
+    <div class="meta"><span class="tag">社群 Perplexity, ChatGPT, Gemini, and Claude all cite content differently. Here's what 89,000 citations taught us.</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/AISEOInsider/comments/1rx78h9/perplexity_chatgpt_gemini_and_claude_all_cite/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#54</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">Your AI agents can now learn entire skill trees from the web.</div>
+    <div class="body">growing🦾</div>
+    <div class="meta"><span class="tag">社群 Your AI agents can now learn entire skill trees from the web.</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/StartupMind/comments/1rw1z7t/your_ai_agents_can_now_learn_entire_skill_trees/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#55</span>
+      <span class="kicker">Unknown</span>
+    </div>
+    <div class="title">高市早苗表情：你为啥没有(提前)跟我说珍珠港偷袭？</div>
+    <div class="body">你附近的爆紅內容</div>
+    <div class="meta"><span class="tag">社群 高市早苗表情：你为啥没有(提前)跟我说珍珠港偷袭？</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/China_irl/comments/1rygdnf/%E9%AB%98%E5%B8%82%E6%97%A9%E8%8B%97%E8%A1%A8%E6%83%85%E4%BD%A0%E4%B8%BA%E5%95%A5%E6%B2%A1%E6%9C%89%E6%8F%90%E5%89%8D%E8%B7%9F%E6%88%91%E8%AF%B4%E7%8F%8D%E7%8F%A0%E6%B8%AF%E5%81%B7%E8%A2%AD/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#56</span>
+      <span class="kicker">u/GoomiBare</span>
+    </div>
+    <div class="title">Forget API Pay as you go Costs -- Use Coding plans and save 90%</div>
+    <div class="body">🦞🦞 🦞🦞 🦀</div>
+    <div class="meta"><span class="tag">社群 Forget API Pay as you go Costs -- Use Coding plans and save 90%</span><span class="tag">第 40 輪</span></div>
+    <div class="cta"><a class="btn" href="https://www.reddit.com/r/openclawsetup/comments/1rwyhwx/forget_api_pay_as_you_go_costs_use_coding_plans/" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article></section>
+    <footer class="footer">來源：Safari/Reddit timeline (codex) · 目標頁面：https://www.reddit.com/</footer>
+  </main>
+</body>
+</html>

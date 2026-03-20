@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>X 時間線報告（Codex 版）</title>
+<style>
+:root {
+  --bg: #0b0f14;
+  --panel: #111827;
+  --panel-2: #18212f;
+  --text: #edf2f7;
+  --muted: #94a3b8;
+  --line: rgba(255,255,255,0.08);
+  --accent: #1d9bf0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.03), transparent 30%), var(--bg);
+  color: var(--text);
+  font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+a { color: inherit; }
+.page { width: min(1320px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 40px; }
+.header { margin-bottom: 24px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+h1 { margin: 14px 0 8px; font-size: 34px; line-height: 1.15; }
+.subtitle { color: var(--muted); margin: 0; }
+.metrics { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.metric {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 12px 14px; min-width: 132px;
+}
+.metric .label { color: var(--muted); font-size: 12px; }
+.metric .value { color: var(--text); font-size: 18px; font-weight: 700; margin-top: 2px; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.card {
+  display: flex; flex-direction: column; gap: 10px; min-height: 168px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 70%), var(--panel);
+  border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+}
+.card:hover { border-color: color-mix(in srgb, var(--accent) 38%, var(--line)); background: var(--panel-2); }
+.card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.index {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 34px;
+  padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 800;
+  color: white; background: var(--accent);
+}
+.kicker { color: var(--muted); font-size: 12px; }
+.title { font-size: 17px; font-weight: 700; line-height: 1.35; }
+.body { color: #dbe4ef; white-space: pre-wrap; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.tag {
+  padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 12px;
+}
+.cta { margin-top: 4px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700;
+  background: var(--accent); color: white; border-radius: 12px; padding: 10px 12px;
+}
+.footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .page { width: min(100vw - 20px, 1320px); } .grid { grid-template-columns: 1fr; } h1 { font-size: 28px; } }
+</style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="badge">X / Safari / Codex v1</div>
+      <h1>X 時間線報告（Codex 版）</h1>
+      <p class="subtitle">Safari 抓取 · 三欄排版 · 不覆蓋 GLM5 版本</p>
+      <section class="metrics"><div class="metric"><div class="label">貼文數</div><div class="value">4</div></div><div class="metric"><div class="label">滾動次數</div><div class="value">22</div></div><div class="metric"><div class="label">總耗時</div><div class="value">48秒</div></div><div class="metric"><div class="label">產生時間</div><div class="value">2026/03/20 20:01</div></div></section>
+    </header>
+    <section class="grid">
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#1</span>
+      <span class="kicker">墓碑科技 · @mubeitech</span>
+    </div>
+    <div class="title">黄仁勋最近给英伟达划了道新红线。
+年薪50万美金的工程师，年底查账要是只花掉5000美金的AI算力。
+他会直接翻脸。
+他给出的及格线是消耗25万美金。
+凭什么逼着员工烧钱？
+在黄仁勋眼里，省算力的工程师约等于残废。
+好比拿着顶薪的芯片设计师…</div>
+    <div class="body">黄仁勋最近给英伟达划了道新红线。
+年薪50万美金的工程师，年底查账要是只花掉5000美金的AI算力。
+他会直接翻脸。
+他给出的及格线是消耗25万美金。
+凭什么逼着员工烧钱？
+在黄仁勋眼里，省算力的工程师约等于残废。
+好比拿着顶薪的芯片设计师拒绝开电脑。
+非要在工位上拿纸笔手绘电路图。</div>
+    <div class="meta"><span class="tag">語言 zh</span><span class="tag">第 3 輪</span></div>
+    <div class="cta"><a class="btn" href="https://x.com/mubeitech/status/2034910284934996446" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#2</span>
+      <span class="kicker">Discover Shandong · @faxianshandong</span>
+    </div>
+    <div class="title">The aerial drone photos show the view of Tianchi Lake scenic spot at Baihu Mountain in Juye County, east China's Shandon…</div>
+    <div class="body">The aerial drone photos show the view of Tianchi Lake scenic spot at Baihu Mountain in Juye County, east China's Shandong Province. In 2015, Juye County initiated serial efforts shutting down mines and rehabilitating aba…</div>
+    <div class="meta"><span class="tag">語言 en</span><span class="tag">媒體 2</span><span class="tag">第 3 輪</span></div>
+    <div class="cta"><a class="btn" href="https://x.com/faxianshandong/status/1996758927619641562/photo/1" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#3</span>
+      <span class="kicker">柴郡｜Crypto+AI Plus · @0xCheshire</span>
+    </div>
+    <div class="title">当前 AI 性价比排行榜：
+1. GPT team（咸鱼车位 3.3）
+2. 谷歌 Pro 家庭组（$20 带 6 个号）
+3. MiniMax 2.7（每月 29 块，5 小时 600 次模型调用）</div>
+    <div class="body">当前 AI 性价比排行榜：
+1. GPT team（咸鱼车位 3.3）
+2. 谷歌 Pro 家庭组（$20 带 6 个号）
+3. MiniMax 2.7（每月 29 块，5 小时 600 次模型调用）</div>
+    <div class="meta"><span class="tag">語言 zh</span><span class="tag">媒體 1</span><span class="tag">第 3 輪</span></div>
+    <div class="cta"><a class="btn" href="https://x.com/0xCheshire/status/2034839766513197431" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article>
+  <article class="card">
+    <div class="card-top">
+      <span class="index">#4</span>
+      <span class="kicker">如是我闻 · @VicentYip</span>
+    </div>
+    <div class="title">听说这是福建省省歌！</div>
+    <div class="body">听说这是福建省省歌！</div>
+    <div class="meta"><span class="tag">語言 zh</span><span class="tag">第 3 輪</span></div>
+    <div class="cta"><a class="btn" href="https://x.com/VicentYip/status/2034858862411751565" target="_blank" rel="noreferrer">開啟原文 ↗</a></div>
+  </article></section>
+    <footer class="footer">來源：Safari/X timeline (codex) · 目標頁面：https://x.com/home</footer>
+  </main>
+</body>
+</html>
