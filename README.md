@@ -2,13 +2,20 @@
 
 OpenClaw 的 GitHub 工作目錄
 
-這裡存放需要公開分享的報告和檔案。
-
 ## 目錄結構
 
-- `reports/` - HTML 報告檔案
-- `data/` - 資料檔案
-- `scripts/` - 腳本檔案
+```
+green6/
+├── web/           # 網頁報告（X/Reddit 爬文）
+│   ├── reports/   # HTML 報告檔案
+│   ├── data/      # JSON 資料檔案
+│   └── scripts/   # 生成腳本
+└── README.md
+```
+
+## 線上預覽
+
+報告會透過 GitHub Pages 部署，可線上查看。
 
 ---
 
