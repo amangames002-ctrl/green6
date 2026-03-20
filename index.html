@@ -12,6 +12,7 @@ tailwind.config = {
       colors: {
         xblue: '#1d9bf0',
         reddit: '#ff4500',
+        codex: '#a855f7',
       }
     }
   }
@@ -19,61 +20,74 @@ tailwind.config = {
 </script>
 </head>
 <body class="bg-gray-900 text-gray-100 min-h-screen">
-<div class="max-w-5xl mx-auto px-4 py-12">
-  <!-- Header -->
+<div class="max-w-6xl mx-auto px-4 py-12">
   <div class="text-center mb-12">
     <h1 class="text-4xl font-bold mb-2">📊 Green6</h1>
     <p class="text-gray-400">OpenClaw 爬文報告中心</p>
   </div>
 
-  <!-- 選項卡 -->
   <div class="grid md:grid-cols-2 gap-6">
-    <!-- X 卡片 -->
     <a href="x/" class="group block">
       <div class="p-8 bg-gray-800 rounded-2xl border-2 border-gray-700 hover:border-xblue transition-all hover:shadow-lg hover:shadow-xblue/20">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-14 h-14 rounded-xl bg-xblue/20 flex items-center justify-center">
-            <svg viewBox="0 0 24 24" class="w-8 h-8 fill-xblue">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.834L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" class="w-8 h-8 fill-xblue"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.834L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </div>
           <div>
             <h2 class="text-2xl font-bold group-hover:text-xblue transition">X 時間線</h2>
-            <p class="text-gray-400">Twitter/X 爬文報告</p>
+            <p class="text-gray-400">GLM5 版報告</p>
           </div>
         </div>
-        <div class="flex items-center gap-2 text-sm text-gray-500">
-          <span>📅 按日期排列</span>
-          <span>•</span>
-          <span>LLM 分類</span>
-        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500"><span>📅 按日期排列</span><span>•</span><span>LLM 分類</span></div>
       </div>
     </a>
 
-    <!-- Reddit 卡片 -->
     <a href="reddit/" class="group block">
       <div class="p-8 bg-gray-800 rounded-2xl border-2 border-gray-700 hover:border-reddit transition-all hover:shadow-lg hover:shadow-reddit/20">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-14 h-14 rounded-xl bg-reddit/20 flex items-center justify-center">
-            <svg viewBox="0 0 24 24" class="w-8 h-8 fill-reddit">
-              <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.705-.543-.8 2.747c1.816.07 3.48.632 4.654 1.474.44-.368 1.004-.592 1.62-.592a2.498 2.498 0 1 1 0 4.996c-.104 0-.203-.016-.303-.03-.33 1.688-2.147 3.09-4.693 3.535.115.22.18.468.18.73 0 .879-.713 1.593-1.592 1.593-.878 0-1.591-.714-1.591-1.592 0-.263.065-.511.18-.731-2.545-.445-4.362-1.847-4.693-3.535-.1.014-.199.03-.303.03a2.498 2.498 0 1 1 0-4.996c.616 0 1.18.224 1.62.592 1.175-.842 2.84-1.404 4.656-1.474l.8-2.747-2.705.543a1.25 1.25 0 0 1-2.498-.056 1.25 1.25 0 0 1 1.25-1.25c.57 0 1.05.388 1.203.916l3.3.66.3-.66a1.25 1.25 0 0 1 1.203-.916z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" class="w-8 h-8 fill-reddit"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.705-.543-.8 2.747c1.816.07 3.48.632 4.654 1.474.44-.368 1.004-.592 1.62-.592a2.498 2.498 0 1 1 0 4.996c-.104 0-.203-.016-.303-.03-.33 1.688-2.147 3.09-4.693 3.535.115.22.18.468.18.73 0 .879-.713 1.593-1.592 1.593-.878 0-1.591-.714-1.591-1.592 0-.263.065-.511.18-.731-2.545-.445-4.362-1.847-4.693-3.535-.1.014-.199.03-.303.03a2.498 2.498 0 1 1 0-4.996c.616 0 1.18.224 1.62.592 1.175-.842 2.84-1.404 4.656-1.474l.8-2.747-2.705.543a1.25 1.25 0 0 1-2.498-.056 1.25 1.25 0 0 1 1.25-1.25c.57 0 1.05.388 1.203.916l3.3.66.3-.66a1.25 1.25 0 0 1 1.203-.916z"/></svg>
           </div>
           <div>
             <h2 class="text-2xl font-bold group-hover:text-reddit transition">Reddit 時間線</h2>
-            <p class="text-gray-400">Reddit 爬文報告</p>
+            <p class="text-gray-400">GLM5 版報告</p>
           </div>
         </div>
-        <div class="flex items-center gap-2 text-sm text-gray-500">
-          <span>📅 按日期排列</span>
-          <span>•</span>
-          <span>繁中翻譯</span>
+        <div class="flex items-center gap-2 text-sm text-gray-500"><span>📅 按日期排列</span><span>•</span><span>繁中翻譯</span></div>
+      </div>
+    </a>
+
+    <a href="x-codex/" class="group block">
+      <div class="p-8 bg-gray-800 rounded-2xl border-2 border-gray-700 hover:border-codex transition-all hover:shadow-lg hover:shadow-codex/20">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-xl bg-codex/20 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="w-8 h-8 fill-codex"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.834L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold group-hover:text-codex transition">X Codex</h2>
+            <p class="text-gray-400">Codex 版報告</p>
+          </div>
         </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500"><span>📅 按日期排列</span><span>•</span><span>固定規則分類</span></div>
+      </div>
+    </a>
+
+    <a href="reddit-codex/" class="group block">
+      <div class="p-8 bg-gray-800 rounded-2xl border-2 border-gray-700 hover:border-codex transition-all hover:shadow-lg hover:shadow-codex/20">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-xl bg-codex/20 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="w-8 h-8 fill-codex"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.705-.543-.8 2.747c1.816.07 3.48.632 4.654 1.474.44-.368 1.004-.592 1.62-.592a2.498 2.498 0 1 1 0 4.996c-.104 0-.203-.016-.303-.03-.33 1.688-2.147 3.09-4.693 3.535.115.22.18.468.18.73 0 .879-.713 1.593-1.592 1.593-.878 0-1.591-.714-1.591-1.592 0-.263.065-.511.18-.731-2.545-.445-4.362-1.847-4.693-3.535-.1.014-.199.03-.303.03a2.498 2.498 0 1 1 0-4.996c.616 0 1.18.224 1.62.592 1.175-.842 2.84-1.404 4.656-1.474l.8-2.747-2.705.543a1.25 1.25 0 0 1-2.498-.056 1.25 1.25 0 0 1 1.25-1.25c.57 0 1.05.388 1.203.916l3.3.66.3-.66a1.25 1.25 0 0 1 1.203-.916z"/></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold group-hover:text-codex transition">Reddit Codex</h2>
+            <p class="text-gray-400">Codex 版報告</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500"><span>📅 按日期排列</span><span>•</span><span>推送分類 + 繁中翻譯</span></div>
       </div>
     </a>
   </div>
 
-  <!-- Footer -->
   <footer class="mt-16 text-center text-gray-500 text-sm">
     <p>由 OpenClaw 維護 · GitHub Pages 部署</p>
   </footer>

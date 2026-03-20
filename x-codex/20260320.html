@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>X 時間線報告（Codex 版）</title>
+<style>
+:root {
+  --bg: #0b0f14;
+  --panel: #111827;
+  --panel-2: #18212f;
+  --text: #edf2f7;
+  --muted: #94a3b8;
+  --line: rgba(255,255,255,0.08);
+  --accent: #1d9bf0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.03), transparent 30%), var(--bg);
+  color: var(--text);
+  font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+a { color: inherit; }
+.page { width: min(1320px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 40px; }
+.header { margin-bottom: 24px; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; text-decoration: none;
+  color: var(--muted); transition: color .15s ease;
+}
+.back-link:hover { color: var(--text); }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+h1 { margin: 14px 0 8px; font-size: 34px; line-height: 1.15; }
+.subtitle { color: var(--muted); margin: 0; }
+.metrics { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.metric {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 12px 14px; min-width: 132px;
+}
+.metric .label { color: var(--muted); font-size: 12px; }
+.metric .value { color: var(--text); font-size: 18px; font-weight: 700; margin-top: 2px; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.card {
+  display: flex; flex-direction: column; gap: 10px; min-height: 168px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 70%), var(--panel);
+  border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+}
+.card:hover { border-color: color-mix(in srgb, var(--accent) 38%, var(--line)); background: var(--panel-2); }
+.card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.index {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 34px;
+  padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 800;
+  color: white; background: var(--accent);
+}
+.kicker { color: var(--muted); font-size: 12px; }
+.title { font-size: 17px; font-weight: 700; line-height: 1.35; }
+.body { color: #dbe4ef; white-space: pre-wrap; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.tag {
+  padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 12px;
+}
+.cta { margin-top: 4px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700;
+  background: var(--accent); color: white; border-radius: 12px; padding: 10px 12px;
+}
+.footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .page { width: min(100vw - 20px, 1320px); } .grid { grid-template-columns: 1fr; } h1 { font-size: 28px; } }
+</style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <a class="back-link" href="./">← 返回日期列表</a>
+      <div class="badge">X / Safari / Codex</div>
+      <h1>X 時間線報告（Codex 版）</h1>
+      <p class="subtitle">使用固定規則分類產生報告（非 LLM 即時分類）。</p>
+      <section class="metrics"><div class="metric"><div class="label">貼文數</div><div class="value">5</div></div><div class="metric"><div class="label">分類數</div><div class="value">1</div></div><div class="metric"><div class="label">滾動次數</div><div class="value">20</div></div><div class="metric"><div class="label">產生時間</div><div class="value">2026/03/20 23:41</div></div></section>
+    </header>
+    
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px"><a href="#cat-0" class="tag" style="border-color:#f59e0b;color:#f59e0b">🏆 Top 10 熱門 · 5</a></div>
+
+  <section id="cat-0" style="margin-bottom:28px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin:0 0 12px 0">
+      <h2 style="margin:0;font-size:22px;color:#f59e0b">🏆 Top 10 熱門</h2>
+      <span class="tag">5 則</span>
+    </div>
+    <div class="grid">
+      
+        <article class="card">
+          <div class="card-top">
+            <span class="index" style="background:#f59e0b">#1</span>
+            <span class="kicker">Geek · @geekbb</span>
+          </div>
+          <div class="body">快冲~ 去 Google 搜索 minimax免费领取30刀额度，两周有效！</div>
+          <div class="meta">
+            <span class="tag">zh</span>
+            <span class="tag">第 1 輪</span>
+          </div>
+          <div class="cta"><a class="btn" href="https://x.com/geekbb/status/2034961434912989217" target="_blank" rel="noreferrer" style="background:#f59e0b">開啟原文 ↗</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="index" style="background:#f59e0b">#2</span>
+            <span class="kicker">Elon Musk · @elonmusk</span>
+          </div>
+          <div class="body">So many phonies, so few who are the real deal</div>
+          <div class="meta">
+            <span class="tag">en</span>
+            <span class="tag">第 1 輪</span>
+          </div>
+          <div class="cta"><a class="btn" href="https://x.com/elonmusk/status/2034961218138710105" target="_blank" rel="noreferrer" style="background:#f59e0b">開啟原文 ↗</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="index" style="background:#f59e0b">#3</span>
+            <span class="kicker">如是我闻 · @VicentYip</span>
+          </div>
+          <div class="body">听说这是福建省省歌！</div>
+          <div class="meta">
+            <span class="tag">zh</span>
+            <span class="tag">第 1 輪</span>
+          </div>
+          <div class="cta"><a class="btn" href="https://x.com/VicentYip/status/2034858862411751565" target="_blank" rel="noreferrer" style="background:#f59e0b">開啟原文 ↗</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="index" style="background:#f59e0b">#4</span>
+            <span class="kicker">iGeekbb · @igeekbb</span>
+          </div>
+          <div class="body">这哥们叫蔡有才，距离全网封杀不远了，共 365 个作品获得了 48.9万粉丝、1025.8万获赞，不用说全是抽象行为艺术，并且暗讽尺寸非常的大，太好玩了。</div>
+          <div class="meta">
+            <span class="tag">zh</span>
+            <span class="tag">第 1 輪</span>
+          </div>
+          <div class="cta"><a class="btn" href="https://x.com/igeekbb/status/2034996945228636237" target="_blank" rel="noreferrer" style="background:#f59e0b">開啟原文 ↗</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="index" style="background:#f59e0b">#5</span>
+            <span class="kicker">墓碑科技 · @mubeitech</span>
+          </div>
+          <div class="body">好东西，良心呐！ PDF 编辑器 仅 25MB。无需注册。无需联网。可直接编辑文本，而非简单的涂改。桌面版 100% 免费</div>
+          <div class="meta">
+            <span class="tag">zh</span>
+            <span class="tag">第 2 輪</span>
+          </div>
+          <div class="cta"><a class="btn" href="https://x.com/mubeitech/status/2034952826862829904" target="_blank" rel="noreferrer" style="background:#f59e0b">開啟原文 ↗</a></div>
+        </article>
+    </div>
+  </section>
+    <footer class="footer">來源：Safari/X timeline · 分類方式：內建固定規則</footer>
+  </main>
+</body>
+</html>
