@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Reddit 個人化時間線 · 56 則貼文</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reddit 時間線 · 56 則貼文 · Tailwind CSS</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -11,101 +11,67 @@ tailwind.config = {
     extend: {
       colors: {
         reddit: '#ff4500',
-        dark: {
-          900: '#0f1419',
-          800: '#1a1f2e',
-          700: '#252d3a',
-        }
+        dark: { 900: '#0f1419', 800: '#1a1f2e', 700: '#252d3a' }
       }
     }
   }
 }
 </script>
 </head>
-<body class="bg-dark-900 text-gray-100 min-h-screen">
-  <div class="max-w-7xl mx-auto px-4 py-8">
-    <!-- Header -->
-    <header class="mb-8">
-      <div class="inline-block px-3 py-1 rounded-full bg-reddit/20 text-reddit text-xs font-bold tracking-wider uppercase mb-3">
-        OpenClaw · Reddit 個人化時間線
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <header class="mb-8">
+    <div class="flex items-center gap-4 mb-4">
+      <svg viewBox="0 0 24 24" class="w-12 h-12 fill-reddit">
+        <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.705-.543-.8 2.747c1.816.07 3.48.632 4.654 1.474.44-.368 1.004-.592 1.62-.592a2.498 2.498 0 1 1 0 4.996c-.104 0-.203-.016-.303-.03-.33 1.688-2.147 3.09-4.693 3.535.115.22.18.468.18.73 0 .879-.713 1.593-1.592 1.593-.878 0-1.591-.714-1.591-1.592 0-.263.065-.511.18-.731-2.545-.445-4.362-1.847-4.693-3.535-.1.014-.199.03-.303.03a2.498 2.498 0 1 1 0-4.996c.616 0 1.18.224 1.62.592 1.175-.842 2.84-1.404 4.656-1.474l.8-2.747-2.705.543a1.25 1.25 0 0 1-2.498-.056 1.25 1.25 0 0 1 1.25-1.25c.57 0 1.05.388 1.203.916l3.3.66.3-.66a1.25 1.25 0 0 1 1.203-.916z"/>
+      </svg>
+      <div>
+        <h1 class="text-3xl font-bold text-white">Reddit 時間線報告</h1>
+        <p class="text-gray-400">56 則貼文 · 50 次滾動 · 推送類別分類</p>
       </div>
-      <h1 class="text-3xl font-bold text-white mb-2">Reddit 時間線報告</h1>
-      <p class="text-gray-400">56 則貼文 · Tailwind CSS 風格 · 所有英文標題已翻譯為繁體中文</p>
+    </div>
+    <div class="flex gap-2 flex-wrap">
       
-      <!-- Metrics -->
-      <div class="flex gap-3 mt-4 flex-wrap">
-        <div class="px-4 py-2 rounded-lg bg-dark-800 border border-white/10">
-          <span class="text-reddit font-bold">56</span>
-          <span class="text-gray-400 ml-1">則貼文</span>
-        </div>
-        <div class="px-4 py-2 rounded-lg bg-dark-800 border border-white/10">
-          <span class="text-reddit font-bold">50</span>
-          <span class="text-gray-400 ml-1">次滾動</span>
-        </div>
-      </div>
-    </header>
+      <a href="#cat-為你推薦" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        ✨ 為你推薦 (25)
+      </a>
+      
+      <a href="#cat-根據你最近的活動" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        📊 根據你最近的活動 (5)
+      </a>
+      
+      <a href="#cat-因為你之前曾造訪過這個社群" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        🔄 因為你之前曾造訪過這個社群 (4)
+      </a>
+      
+      <a href="#cat-因為你對類似主題表示感興趣" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        💡 因為你對類似主題表示感興趣 (1)
+      </a>
+      
+      <a href="#cat-你附近的爆紅內容" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        🔥 你附近的爆紅內容 (2)
+      </a>
+      
+      <a href="#cat-訂閱的社群" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        📌 訂閱的社群 (19)
+      </a>
+      
+    </div>
+  </header>
 
-    <!-- Grid -->
+  
+  <section id="cat-為你推薦" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">✨ 為你推薦</h2>
+      <span class="text-gray-500 text-sm">25 則</span>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#1</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">新模型 MiniMax 2.7 發布了，來試試 vibe coding？</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/vibecoders_/comments/1rwxpn5/new_model_minimax_27_is_released_shall_we_try_for/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#2</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">有人能從頭解釋 OpenClaw 和 AI 自動化嗎？（像我這種完全新手）</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/OpenClawUseCases/comments/1rwblzm/can_someone_explain_openclaw_ai_automation_from/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#3</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">【交易】Cursor Pro 一年版・私人帳號・70 美元（Paypal/Binance）</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/eDeals/comments/1ryf55y/deaal_cursor_pro_1_year_private_70_paypalbinance/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#4</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">兩會期间“我”因为成为上访人员的密接，而被遣送回原籍•兩會期间“我”因为成为上访人员的密接，而被遣送回原籍</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/China_irl/comments/1rxjobx/%E4%B8%A4%E4%BC%9A%E6%9C%9F%E9%97%B4%E6%88%91%E5%9B%A0%E4%B8%BA%E6%88%90%E4%B8%BA%E4%B8%8A%E8%AE%BF%E4%BA%BA%E5%91%98%E7%9A%84%E5%AF%86%E6%8E%A5%E8%80%8C%E8%A2%AB%E9%81%A3%E9%80%81%E5%9B%9E%E5%8E%9F%E7%B1%8D/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#5</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我如何用 Claude 4.6 自動化 12 年的手動 LinkedIn 銷售推廣</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我如何用 Claude 4.6 自動化 12 年的手動 LinkedIn 銷售推廣</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/aiToolForBusiness/comments/1ru6i5k/how_i_finally_automated_12_years_of_manual/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -113,12 +79,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#6</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Seedance 2.0 AI 影片生成的終極提示詞庫剛在 GitHub 上發布</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Seedance 2.0 AI 影片生成的終極提示詞庫</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/StartupMind/comments/1rwy58v/the_ultimate_prompt_library_for_seedance_20_ai/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -126,38 +91,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#7</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">最常用的 Claude Code 開發工作流程</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/ClaudeAI/comments/1ry9aqa/most_used_claude_code_development_workflows/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#8</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 技巧：從基礎到進階（開源專案 5k+ 星）</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/AskVibecoders/comments/1rvgy7n/claude_code_tips_from_basics_to_advance/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#9</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">oldNokia Ultrareal・Flux2.Klein 9b LoRA</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">oldNokia Ultrareal. Flux2.Klein 9b LoRA•oldNokia Ultrareal. Flux2.Klein 9b LoRA</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/StableDiffusion/comments/1rutgoa/oldnokia_ultrareal_flux2klein_9b_lora/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -165,25 +103,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#10</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Gemini 3.1 Pro 知識截止日期為 2024 年底</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/google_antigravity/comments/1rx2umj/gemini_31pro_knowledge_cutoff_late_2024/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#11</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">倒飛訓練 7.4</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">倒飛訓練 7.4</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/RedditGames/comments/1ryfe4k/upsidown_flight_training_74/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -191,12 +115,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#12</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">NVIDIA GTC 2026 第二天感覺不再只是炒作……而是現實開始顯現</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">NVIDIA GTC 2026 第二天：現實開始顯現</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/costlyinfra/comments/1rwoeis/day_2_at_nvidia_gtc_2026_felt_less_like_hype_and/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -204,12 +127,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#13</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">OpenClaw v2026.3.12 剛剛發布！</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">OpenClaw v2026.3.12 剛剛發布！</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/myclaw/comments/1ru8l4s/openclaw_v2026312_just_launched/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -217,38 +139,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#14</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">到底是什麼讓你選擇 OpenClaw 而不是 Claude Code？</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/openclaw/comments/1rxx2q9/what_actually_convinces_you_to_reach_for_openclaw/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#15</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我整理了 48 個設計技能檔案，附帶自訂風格供你選擇給 Claude 使用</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/ClaudeAI/comments/1rx7v8i/i_built_a_list_of_48_design_skill_files_with/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#16</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">使用 mlx-tune 直接在你的 Mac 上微調 LLM</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">使用 mlx-tune 直接在你的 Mac 上微調 LLM</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/Applesilicon/comments/1rw5elt/finetune_llms_directly_on_your_mac_with_mlxtune/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -256,12 +151,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#17</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">這就是一個 AI 奇點信仰機器人新創公司的部落格文章長什麼樣子</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">This is what the blogpost of an AI-Singularity pilled robotics startup looks like (Atoms from Uber co-founder…</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/accelerate/comments/1ruzfir/this_is_what_the_blogpost_of_an_aisingularity/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -269,12 +163,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#18</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">這是我作為產品設計師使用的 Cursor 規則</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">這是我作為產品設計師使用的 Cursor 規則</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/cursor/comments/1rv7zqp/here_are_cursor_rules_i_use_as_product_designer/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -282,64 +175,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#19</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">尬住了 波蘭前总统在民進黨举办的“玉山論壇”上称中国必须统一•尬住了 波蘭前总统在民進黨举办的“玉山論壇”上称中国必须统一</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/China_irl/comments/1rxu93g/%E5%B0%AC%E4%BD%8F%E4%BA%86_%E6%B3%A2%E5%85%B0%E5%89%8D%E6%80%BB%E7%BB%9F%E5%9C%A8%E6%B0%91%E8%BF%9B%E5%85%9A%E4%B8%BE%E5%8A%9E%E7%9A%84%E7%8E%89%E5%B1%B1%E8%AE%BA%E5%9D%9B%E4%B8%8A%E7%A7%B0%E4%B8%AD%E5%9B%BD%E5%BF%85%E9%A1%BB%E7%BB%9F%E4%B8%80/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#20</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我厭倦了猜測哪個本地 LLM 比較好，所以做了一個小型基準測試工具（ModelSweep）</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/ollama/comments/1rybn00/i_got_tired_of_guessing_which_local_llm_was/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#21</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">LinkedIn Career 3 個月（5 美元）啟用後付款</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/eDeals/comments/1rvp71x/linkedin_career_3_months_5_payment_after/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#22</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我們做了一份免費摘要，將 AI 安全研究論文翻譯成白話文</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/artificial/comments/1rycyzn/we_built_a_free_digest_that_translates_ai/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#23</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我取消 ChatGPT 後無法讀取自己的資料，所以我做了一個檢視器</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我取消 ChatGPT 後無法讀取自己的資料</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/ChatGPTcomplaints/comments/1rumtkn/i_cancelled_chatgpt_and_couldnt_read_my_own_data/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -347,25 +187,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#24</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">奇虎 360 的 AI 產品外洩了平台的 SSL 金鑰，因詐欺被禁</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/sysadmin/comments/1rvjad6/qihoo_360s_ai_product_leaked_the_platforms_ssl/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#25</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Bmalph：結構化規劃 + 自主編碼循環，原生支援 OpenCode</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Bmalph: structured planning + autonomous coding loop, native OpenCode support•Bmalph: structured planning + au…</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/opencode/comments/1rx04b6/bmalph_structured_planning_autonomous_coding_loop/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -373,12 +199,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#26</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">【免費】Google AI Ultra – 25k 點數贈送</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">【免費】Google AI Ultra 25k 點數贈送</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/PremiumDealsHub/comments/1rwb5wp/free_google_ai_ultra_25k_credits_giveaway/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -386,38 +211,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#27</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Antigravity 對 Claude 模型的限制是怎麼運作的？</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/google_antigravity/comments/1rwdiqv/how_do_the_antigravity_limits_work_for_the_claude/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#28</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">卡達拉斯拉凡天然氣設施——全球最大液化天然氣廠在伊朗飛彈襲擊後起火</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/oil/comments/1rxpeyj/ras_laffan_gas_facility_in_qatar_which_is_the/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#29</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">更新：我現在已經用一些中國 AI 工具進行 vibe coding 並比較了差異</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">UPDATE: I have now since vibe coded with some Chinese AI tools and compared the difference•UPDATE: I have now…</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/vibecoding/comments/1rvugpg/update_i_have_now_since_vibe_coded_with_some/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -425,25 +223,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#30</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">所以沒人在下載這個模型囉？</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1rxbtyj/so_nobodys_downloading_this_model_huh/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#31</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">If you’re starting a SaaS in 2026, do this (how we hit $1M ARR in 9 months)•</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">If you’re starting a SaaS in 2026, do this (how we hit $1M ARR in 9 months)•If you’re starting a SaaS in 2026,…</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/microsaas/comments/1rv63cu/if_youre_starting_a_saas_in_2026_do_this_how_we/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -451,12 +235,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#32</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Agents.•</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Agents.•Agents. Do you have to use Claude code to build an agent or can you just do it from the Claw bot platf…</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/clawdbot/comments/1rwbfl0/agents/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -464,12 +247,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#33</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Unsloth Studio 在 Product Hunt 上發布！</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Unsloth Studio 在 Product Hunt 上發布！</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/unsloth/comments/1rx1nr0/unsloth_studio_launches_on_product_hunt/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -477,25 +259,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#34</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">可用帳號</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/CheapGptplus/comments/1rv6my7/wts_premium_ai_accounts_google_ai_ultra_free/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#35</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 用對了可以便宜 50-70%！</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 用對了可以便宜 50-70%</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/OpenSourceeAI/comments/1rvmsl5/claude_code_can_become_5070_cheaper_if_you_use_it/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -503,25 +271,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#36</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">給那些厭倦每次都寫相同 ML 樣板程式碼的人</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/artificial/comments/1rvrbjv/i_built_a_visual_draganddrop_ml_trainer_no_code/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#37</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">需要幫忙</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Help Needed•Help Needed</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/augmentedreality/comments/1rxntix/help_needed/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -529,12 +283,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#38</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">比較不同 AI 模型，你覺得哪個表現最好？</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">比較不同 AI 模型，你覺得哪個表現最好？</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/GPT3/comments/1rxv2rd/comparing_different_ai_models_which_do_you_think/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -542,25 +295,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#39</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Foundry - 我個人使用的 AI 編排控制平面</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/AIDeveloperNews/comments/1rwnxa8/foundry_my_personaluse_ai_orchestration/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#40</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我做了一個 OpenClaw 的行動應用程式 — Clawket</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我做了一個 OpenClaw 的行動應用程式 — Clawket</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/OpenClawUseCases/comments/1rw7q0n/i_built_a_mobile_app_for_openclaw_clawket/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -568,25 +307,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#41</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">首先：CLAUDE.md 的不同類型</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/LLMDevs/comments/1rwh2yd/your_claudemd_files_in_subdirectories_might_not/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#42</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我可以給你 1 年 Perplexity AI Pro 100% 折扣碼，請私訊</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">I can give you 1 year perplexity ai pro %100 discount code (legit method) just dm•I can give you 1 year perple…</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/PremiumDealsHub/comments/1rw6jfv/i_can_give_you_1_year_perplexity_ai_pro_100/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -594,12 +319,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#43</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Ollama 現在是 OpenClaw 的官方供應商</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Ollama 現在是 OpenClaw 的官方供應商</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/AgentsOfAI/comments/1rv6vkk/ollama_is_now_an_official_provider_for_openclaw/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -607,64 +331,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#44</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">推出 GPT-5.4 mini 和 nano</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/OpenAI/comments/1rwcn2y/introducing_gpt54_mini_and_nano/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#45</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Stryker 資安事件的鑑識分析</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/cybersecurity/comments/1rwssna/forensics_on_the_stryker_breach_possibly/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#46</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">為什麼大家都用 Mac Mini 跑 OpenClaw？</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/openclaw/comments/1ry1tws/why_does_everyone_use_mac_minis_for_openclaw/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#47</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我用 ltx2.3、veo 和 grok 創作了我自己的電影預告片</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/artificial/comments/1ryid19/i_used_ltx23_veo_and_grok_to_create_my_own/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#48</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">AI API - 存取所有最佳模型</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">AI API - access all best models•AI API - access all best models After purchase, you receive a personal API key…</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/AI_Deal_Cave/comments/1rwrvt2/ai_api_access_all_best_models/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -672,64 +343,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#49</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">NETFLIX 4K UHD 6 美元（PayPal）</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/eDeals/comments/1ryfodl/netflix_4k_uhd_6_paypal/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#50</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 現在給的使用量比 Codex 多</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/codex/comments/1rv5v63/claude_code_gives_more_usage_than_codex_now/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#51</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我們上線接受訂單了！今天就能即時部署你的 OpenClaw</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/openclawsetup/comments/1ry0iom/were_live_and_taking_orders_instant_deploy_your/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#52</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">M1 Max 上用 Ollama 還是 LM Studio 來管理和運行本地 LLM 比較好？</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/ollama/comments/1rxahs7/ollama_vs_lm_studio_for_m1_max_to_manage_and_run/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#53</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">PromptToMars — AI 提示詞平台</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">PromptToMars — a AI prompt platform for generators, optimizers, and reusable presets•PromptToMars — a AI promp…</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/ShowYourApp/comments/1rwxdp7/prompttomars_a_ai_prompt_platform_for_generators/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -737,25 +355,11 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-xs font-bold text-cyan-400">#54</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">今日得知：Windows SYSTEM 帳號現在改用 SystemTemp 存放暫存檔</h2>
-          <div class="mt-auto pt-2">
-            <a href="https://www.reddit.com/r/sysadmin/comments/1rv65in/til_windows_system_account_now_uses/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
-              開啟原文
-              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-        </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#55</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">訓練聊天機器人</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">訓練聊天機器人</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/LocalLLM/comments/1rw82mg/training_a_chatbot/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -763,12 +367,69 @@ tailwind.config = {
             </a>
           </div>
         </article>
-        <article class="group p-4 rounded-xl bg-dark-800 border border-white/10 hover:border-reddit/50 transition-all duration-200 hover:shadow-lg hover:shadow-reddit/10">
+    </div>
+  </section>
+  
+  <section id="cat-根據你最近的活動" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">📊 根據你最近的活動</h2>
+      <span class="text-gray-500 text-sm">5 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#2</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">有人能從頭解釋 OpenClaw 和 AI 自動化嗎？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/OpenClawUseCases/comments/1rwblzm/can_someone_explain_openclaw_ai_automation_from/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#8</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 技巧：從基礎到進階</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AskVibecoders/comments/1rvgy7n/claude_code_tips_from_basics_to_advance/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#39</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Foundry - My personal-use AI orchestration control-plane for E2E modultihs with minimal HITL•Foundry - My pers…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AIDeveloperNews/comments/1rwnxa8/foundry_my_personaluse_ai_orchestration/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#51</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">We're live and taking orders instant deploy your openclaw with full access today!•We're live and taking orders…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/openclawsetup/comments/1ry0iom/were_live_and_taking_orders_instant_deploy_your/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
           <div class="flex items-start justify-between mb-2">
             <span class="text-xs font-bold text-cyan-400">#56</span>
-            <span class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
           </div>
-          <h2 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">5 個真正能帶來改變的實用技能！！</h2>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">5 個真正能帶來改變的實用技能</h3>
           <div class="mt-auto pt-2">
             <a href="https://www.reddit.com/r/AskClaw/comments/1rwz5op/5_useful_skills_which_can_really_make_a_difference/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
               開啟原文
@@ -777,11 +438,364 @@ tailwind.config = {
           </div>
         </article>
     </div>
+  </section>
+  
+  <section id="cat-因為你之前曾造訪過這個社群" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">🔄 因為你之前曾造訪過這個社群</h2>
+      <span class="text-gray-500 text-sm">4 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#3</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">【交易】Cursor Pro 一年版・70 美元</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/eDeals/comments/1ryf55y/deaal_cursor_pro_1_year_private_70_paypalbinance/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#21</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">LinkedIn Career 3 個月 5 美元</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/eDeals/comments/1rvp71x/linkedin_career_3_months_5_payment_after/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#47</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">I used ltx2.3 , veo and grok to create my own cinematic trailer•I used ltx2.3 , veo and grok to create my own…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/artificial/comments/1ryid19/i_used_ltx23_veo_and_grok_to_create_my_own/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#49</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">NETFLIX 4K UHD $6 PAYPAL•NETFLIX 4K UHD $6 PAYPAL Subscriptions netflix Plan: 4K UHD PREMIUM Total slots: 5 Av…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/eDeals/comments/1ryfodl/netflix_4k_uhd_6_paypal/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-因為你對類似主題表示感興趣" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">💡 因為你對類似主題表示感興趣</h2>
+      <span class="text-gray-500 text-sm">1 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#45</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Forensics on the Stryker breach (possibly revealing the initial access)•Forensics on the Stryker breach (possi…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/cybersecurity/comments/1rwssna/forensics_on_the_stryker_breach_possibly/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-你附近的爆紅內容" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">🔥 你附近的爆紅內容</h2>
+      <span class="text-gray-500 text-sm">2 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#4</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">兩會期間「我」因為成為上訪人員的密接，而被遣送回原籍</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/China_irl/comments/1rxjobx/%E4%B8%A4%E4%BC%9A%E6%9C%9F%E9%97%B4%E6%88%91%E5%9B%A0%E4%B8%BA%E6%88%90%E4%B8%BA%E4%B8%8A%E8%AE%BF%E4%BA%BA%E5%91%98%E7%9A%84%E5%AF%86%E6%8E%A5%E8%80%8C%E8%A2%AB%E9%81%A3%E9%80%81%E5%9B%9E%E5%8E%9F%E7%B1%8D/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#19</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">尬住了 波蘭前總統稱中國必須統一</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/China_irl/comments/1rxu93g/%E5%B0%AC%E4%BD%8F%E4%BA%86_%E6%B3%A2%E5%85%B0%E5%89%8D%E6%80%BB%E7%BB%9F%E5%9C%A8%E6%B0%91%E8%BF%9B%E5%85%9A%E4%B8%BE%E5%8A%9E%E7%9A%84%E7%8E%89%E5%B1%B1%E8%AE%BA%E5%9D%9B%E4%B8%8A%E7%A7%B0%E4%B8%AD%E5%9B%BD%E5%BF%85%E9%A1%BB%E7%BB%9F%E4%B8%80/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-訂閱的社群" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">📌 訂閱的社群</h2>
+      <span class="text-gray-500 text-sm">19 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#1</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">新模型 MiniMax 2.7 發布了，來試試 vibe coding？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/vibecoders_/comments/1rwxpn5/new_model_minimax_27_is_released_shall_we_try_for/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#7</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">最常用的 Claude Code 開發工作流程</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ClaudeAI/comments/1ry9aqa/most_used_claude_code_development_workflows/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#10</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Gemini 3.1 Pro 知識截止日期為 2024 年底</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/google_antigravity/comments/1rx2umj/gemini_31pro_knowledge_cutoff_late_2024/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#14</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">到底是什麼讓你選擇 OpenClaw 而不是 Claude Code？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/openclaw/comments/1rxx2q9/what_actually_convinces_you_to_reach_for_openclaw/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#15</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">I built a list of 48 design skill files with custom styles for you to choose from for ClaudeI built a list of…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ClaudeAI/comments/1rx7v8i/i_built_a_list_of_48_design_skill_files_with/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#20</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我厭倦了猜測哪個本地 LLM 比較好</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ollama/comments/1rybn00/i_got_tired_of_guessing_which_local_llm_was/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#22</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">We built a free digest that translates AI security research papers into plain language -- first issue covers c…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/artificial/comments/1rycyzn/we_built_a_free_digest_that_translates_ai/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#24</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">奇虎 360 的 AI 產品外洩 SSL 金鑰</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/sysadmin/comments/1rvjad6/qihoo_360s_ai_product_leaked_the_platforms_ssl/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#27</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Antigravity 對 Claude 模型的限制是怎麼運作的？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/google_antigravity/comments/1rwdiqv/how_do_the_antigravity_limits_work_for_the_claude/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#28</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">卡達拉斯拉凡天然氣設施起火</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/oil/comments/1rxpeyj/ras_laffan_gas_facility_in_qatar_which_is_the/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#30</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">所以沒人在下載這個模型囉？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1rxbtyj/so_nobodys_downloading_this_model_huh/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#34</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">🛒 Available Accounts</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/CheapGptplus/comments/1rv6my7/wts_premium_ai_accounts_google_ai_ultra_free/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#36</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">For those who are tired of writing the same ML boilerplate every single time or to beginners who don't have co…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/artificial/comments/1rvrbjv/i_built_a_visual_draganddrop_ml_trainer_no_code/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#41</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">First: the different types of CLAUDE.md</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/LLMDevs/comments/1rwh2yd/your_claudemd_files_in_subdirectories_might_not/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#44</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">推出 GPT-5.4 mini 和 nano</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/OpenAI/comments/1rwcn2y/introducing_gpt54_mini_and_nano/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#46</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">為什麼大家都用 Mac Mini 跑 OpenClaw？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/openclaw/comments/1ry1tws/why_does_everyone_use_mac_minis_for_openclaw/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#50</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">Claude Code 現在給的使用量比 Codex 多</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/codex/comments/1rv5v63/claude_code_gives_more_usage_than_codex_now/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#52</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">M1 Max 上用 Ollama 還是 LM Studio？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ollama/comments/1rxahs7/ollama_vs_lm_studio_for_m1_max_to_manage_and_run/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#54</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">TIL: Windows SYSTEM account now uses C:\Windows\SystemTemp instead of Temp folder for temporary filesTIL: Wind…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/sysadmin/comments/1rv65in/til_windows_system_account_now_uses/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
 
-    <!-- Footer -->
-    <footer class="mt-12 pt-6 border-t border-white/10 text-gray-500 text-sm">
-      <p>生成時間：2026-03-20T01:54:54.052Z · OpenClaw · Tailwind CSS 風格</p>
-    </footer>
-  </div>
+  <footer class="mt-12 pt-6 border-t border-gray-800 text-gray-600 text-sm">
+    生成時間：2026-03-20T01:54:54.052Z · OpenClaw · Tailwind CSS · 推送類別分類
+  </footer>
+</div>
 </body>
 </html>
