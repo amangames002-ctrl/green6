@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>X 時間線 · 7 則貼文 · Tailwind CSS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        xblue: '#1d9bf0',
+        dark: { 900: '#000000', 800: '#16181c', 700: '#202327' }
+      }
+    }
+  }
+}
+</script>
+</head>
+<body class="bg-black text-gray-100 min-h-screen">
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <!-- Header -->
+  <header class="mb-8">
+    <a href="./" class="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition">← 返回日期列表</a>
+    <div class="flex items-center gap-4 mb-4">
+      <svg viewBox="0 0 24 24" class="w-12 h-12 fill-white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.834L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <div>
+        <h1 class="text-3xl font-bold text-white">X 時間線報告</h1>
+        <p class="text-gray-500">7 則貼文 · 50 次滾動 · LLM 分類</p>
+      </div>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      
+      <a href="#cat-0" class="px-3 py-1.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-bold hover:opacity-80 transition">
+        🏆 Top 10 熱門 (10)
+      </a>
+      
+      <a href="#cat-1" class="px-3 py-1.5 rounded-full bg-xblue/20 text-xblue text-xs font-bold hover:opacity-80 transition">
+        🤖 科技與 AI (14)
+      </a>
+      
+      <a href="#cat-2" class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-bold hover:opacity-80 transition">
+        💰 財經加密貨幣 (8)
+      </a>
+      
+      <a href="#cat-3" class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-bold hover:opacity-80 transition">
+        🌏 國際新聞 (10)
+      </a>
+      
+      <a href="#cat-4" class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-bold hover:opacity-80 transition">
+        🇨🇳 中國話題 (20)
+      </a>
+      
+      <a href="#cat-5" class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-bold hover:opacity-80 transition">
+        🎬 娛樂生活 (4)
+      </a>
+      
+      <a href="#cat-6" class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-400 text-xs font-bold hover:opacity-80 transition">
+        🏃 體育 (2)
+      </a>
+      
+    </div>
+  </header>
+
+  <!-- Categories -->
+  
+  <section id="cat-0" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-black/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-yellow-400">🏆 Top 10 熱門</h2>
+      <span class="text-gray-600 text-sm">10 則</span>
+    </div>
+    <div class="space-y-4">
+      
+        <article class="group border border-gray-800 rounded-xl p-4 hover:bg-gray-900/50 hover:border-gray-700 transition-all">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-xblue to-purple-500 flex items-center justify-center text-white font-bold">
+              3
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="font-bold text-white">如是我闻</span>
+                <span class="text-gray-500 text-sm">@VicentYip</span>
+              </div>
+              <p class="text-gray-200 leading-relaxed mb-3">听说这是福建省省歌！</p>
+              <div class="flex items-center gap-4">
+                <a href="https://x.com/VicentYip/status/2034858862411751565" target="_blank" class="inline-flex items-center gap-1.5 text-xblue text-sm hover:underline">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  開啟原文
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-1" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-black/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-xblue">🤖 科技與 AI</h2>
+      <span class="text-gray-600 text-sm">14 則</span>
+    </div>
+    <div class="space-y-4">
+      
+        <article class="group border border-gray-800 rounded-xl p-4 hover:bg-gray-900/50 hover:border-gray-700 transition-all">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-xblue to-purple-500 flex items-center justify-center text-white font-bold">
+              1
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="font-bold text-white">Elon Musk</span>
+                <span class="text-gray-500 text-sm">@elonmusk</span>
+              </div>
+              <p class="text-gray-200 leading-relaxed mb-3">This slaps</p>
+              <div class="flex items-center gap-4">
+                <a href="https://x.com/elonmusk/status/2035109937840628046" target="_blank" class="inline-flex items-center gap-1.5 text-xblue text-sm hover:underline">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  開啟原文
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-2" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-black/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">💰 財經加密貨幣</h2>
+      <span class="text-gray-600 text-sm">8 則</span>
+    </div>
+    <div class="space-y-4">
+      
+        <article class="group border border-gray-800 rounded-xl p-4 hover:bg-gray-900/50 hover:border-gray-700 transition-all">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-xblue to-purple-500 flex items-center justify-center text-white font-bold">
+              6
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="font-bold text-white">Art Room</span>
+                <span class="text-gray-500 text-sm">@artroomoff</span>
+              </div>
+              <p class="text-gray-200 leading-relaxed mb-3">Have you heard of Tape Art? Find out with this drawing</p>
+              <div class="flex items-center gap-4">
+                <a href="https://x.com/artroomoff/status/1985997676786450662/analytics" target="_blank" class="inline-flex items-center gap-1.5 text-xblue text-sm hover:underline">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  開啟原文
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-3" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-black/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">🌏 國際新聞</h2>
+      <span class="text-gray-600 text-sm">10 則</span>
+    </div>
+    <div class="space-y-4">
+      
+        <article class="group border border-gray-800 rounded-xl p-4 hover:bg-gray-900/50 hover:border-gray-700 transition-all">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-xblue to-purple-500 flex items-center justify-center text-white font-bold">
+              4
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="font-bold text-white">Preciosa</span>
+                <span class="text-gray-500 text-sm">@jawana41958414</span>
+              </div>
+              <p class="text-gray-200 leading-relaxed mb-3">朋友跟我说，消费降级了，以前还不信，看了视频就信了</p>
+              <div class="flex items-center gap-4">
+                <a href="https://x.com/jawana41958414/status/2034818859509981466" target="_blank" class="inline-flex items-center gap-1.5 text-xblue text-sm hover:underline">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  開啟原文
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-4" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-black/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">🇨🇳 中國話題</h2>
+      <span class="text-gray-600 text-sm">20 則</span>
+    </div>
+    <div class="space-y-4">
+      
+        <article class="group border border-gray-800 rounded-xl p-4 hover:bg-gray-900/50 hover:border-gray-700 transition-all">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-xblue to-purple-500 flex items-center justify-center text-white font-bold">
+              2
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="font-bold text-white">AKIRA</span>
+                <span class="text-gray-500 text-sm">@hunt74828</span>
+              </div>
+              <p class="text-gray-200 leading-relaxed mb-3">Solo Leveling Beru Ant King Lightspeed Fight in 5 Seconds! Full 56s Scroll Down</p>
+              <div class="flex items-center gap-4">
+                <a href="https://x.com/hunt74828/status/2033888919419556204/analytics" target="_blank" class="inline-flex items-center gap-1.5 text-xblue text-sm hover:underline">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  開啟原文
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="group border border-gray-800 rounded-xl p-4 hover:bg-gray-900/50 hover:border-gray-700 transition-all">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-xblue to-purple-500 flex items-center justify-center text-white font-bold">
+              5
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="font-bold text-white">墓碑科技</span>
+                <span class="text-gray-500 text-sm">@mubeitech</span>
+              </div>
+              <p class="text-gray-200 leading-relaxed mb-3">好东西，良心呐！ PDF 编辑器 仅 25MB。无需注册。无需联网。可直接编辑文本，而非简单的涂改。桌面版 100% 免费</p>
+              <div class="flex items-center gap-4">
+                <a href="https://x.com/mubeitech/status/2034952826862829904" target="_blank" class="inline-flex items-center gap-1.5 text-xblue text-sm hover:underline">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  開啟原文
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="group border border-gray-800 rounded-xl p-4 hover:bg-gray-900/50 hover:border-gray-700 transition-all">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-xblue to-purple-500 flex items-center justify-center text-white font-bold">
+              7
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="font-bold text-white">方舟子</span>
+                <span class="text-gray-500 text-sm">@fangshimin</span>
+              </div>
+              <p class="text-gray-200 leading-relaxed mb-3">小米核心团队平均年龄25岁，是怎么做到博士学位占比55%的？难道都是少年班？雷军有没有数字概念？</p>
+              <div class="flex items-center gap-4">
+                <a href="https://x.com/fangshimin/status/2035141566868996395" target="_blank" class="inline-flex items-center gap-1.5 text-xblue text-sm hover:underline">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  開啟原文
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+  <section id="cat-5" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-black/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">🎬 娛樂生活</h2>
+      <span class="text-gray-600 text-sm">4 則</span>
+    </div>
+    <div class="space-y-4">
+      
+    </div>
+  </section>
+  
+  <section id="cat-6" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-black/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">🏃 體育</h2>
+      <span class="text-gray-600 text-sm">2 則</span>
+    </div>
+    <div class="space-y-4">
+      
+        <article class="group border border-gray-800 rounded-xl p-4 hover:bg-gray-900/50 hover:border-gray-700 transition-all">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-xblue to-purple-500 flex items-center justify-center text-white font-bold">
+              3
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="font-bold text-white">如是我闻</span>
+                <span class="text-gray-500 text-sm">@VicentYip</span>
+              </div>
+              <p class="text-gray-200 leading-relaxed mb-3">听说这是福建省省歌！</p>
+              <div class="flex items-center gap-4">
+                <a href="https://x.com/VicentYip/status/2034858862411751565" target="_blank" class="inline-flex items-center gap-1.5 text-xblue text-sm hover:underline">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  開啟原文
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+
+  <footer class="mt-12 pt-6 border-t border-gray-800 text-gray-600 text-sm">
+    生成時間：2026-03-21T02:01:16.738Z · OpenClaw · Tailwind CSS · LLM 分類
+  </footer>
+</div>
+</body>
+</html>
