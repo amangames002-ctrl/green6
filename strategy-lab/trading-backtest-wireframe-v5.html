@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTCUSDT 訊號框架 v5</title>
+  <style>
+    :root {
+      --bg: #08111b;
+      --panel: rgba(10, 21, 33, 0.88);
+      --panel-soft: rgba(13, 27, 43, 0.78);
+      --card: rgba(18, 34, 53, 0.85);
+      --line: rgba(164, 191, 219, 0.13);
+      --line-strong: rgba(164, 191, 219, 0.22);
+      --ink: #eef6ff;
+      --muted: #8ea5bc;
+      --teal: #23d4b2;
+      --blue: #5aa8ff;
+      --amber: #ffbf5f;
+      --red: #ff7b87;
+      --green: #39d88f;
+      --violet: #a27eff;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Inter", "Avenir Next", "PingFang TC", "Noto Sans TC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(90, 168, 255, 0.18), transparent 24rem),
+        radial-gradient(circle at 85% 15%, rgba(35, 212, 178, 0.16), transparent 26rem),
+        linear-gradient(180deg, #06101a 0%, #09131d 48%, #08111b 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 15, 24, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .shell {
+      width: min(1380px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: #06231e;
+      background: linear-gradient(135deg, #86f7e3, #1cc3aa);
+      box-shadow: 0 12px 32px rgba(35, 212, 178, 0.35);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand p,
+    .meta,
+    .hero-copy,
+    .panel p,
+    .tiny,
+    .legend,
+    .helper {
+      color: var(--muted);
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      font-size: 13px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .pill,
+    .mini-pill,
+    .switch-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .pill,
+    .mini-pill {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .pill {
+      padding: 10px 14px;
+    }
+
+    .mini-pill {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+
+    .switch-link {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 13px;
+      color: var(--muted);
+      transition: 160ms ease;
+    }
+
+    .switch-link:hover,
+    .switch-link.active {
+      color: var(--ink);
+      border-color: rgba(35, 212, 178, 0.45);
+      background: rgba(35, 212, 178, 0.12);
+    }
+
+    .page {
+      padding: 24px 0 48px;
+    }
+
+    .hero,
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      background:
+        linear-gradient(135deg, rgba(90, 168, 255, 0.12), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255,255,255,0.01)),
+        var(--panel);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -60px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(35, 212, 178, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(35, 212, 178, 0.13);
+      color: #89f0dd;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 24px;
+      align-items: end;
+    }
+
+    .hero h2 {
+      margin: 16px 0 0;
+      font-size: clamp(36px, 5vw, 76px);
+      line-height: 0.93;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+    }
+
+    .hero-copy {
+      margin-top: 18px;
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 68ch;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-box {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(6, 14, 23, 0.46);
+    }
+
+    .hero-box strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #d7ebff;
+    }
+
+    .hero-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-box li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero-box li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .hero-box b {
+      color: var(--ink);
+    }
+
+    .version-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .tab-button {
+      padding: 11px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+
+    .tab-button:hover,
+    .tab-button.active {
+      color: var(--ink);
+      border-color: rgba(90, 168, 255, 0.35);
+      background: rgba(90, 168, 255, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(90, 168, 255, 0.06);
+    }
+
+    .tab-button.alert-tab {
+      border-color: rgba(255, 191, 95, 0.28);
+      background: rgba(255, 191, 95, 0.08);
+      color: #ffe2a8;
+    }
+
+    .tab-button.alert-tab:hover,
+    .tab-button.alert-tab.active {
+      border-color: rgba(255, 191, 95, 0.52);
+      background: rgba(255, 191, 95, 0.16);
+      color: #fff0cc;
+      box-shadow: inset 0 0 0 1px rgba(255, 191, 95, 0.1);
+    }
+
+    .content {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .panel-inner {
+      padding: 22px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .panel-head h3 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .panel-head p {
+      margin: 8px 0 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .status-chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 191, 95, 0.12);
+      color: #ffd58b;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      position: relative;
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), rgba(35,212,178,0));
+    }
+
+    .stat-card.warn::before {
+      background: linear-gradient(90deg, var(--amber), rgba(255,191,95,0));
+    }
+
+    .stat-card.risk::before {
+      background: linear-gradient(90deg, var(--red), rgba(255,123,135,0));
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      margin-top: 14px;
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .stat-sub {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .summary-row,
+    .deploy-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .summary-box,
+    .deploy-card,
+    .note-card {
+      flex: 1 1 260px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .summary-box strong,
+    .deploy-card strong,
+    .note-card h4 {
+      display: block;
+      margin-bottom: 8px;
+      color: #d7ebff;
+      font-size: 15px;
+    }
+
+    .summary-box p,
+    .deploy-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .strategy-card {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .strategy-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .strategy-card h4 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .strategy-card p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .dir {
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      height: fit-content;
+    }
+
+    .dir.long {
+      background: rgba(57, 216, 143, 0.14);
+      color: #89f4bd;
+    }
+
+    .dir.short {
+      background: rgba(255, 123, 135, 0.14);
+      color: #ffb1b8;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .kpi {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(164, 191, 219, 0.09);
+    }
+
+    .kpi span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .kpi b {
+      display: block;
+      margin-top: 8px;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+    }
+
+    .mini-grid,
+    .month-list,
+    .breakdown-list,
+    .notes-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .chart-shell,
+    .month-card,
+    .notes-card {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .chart-title,
+    .month-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .chart-title strong {
+      font-size: 16px;
+    }
+
+    .chart-wrap {
+      padding: 14px 12px 10px;
+      border-radius: 18px;
+      background: rgba(4, 10, 18, 0.42);
+      border: 1px solid rgba(164,191,219,0.08);
+    }
+
+    .chart-axis {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #7890a8;
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      font-size: 13px;
+    }
+
+    .bar {
+      position: relative;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .bar > span {
+      position: absolute;
+      inset: 0 auto 0 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+
+    .month-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .month-metrics b {
+      display: block;
+      margin-top: 6px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .trade-controls {
+      display: grid;
+      gap: 14px;
+    }
+
+    .month-tabs,
+    .week-progress {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .month-tab {
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+
+    .month-tab.active,
+    .month-tab:hover {
+      color: var(--ink);
+      border-color: rgba(162, 126, 255, 0.35);
+      background: rgba(162, 126, 255, 0.12);
+    }
+
+    .load-next {
+      width: fit-content;
+      padding: 11px 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(35, 212, 178, 0.3);
+      background: rgba(35, 212, 178, 0.1);
+      color: #8ff3df;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+
+    .load-next:hover:not(:disabled) {
+      background: rgba(35, 212, 178, 0.16);
+    }
+
+    .load-next:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .week-pill {
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+    }
+
+    .week-pill.loaded {
+      border-color: rgba(255, 191, 95, 0.35);
+      background: rgba(255, 191, 95, 0.13);
+      color: #ffd58b;
+    }
+
+    .table-shell {
+      overflow: auto;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(7, 15, 24, 0.48);
+    }
+
+    table {
+      width: 100%;
+      min-width: 860px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(164,191,219,0.09);
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: rgba(8, 17, 27, 0.94);
+      color: #9db2c7;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .trade-badge,
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .trade-badge.long {
+      background: rgba(57, 216, 143, 0.13);
+      color: #89f4bd;
+    }
+
+    .trade-badge.short {
+      background: rgba(255, 123, 135, 0.13);
+      color: #ffb1b8;
+    }
+
+    .trade-badge.flat {
+      background: rgba(90, 168, 255, 0.12);
+      color: #95c6ff;
+    }
+
+    .result-badge.win {
+      background: rgba(57, 216, 143, 0.12);
+      color: #89f4bd;
+    }
+
+    .result-badge.loss {
+      background: rgba(255, 123, 135, 0.12);
+      color: #ffb1b8;
+    }
+
+    .result-badge.time {
+      background: rgba(255, 191, 95, 0.12);
+      color: #ffd58b;
+    }
+
+    .notes-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .note-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 18px;
+      padding: 18px 22px 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .closecall-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+    }
+
+    .signal-panel,
+    .action-panel,
+    .plan-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .signal-panel {
+      padding: 20px;
+      background:
+        radial-gradient(circle at top right, rgba(255, 191, 95, 0.18), transparent 15rem),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .signal-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 191, 95, 0.28);
+      background: rgba(255, 191, 95, 0.11);
+      color: #ffe2a8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .signal-main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .signal-main h4 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .signal-main p {
+      margin: 14px 0 0;
+      max-width: 58ch;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .signal-score {
+      min-width: 180px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 191, 95, 0.22);
+      background: rgba(6, 14, 23, 0.34);
+    }
+
+    .signal-score span,
+    .plan-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .signal-score b {
+      display: block;
+      margin-top: 12px;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .signal-metrics,
+    .action-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .signal-metrics {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .plan-card {
+      padding: 16px;
+    }
+
+    .plan-card b {
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+      color: var(--ink);
+    }
+
+    .plan-card p,
+    .action-panel p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .action-panel {
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .action-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .action-list li {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .action-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .action-step {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #08111b;
+      background: linear-gradient(135deg, #ffdf9e, #ffbf5f);
+    }
+
+    .push-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .push-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1140px) {
+      .hero-grid,
+      .chart-grid,
+      .notes-grid,
+      .closecall-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .overview-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 800px) {
+      .topbar-inner,
+      .panel-head,
+      .chart-title,
+      .month-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .overview-grid,
+      .strategy-grid,
+      .kpi-grid,
+      .signal-metrics,
+      .month-metrics,
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .donut-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">BT</div>
+        <div>
+          <h1>BTCUSDT 訊號與回測框架</h1>
+          <p>v5 · 對齊原始文章與 repo 的正式版頁面骨架</p>
+        </div>
+      </div>
+      <div class="meta">
+        <span class="pill">市場 <span class="mono">BTCUSDT 1H</span></span>
+        <span class="pill">策略 <span class="mono">C / E</span></span>
+        <span class="pill">風控 <span class="mono">ATR + 6h exit</span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell page">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Binance Spot / BTCUSDT / 1H / 14:00 & 16:00 UTC</span>
+          <h2>更貼近文章與 repo 的正式版框架</h2>
+          <p class="hero-copy">
+            這版不再使用「美股收盤後進場」語意，而是直接對齊 repo 的訊號來源：
+            `BTCUSDT 1H`、固定 `UTC` 時段、`trend_12h_pct` 條件、`ATR` 風控與 `6 小時` 強制離場。
+            頁面只保留未來真的會接到程式的四個區塊，避免產品層與研究層混在一起。
+          </p>
+
+          <div class="version-nav">
+            <a class="switch-link" href="trading-backtest-wireframe.html">v1</a>
+            <a class="switch-link" href="trading-backtest-wireframe-v2.html">v2</a>
+            <a class="switch-link" href="trading-backtest-wireframe-v3.html">v3</a>
+            <a class="switch-link" href="trading-backtest-wireframe-v4.html">v4</a>
+            <a class="switch-link active" href="trading-backtest-wireframe-v5.html">v5</a>
+          </div>
+
+          <div class="tab-nav" role="tablist" aria-label="頁面內容區塊">
+            <button class="tab-button alert-tab active" type="button" data-tab-target="windows" role="tab">訊號窗口</button>
+            <button class="tab-button" type="button" data-tab-target="strategies" role="tab">策略定義</button>
+            <button class="tab-button" type="button" data-tab-target="validation" role="tab">驗證框架</button>
+            <button class="tab-button" type="button" data-tab-target="trades" role="tab">交易紀錄</button>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <section class="hero-box">
+            <strong>v5 保留的核心</strong>
+            <ul>
+              <li><b>交易市場</b><span>BTCUSDT 1H</span></li>
+              <li><b>進場依據</b><span>hour_utc + trend_12h_pct</span></li>
+              <li><b>風控方式</b><span>SL 1.0 ATR / TP 2.0 ATR / hold 6 bars</span></li>
+              <li><b>雙策略</b><span>Strategy E 做多 / Strategy C 做空</span></li>
+            </ul>
+          </section>
+
+          <section class="hero-box">
+            <strong>v5 刪掉的部分</strong>
+            <ul>
+              <li><b>拿掉</b><span>美股收盤進場敘事</span></li>
+              <li><b>拿掉</b><span>月度拆解獨立頁籤</span></li>
+              <li><b>拿掉</b><span>純產品說明型頁籤</span></li>
+              <li><b>保留</b><span>未來可直接接回測與訊號輸出的位置</span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <article class="panel tab-pane active" data-tab-pane="windows">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>訊號窗口</h3>
+              <p>這一頁未來直接接 `check_entry()` 與即時 context。不是收盤報告，而是每天固定的兩個 BTC 訊號窗口。</p>
+            </div>
+            <span class="status-chip">Signal Windows</span>
+          </div>
+
+          <div class="closecall-grid">
+            <section class="signal-panel">
+              <span class="signal-kicker">Primary Runtime Output</span>
+              <div class="signal-main">
+                <div>
+                  <h4>目前建議：等待窗口</h4>
+                  <p>
+                    正式上線後，這裡只會輸出三種狀態：
+                    `LONG`、`SHORT`、`NO TRADE`。
+                    依據不是主觀判斷，而是當前小時是否剛好命中策略時段，以及 `trend_12h_pct` 是否符合條件。
+                  </p>
+                </div>
+                <div class="signal-score">
+                  <span>Runtime Status</span>
+                  <b class="mono">IDLE</b>
+                  <p>等待 `22:00` 或 `00:00` 台北時間的策略窗口。</p>
+                </div>
+              </div>
+
+              <div class="signal-metrics">
+                <div class="plan-card">
+                  <span>今晚多單窗口</span>
+                  <b class="mono">22:00 台北</b>
+                  <p>對應 `14:00 UTC`，若 `trend_12h_pct > 0`，觸發 Strategy E 做多。</p>
+                </div>
+                <div class="plan-card">
+                  <span>今晚空單窗口</span>
+                  <b class="mono">00:00 台北</b>
+                  <p>對應 `16:00 UTC`，若 `trend_12h_pct < 0`，觸發 Strategy C 做空。</p>
+                </div>
+                <div class="plan-card">
+                  <span>觀望條件</span>
+                  <b>No Trade</b>
+                  <p>未到策略時段，或 `trend_12h_pct` 不符合該策略方向時，直接觀望。</p>
+                </div>
+                <div class="plan-card">
+                  <span>入場價格</span>
+                  <b class="mono">00.00</b>
+                  <p>依 repo backtester / live executor，預設以訊號 bar 的 `close` 作為進場價。</p>
+                </div>
+                <div class="plan-card">
+                  <span>風控規則</span>
+                  <b>SL 1 ATR / TP 2 ATR</b>
+                  <p>repo 目前採 `1.0 ATR` 停損、`2.0 ATR` 止盈，沒有額外技術指標濾網。</p>
+                </div>
+                <div class="plan-card">
+                  <span>時間出場</span>
+                  <b>6 bars / 6h</b>
+                  <p>未達止盈止損時，持倉滿 `6` 根 `1H` bar 強制離場。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="action-panel">
+              <div>
+                <strong>執行流程</strong>
+                <p>這裡對應未來的實際排程，不靠臨場判斷。</p>
+              </div>
+
+              <ol class="action-list">
+                <li>
+                  <span class="action-step">1</span>
+                  <div><b>抓最新 1H bars</b><br>從 Binance 取回 `BTCUSDT` 近期 `1H` OHLCV，建立 context。</div>
+                </li>
+                <li>
+                  <span class="action-step">2</span>
+                  <div><b>計算 context</b><br>至少要有 `hour_utc`、`trend_12h_pct`、`ATR(14)`，這些都已在 repo 裡有對應實作。</div>
+                </li>
+                <li>
+                  <span class="action-step">3</span>
+                  <div><b>檢查策略窗口</b><br>`22:00` 檢查 Strategy E，`00:00` 檢查 Strategy C；只有命中條件才發提醒。</div>
+                </li>
+                <li>
+                  <span class="action-step">4</span>
+                  <div><b>產生網站與通知</b><br>把當前決策、SL / TP / 6h exit、push 狀態輸出到靜態頁與 Discord。</div>
+                </li>
+              </ol>
+
+              <div>
+                <strong>推送狀態欄</strong>
+                <div class="push-strip">
+                  <span class="push-pill">下次窗口 <span class="mono">22:00</span></span>
+                  <span class="push-pill">網站輸出 <span class="mono">Pending</span></span>
+                  <span class="push-pill">DC 通知 <span class="mono">Pending</span></span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="strategies">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>策略定義</h3>
+              <p>直接對齊 repo 目前公開的兩個正式策略，避免再用自行延伸的美股敘事包裝。</p>
+            </div>
+            <span class="status-chip">C / E Definitions</span>
+          </div>
+
+          <div class="strategy-grid">
+            <section class="strategy-card">
+              <div class="strategy-top">
+                <div>
+                  <h4>Strategy E · Afternoon Engine</h4>
+                  <p>repo 定義：`LONG at 14:00 UTC when 12h trend is positive`。</p>
+                </div>
+                <span class="dir long">Long</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi"><span>symbol</span><b>BTCUSDT</b></div>
+                <div class="kpi"><span>timeframe</span><b class="mono">1H</b></div>
+                <div class="kpi"><span>hour_utc</span><b class="mono">14</b></div>
+                <div class="kpi"><span>trend_12h_pct</span><b>&gt; 0</b></div>
+                <div class="kpi"><span>stop_loss</span><b>1.0 ATR</b></div>
+                <div class="kpi"><span>take_profit</span><b>2.0 ATR</b></div>
+                <div class="kpi"><span>max_holding</span><b>6 bars</b></div>
+                <div class="kpi"><span>Taipei time</span><b class="mono">22:00</b></div>
+              </div>
+            </section>
+
+            <section class="strategy-card">
+              <div class="strategy-top">
+                <div>
+                  <h4>Strategy C · US Session Drain</h4>
+                  <p>repo 定義：`SHORT at 16:00 UTC when 12h trend is negative`。</p>
+                </div>
+                <span class="dir short">Short</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi"><span>symbol</span><b>BTCUSDT</b></div>
+                <div class="kpi"><span>timeframe</span><b class="mono">1H</b></div>
+                <div class="kpi"><span>hour_utc</span><b class="mono">16</b></div>
+                <div class="kpi"><span>trend_12h_pct</span><b>&lt; 0</b></div>
+                <div class="kpi"><span>stop_loss</span><b>1.0 ATR</b></div>
+                <div class="kpi"><span>take_profit</span><b>2.0 ATR</b></div>
+                <div class="kpi"><span>max_holding</span><b>6 bars</b></div>
+                <div class="kpi"><span>Taipei time</span><b class="mono">00:00</b></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="summary-row">
+            <section class="summary-box">
+              <strong>原文與 repo 一致的部分</strong>
+              <p>固定時段、12H trend filter、ATR-based stop / TP、最長持有 6 小時，這些都已在 repo 程式碼出現，不只是文章敘事。</p>
+            </section>
+            <section class="summary-box">
+              <strong>未來程式直接接的欄位</strong>
+              <p>`hour_utc`、`trend_12h_pct`、`ATR(14)`、`entry_price=bar.close`、`SL/TP/time exit`，都能從 repo 對應出實作。</p>
+            </section>
+            <section class="summary-box">
+              <strong>這版刻意不做的事</strong>
+              <p>不加入美股收盤推論、不加入 RSI/MACD、自訂因子也先不進來，先把可複製的核心框架定住。</p>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="validation">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>驗證框架</h3>
+              <p>這裡只放正式會接資料的回測輸出，不再拆成太多產品型頁籤。之後你每天看的是結果，不是研究敘事。</p>
+            </div>
+            <span class="status-chip">Backtest Output</span>
+          </div>
+
+          <div class="overview-grid">
+            <div class="stat-card">
+              <div class="stat-label">trade count</div>
+              <div class="stat-value mono">00</div>
+              <div class="stat-sub">總交易次數，Strategy C + E 可分開或合併顯示。</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">win rate</div>
+              <div class="stat-value mono">00.00%</div>
+              <div class="stat-sub">以單筆最終盈虧統計。</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">profit factor</div>
+              <div class="stat-value mono">0.00</div>
+              <div class="stat-sub">repo dashboard / validation 也很重視這個欄位。</div>
+            </div>
+            <div class="stat-card warn">
+              <div class="stat-label">time exit ratio</div>
+              <div class="stat-value mono">00.00%</div>
+              <div class="stat-sub">觀察 6h 強制離場比例是否過高。</div>
+            </div>
+            <div class="stat-card risk">
+              <div class="stat-label">max drawdown</div>
+              <div class="stat-value mono">-00.00%</div>
+              <div class="stat-sub">勝率不能單獨解讀，回撤要一起看。</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">avg holding</div>
+              <div class="stat-value mono">00:00</div>
+              <div class="stat-sub">單位直接對齊 1H bars / 小時。</div>
+            </div>
+          </div>
+
+          <div class="chart-grid" style="margin-top:18px;">
+            <section class="chart-shell">
+              <div class="chart-title">
+                <strong>累積績效曲線</strong>
+                <span class="mini-pill">combined C+E</span>
+              </div>
+              <div class="chart-wrap">
+                <svg viewBox="0 0 640 260" width="100%" height="260" aria-label="equity curve">
+                  <defs>
+                    <linearGradient id="curveFillV5" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#23d4b2" stop-opacity="0.44"></stop>
+                      <stop offset="100%" stop-color="#23d4b2" stop-opacity="0"></stop>
+                    </linearGradient>
+                  </defs>
+                  <g stroke="rgba(164,191,219,0.10)" stroke-width="1">
+                    <line x1="30" y1="30" x2="610" y2="30"></line>
+                    <line x1="30" y1="85" x2="610" y2="85"></line>
+                    <line x1="30" y1="140" x2="610" y2="140"></line>
+                    <line x1="30" y1="195" x2="610" y2="195"></line>
+                    <line x1="30" y1="230" x2="610" y2="230"></line>
+                  </g>
+                  <path d="M30 196 L82 188 L134 170 L186 176 L238 154 L290 140 L342 133 L394 120 L446 126 L498 101 L550 88 L610 74 L610 230 L30 230 Z" fill="url(#curveFillV5)"></path>
+                  <polyline fill="none" stroke="#23d4b2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+                    points="30,196 82,188 134,170 186,176 238,154 290,140 342,133 394,120 446,126 498,101 550,88 610,74"></polyline>
+                </svg>
+                <div class="chart-axis">
+                  <span>IS</span>
+                  <span>Validation</span>
+                  <span>Holdout</span>
+                </div>
+              </div>
+            </section>
+
+            <div class="mini-grid">
+              <section class="chart-shell">
+                <div class="chart-title">
+                  <strong>出場原因</strong>
+                  <span class="mini-pill">tp / sl / time</span>
+                </div>
+                <div class="breakdown-list">
+                  <div class="breakdown-item"><span>Take Profit</span><b class="mono">00</b></div>
+                  <div class="breakdown-item"><span>Stop Loss</span><b class="mono">00</b></div>
+                  <div class="breakdown-item"><span>Time Exit</span><b class="mono">00</b></div>
+                </div>
+              </section>
+
+              <section class="chart-shell">
+                <div class="chart-title">
+                  <strong>驗證提醒</strong>
+                  <span class="mini-pill">repo insight</span>
+                </div>
+                <div class="breakdown-list">
+                  <div class="breakdown-item"><span>市場</span><b>Binance spot</b></div>
+                  <div class="breakdown-item"><span>資料粒度</span><b class="mono">1H</b></div>
+                  <div class="breakdown-item"><span>重要事實</span><b>edge 可能 regime-specific</b></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="trades">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>交易紀錄</h3>
+              <p>這區保留未來網站真正需要看的紀錄欄位，不做過度互動。之後直接接 repo 的 trade log / paper trades 輸出。</p>
+            </div>
+            <span class="status-chip">Recent Trades</span>
+          </div>
+
+          <div class="summary-row" style="margin-top:0;">
+            <section class="summary-box">
+              <strong>資料來源</strong>
+              <p>未來可接 bar-by-bar 回測輸出，或接 live paper executor 寫出的 open / closed positions。</p>
+            </section>
+            <section class="summary-box">
+              <strong>欄位設計</strong>
+              <p>日期、策略、方向、hour_utc、trend_12h_pct、進場、出場、持倉 bars、出場原因、PnL。</p>
+            </section>
+            <section class="summary-box">
+              <strong>展示原則</strong>
+              <p>先看最近訊號與最近平倉紀錄，不先做月份/週次切換，避免把重點交互做錯。</p>
+            </section>
+          </div>
+
+          <div class="table-shell" style="margin-top:16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>時間</th>
+                  <th>策略</th>
+                  <th>方向</th>
+                  <th>hour_utc</th>
+                  <th>trend_12h_pct</th>
+                  <th>進場</th>
+                  <th>出場</th>
+                  <th>持倉</th>
+                  <th>原因</th>
+                  <th>PnL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono">2026-03-24 14:00</td>
+                  <td>Strategy E</td>
+                  <td><span class="trade-badge long">Long</span></td>
+                  <td class="mono">14</td>
+                  <td class="mono">+0.00%</td>
+                  <td class="mono">00.00</td>
+                  <td class="mono">00.00</td>
+                  <td class="mono">6 bars</td>
+                  <td>time</td>
+                  <td class="mono">+00.00%</td>
+                </tr>
+                <tr>
+                  <td class="mono">2026-03-25 16:00</td>
+                  <td>Strategy C</td>
+                  <td><span class="trade-badge short">Short</span></td>
+                  <td class="mono">16</td>
+                  <td class="mono">-0.00%</td>
+                  <td class="mono">00.00</td>
+                  <td class="mono">00.00</td>
+                  <td class="mono">2 bars</td>
+                  <td>tp</td>
+                  <td class="mono">+00.00%</td>
+                </tr>
+                <tr>
+                  <td class="mono">2026-03-26 14:00</td>
+                  <td>Strategy E</td>
+                  <td><span class="trade-badge flat">No Trade</span></td>
+                  <td class="mono">14</td>
+                  <td class="mono">-0.00%</td>
+                  <td class="mono">--</td>
+                  <td class="mono">--</td>
+                  <td class="mono">--</td>
+                  <td>trend invalid</td>
+                  <td class="mono">0.00%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="footer">
+          這個 `v5` 是正式定案的靜態框架。它故意只保留四個會直接接到程式碼的區塊：訊號窗口、策略定義、驗證框架、交易紀錄。下一步再把 repo 對應的資料與邏輯接進來。
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const tabButtons = Array.from(document.querySelectorAll('[data-tab-target]'));
+    const tabPanes = Array.from(document.querySelectorAll('[data-tab-pane]'));
+
+    function activateTab(name) {
+      tabButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.tabTarget === name);
+      });
+      tabPanes.forEach((pane) => {
+        pane.classList.toggle('active', pane.dataset.tabPane === name);
+      });
+    }
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => activateTab(button.dataset.tabTarget));
+    });
+  </script>
+</body>
+</html>
