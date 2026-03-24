@@ -1035,13 +1035,13 @@
         <div class="brand-mark">AI</div>
         <div>
           <h1>AI 美股聯動交易回測框架</h1>
-          <p>v4 · 收盤後進場建議高亮頁籤 + 交易歷史按月按週載入</p>
+          <p>v4 · 已接入 2026-02-01 到 2026-03-23 的日線代理回測</p>
         </div>
       </div>
       <div class="meta">
-        <span class="pill">展示模式 <span class="mono">Static Preview</span></span>
-        <span class="pill">持倉上限 <span class="mono">6h fixed exit</span></span>
-        <span class="pill">資料狀態 <span class="mono">placeholder</span></span>
+        <span class="pill">展示模式 <span class="mono">Static + Data</span></span>
+        <span class="pill">代理版本 <span class="mono">1d close-to-close</span></span>
+        <span class="pill">資料截至 <span class="mono" id="metaDataCutoff">2026-03-23</span></span>
       </div>
     </div>
   </header>
@@ -1050,12 +1050,12 @@
     <section class="hero">
       <div class="hero-grid">
         <div>
-          <span class="eyebrow">US Market Driven / No Indicators / Weekly Incremental Trade Loading</span>
-          <h2>更接近正式產品的 v4 版面</h2>
+          <span class="eyebrow">US Market Driven / No Indicators / Daily Proxy Backtest</span>
+          <h2>已從示意稿切成可讀的實數據版</h2>
           <p class="hero-copy">
-            這一版把每天收盤後真正要先看的答案拉到最前面。
-            你打開頁面後不需要先翻圖表，而是先看「今晚建議做多、做空還是觀望」，以及實際進場、停損、止盈、6 小時強制離場與推送狀態。
-            交易歷史仍維持按月切換、按週逐次載入，而策略說明仍保留在最後一個頁籤。
+            這一版把每日收盤後的方向判讀放到最前面，但先用可驗證的日線代理回測把框架接起來。
+            目前規則是以 SPY / QQQ 同向且強度達門檻時，映射成 BTC 的做多或做空訊號，出場則先用下一個可用收盤代理。
+            因為 2026-03-24 的美股收盤尚未完成，所以本輪回測的最後資料點是 2026-03-23。
           </p>
 
           <div class="version-nav">
@@ -1078,13 +1078,13 @@
 
         <div class="hero-side">
           <section class="hero-box">
-            <strong>v4 版面重點</strong>
+            <strong>這輪回測條件</strong>
             <ul>
-              <li><b>第一個選項卡</b><span>收盤進場建議</span></li>
-              <li><b>最後一個選項卡</b><span>策略說明</span></li>
-              <li><b>倒數第二個選項卡</b><span>交易歷史</span></li>
-              <li><b>交易歷史互動</b><span>當月 / 上月 / 上上月，按週逐次載入</span></li>
-              <li><b>圖表呈現</b><span>累積績效、勝負比例、出場原因分布</span></li>
+              <li><b>訊號來源</b><span>SPY / QQQ 同向收盤變動</span></li>
+              <li><b>出手門檻</b><span>平均絕對變動至少 0.75%</span></li>
+              <li><b>進場標的</b><span>BTC 日線收盤價</span></li>
+              <li><b>離場方式</b><span>下一個可用收盤，固定時間代理</span></li>
+              <li><b>本輪用途</b><span>先驗證方向映射是否有 edge</span></li>
             </ul>
           </section>
 
@@ -1106,7 +1106,7 @@
           <div class="panel-head">
             <div>
               <h3>收盤進場建議</h3>
-              <p>這一頁專門留給每天美股收盤後的策略結論。未來你的回測或分析更新完後，這裡會高亮顯示今晚建議做多、做空或觀望，並同步推送到 GitHub Pages 與 Discord。</p>
+              <p>這一頁先展示最新完成收盤的規則輸出。現階段只做方向驗證，因此訊號應視為研究輸出，不是實盤背書。</p>
             </div>
             <span class="status-chip">Close Signal</span>
           </div>
@@ -1116,46 +1116,46 @@
               <span class="signal-kicker">After Market Close / Primary Signal</span>
               <div class="signal-main">
                 <div>
-                  <h4>今晚建議：偏多進場</h4>
-                  <p>這裡是未來收盤後最重要的一張卡。它不只是方向判斷，還要直接告訴你什麼時候等、什麼價位進、哪裡失效，以及若 6 小時內沒達標就自動離場。</p>
+                  <h4 id="signalHeadline">今晚建議：偏多觀察</h4>
+                  <p id="signalNote">雙指數同漲，最新完成收盤的日線代理訊號偏多；但整段回測仍為負報酬，所以這裡先當成規則驗證訊號。</p>
                 </div>
                 <div class="signal-score">
                   <span>Decision Score</span>
-                  <b class="mono">00 / 100</b>
-                  <p>高於門檻才推送「做多 / 做空」，否則顯示「觀望」。</p>
+                  <b class="mono" id="signalScore">100 / 100</b>
+                  <p>目前門檻對應 75 分；低於門檻就維持觀望。</p>
                 </div>
               </div>
 
               <div class="signal-metrics">
                 <div class="plan-card">
-                  <span>進場策略</span>
-                  <b>美股強勢延續做多</b>
-                  <p>Placeholder，之後由收盤分析自動改寫成做多、做空或觀望。</p>
+                  <span>訊號類型</span>
+                  <b id="signalPlanLabel">雙指數同漲，日線代理訊號偏多</b>
+                  <p>這一格現在展示規則名稱，不直接把它包裝成實盤建議。</p>
                 </div>
                 <div class="plan-card">
-                  <span>進場區間</span>
-                  <b class="mono">00.00 - 00.00</b>
-                  <p>收盤後等待你定義的觸發條件，不追價亂進。</p>
+                  <span>SPY 收盤變動</span>
+                  <b class="mono" id="signalSpyRet">+1.05%</b>
+                  <p>以最近一個完成收盤相對前一個交易日的變動計算。</p>
                 </div>
                 <div class="plan-card">
-                  <span>失效條件</span>
-                  <b class="mono">跌破 00.00</b>
-                  <p>失效就取消單，或進場後直接按既定止損處理。</p>
+                  <span>QQQ 收盤變動</span>
+                  <b class="mono" id="signalQqqRet">+1.02%</b>
+                  <p>兩個指數必須同向，且平均絕對變動達 0.75% 才出手。</p>
                 </div>
                 <div class="plan-card">
-                  <span>止盈</span>
-                  <b class="mono">+00.00%</b>
-                  <p>沿用文章策略，不額外加指標判斷。</p>
+                  <span>BTC 參考收盤</span>
+                  <b class="mono" id="signalBtcRef">70,908.5</b>
+                  <p>目前用 BTC 當日收盤價作為進場參考，不額外插入技術指標。</p>
                 </div>
                 <div class="plan-card">
-                  <span>止損</span>
-                  <b class="mono">-00.00%</b>
-                  <p>風險先寫死，避免收盤後臨場改規則。</p>
+                  <span>資料截至</span>
+                  <b class="mono" id="signalCutoff">2026-03-23</b>
+                  <p>2026-03-24 的美股收盤尚未完成，所以不能把它算進完整回測。</p>
                 </div>
                 <div class="plan-card">
-                  <span>時間離場</span>
-                  <b>6 小時強制平倉</b>
-                  <p>即使沒有碰到止盈止損，滿 6 小時也直接出場。</p>
+                  <span>代理離場</span>
+                  <b>下一個可用收盤</b>
+                  <p>正式 6 小時 TP / SL 尚未接入，這一版先固定用日線時間出場代理。</p>
                 </div>
               </div>
             </section>
@@ -1169,28 +1169,28 @@
               <ol class="action-list">
                 <li>
                   <span class="action-step">1</span>
-                  <div><b>先看方向</b><br>做多、做空或觀望。若顯示觀望，今晚就不進場。</div>
+                  <div><b>先看方向</b><br>偏多、偏空或觀望。若顯示觀望，這輪就不記交易。</div>
                 </li>
                 <li>
                   <span class="action-step">2</span>
-                  <div><b>等觸發區間</b><br>只有進到指定價位或指定條件才入場，不因情緒提前進。</div>
+                  <div><b>核對收盤強度</b><br>確認 SPY / QQQ 是否同向，且平均絕對變動有超過 0.75% 門檻。</div>
                 </li>
                 <li>
                   <span class="action-step">3</span>
-                  <div><b>照既定風控</b><br>止盈、止損與 6 小時強制離場固定化，不手動凹單。</div>
+                  <div><b>按代理規則出場</b><br>目前固定用下一個可用收盤離場，暫時不插入 TP / SL 或 6 小時規則。</div>
                 </li>
                 <li>
                   <span class="action-step">4</span>
-                  <div><b>看推送狀態</b><br>頁面更新與 Discord 通知都要成功，避免你外出時漏看最新結論。</div>
+                  <div><b>看回測結論</b><br>先確認整段勝率、報酬率與回撤，再決定這套規則值不值得往正式版推進。</div>
                 </li>
               </ol>
 
               <div>
                 <strong>更新與推送狀態</strong>
                 <div class="push-strip">
-                  <span class="push-pill">分析更新時間 <span class="mono">00:00</span></span>
-                  <span class="push-pill">GH 推送 <span class="mono">Queued</span></span>
-                  <span class="push-pill">DC 通知 <span class="mono">Pending</span></span>
+                  <span class="push-pill">分析更新時間 <span class="mono" id="signalUpdatedAt">2026-03-24 12:00</span></span>
+                  <span class="push-pill">資料來源 <span class="mono">4 sites</span></span>
+                  <span class="push-pill">資料形態 <span class="mono">Daily Proxy</span></span>
                 </div>
               </div>
             </section>
@@ -1203,7 +1203,7 @@
           <div class="panel-head">
             <div>
               <h3>回測總覽</h3>
-              <p>最先看整體回測答案：你每天交易到底有沒有勝算，不只看勝率，還要看總報酬、回撤與 6 小時強制離場比例。</p>
+              <p>先看這套方向映射規則在這段資料裡到底有沒有 edge。這一版先看勝率、總報酬、回撤與固定時間離場占比。</p>
             </div>
             <span class="status-chip">Overview</span>
           </div>
@@ -1211,48 +1211,48 @@
           <div class="overview-grid">
             <div class="stat-card">
               <div class="stat-label">總交易次數</div>
-              <div class="stat-value mono">00</div>
-              <div class="stat-sub">至少 3 個月逐日統計。</div>
+              <div class="stat-value mono" id="overviewTrades">18</div>
+              <div class="stat-sub">2026-02-01 到 2026-03-23 的可完成代理交易。</div>
             </div>
             <div class="stat-card">
               <div class="stat-label">勝率</div>
-              <div class="stat-value mono">00.00%</div>
+              <div class="stat-value mono" id="overviewWinRate">38.89%</div>
               <div class="stat-sub">依單筆最終盈虧判斷。</div>
             </div>
             <div class="stat-card">
               <div class="stat-label">總投報率</div>
-              <div class="stat-value mono">+00.00%</div>
-              <div class="stat-sub">未來可切 gross / net。</div>
+              <div class="stat-value mono" id="overviewReturn">-4.03%</div>
+              <div class="stat-sub">未計手續費，僅作規則方向驗證。</div>
             </div>
             <div class="stat-card warn">
-              <div class="stat-label">6H 強制離場占比</div>
-              <div class="stat-value mono">00.00%</div>
-              <div class="stat-sub">判斷策略是否常常拖到時間出場。</div>
+              <div class="stat-label">固定時間離場占比</div>
+              <div class="stat-value mono" id="overviewTimeExit">100.00%</div>
+              <div class="stat-sub">這一版全部都是日線固定時間代理出場。</div>
             </div>
             <div class="stat-card risk">
               <div class="stat-label">最大回撤</div>
-              <div class="stat-value mono">-00.00%</div>
+              <div class="stat-value mono" id="overviewDrawdown">-17.89%</div>
               <div class="stat-sub">勝率高不等於回撤小。</div>
             </div>
             <div class="stat-card">
               <div class="stat-label">平均持倉時間</div>
-              <div class="stat-value mono">05:12</div>
-              <div class="stat-sub">上限固定為 6 小時。</div>
+              <div class="stat-value mono" id="overviewHold">1 個交易日</div>
+              <div class="stat-sub">正式 6 小時版尚未接入，這裡先用日線代理。</div>
             </div>
           </div>
 
           <div class="summary-row">
             <section class="summary-box">
               <strong>你真正要驗證的問題</strong>
-              <p>如果美股條件每天都能產生交易，而且未達止盈止損就 6 小時離場，整體是否仍為正期望值。這裡就是未來最先顯示那個答案的位置。</p>
+              <p>如果只用美股收盤強弱去映射 BTC 方向，並且完全不用技術指標，這套規則在最近這段資料裡到底有沒有正期望值。</p>
             </section>
             <section class="summary-box">
-              <strong>之後腳本要回填的欄位</strong>
-              <p>交易次數、勝率、投報率、最大回撤、平均持倉、強制離場占比、每月表現、每筆交易結果與出場原因。</p>
+              <strong>這輪已回填的欄位</strong>
+              <p>交易次數、勝率、投報率、最大回撤、固定時間離場占比、每月表現、交易明細與最近一次收盤訊號。</p>
             </section>
             <section class="summary-box">
-              <strong>先做靜態的理由</strong>
-              <p>回測資料一天更新一次就夠，先由本機產生新結果，再重新部署靜態頁，不需要一開始就上後端。</p>
+              <strong>現在還沒接上的部分</strong>
+              <p>6 小時出場、TP / SL、滑價與手續費仍未納入，所以這裡是第一輪規則驗證，不是最終正式回測。</p>
             </section>
           </div>
         </div>
@@ -1273,17 +1273,17 @@
               <div class="strategy-top">
                 <div>
                   <h4>策略 A · 美股風險延續</h4>
-                  <p>適用在美股偏強、風險偏好延續的盤面。未來方向由文章規則與美股條件映射。</p>
+                  <p>SPY 與 QQQ 同漲，而且平均絕對日變動至少 0.75% 時，映射成 BTC 偏多訊號。</p>
                 </div>
                 <span class="dir long">Long Bias</span>
               </div>
               <div class="kpi-grid">
-                <div class="kpi"><span>訊號依據</span><b>美股偏強 / 00</b></div>
-                <div class="kpi"><span>進場時段</span><b class="mono">00:00</b></div>
-                <div class="kpi"><span>止盈</span><b class="mono">+00.00%</b></div>
-                <div class="kpi"><span>止損</span><b class="mono">-00.00%</b></div>
-                <div class="kpi"><span>持倉上限</span><b>6 小時</b></div>
-                <div class="kpi"><span>風報比</span><b>00 : 1</b></div>
+                <div class="kpi"><span>訊號依據</span><b>SPY / QQQ 同漲</b></div>
+                <div class="kpi"><span>分數門檻</span><b class="mono">0.75%</b></div>
+                <div class="kpi"><span>進場時點</span><b class="mono">US close</b></div>
+                <div class="kpi"><span>出場時點</span><b class="mono">next close</b></div>
+                <div class="kpi"><span>持倉上限</span><b>1 個交易日</b></div>
+                <div class="kpi"><span>當前狀態</span><b>已驗證</b></div>
               </div>
             </section>
 
@@ -1291,17 +1291,17 @@
               <div class="strategy-top">
                 <div>
                   <h4>策略 B · 美股回落映射</h4>
-                  <p>適用在美股承壓或風險偏好退潮的盤面，依文章條件決定做空或不交易。</p>
+                  <p>SPY 與 QQQ 同跌，而且平均絕對日變動至少 0.75% 時，映射成 BTC 偏空訊號。</p>
                 </div>
                 <span class="dir short">Short Bias</span>
               </div>
               <div class="kpi-grid">
-                <div class="kpi"><span>訊號依據</span><b>美股偏弱 / 00</b></div>
-                <div class="kpi"><span>進場時段</span><b class="mono">00:00</b></div>
-                <div class="kpi"><span>止盈</span><b class="mono">+00.00%</b></div>
-                <div class="kpi"><span>止損</span><b class="mono">-00.00%</b></div>
-                <div class="kpi"><span>持倉上限</span><b>6 小時</b></div>
-                <div class="kpi"><span>風報比</span><b>00 : 1</b></div>
+                <div class="kpi"><span>訊號依據</span><b>SPY / QQQ 同跌</b></div>
+                <div class="kpi"><span>分數門檻</span><b class="mono">0.75%</b></div>
+                <div class="kpi"><span>進場時點</span><b class="mono">US close</b></div>
+                <div class="kpi"><span>出場時點</span><b class="mono">next close</b></div>
+                <div class="kpi"><span>持倉上限</span><b>1 個交易日</b></div>
+                <div class="kpi"><span>當前狀態</span><b>已驗證</b></div>
               </div>
             </section>
           </div>
@@ -1313,7 +1313,7 @@
           <div class="panel-head">
             <div>
               <h3>績效圖表</h3>
-              <p>這些圖現在是占位資料，但結構已經固定。等腳本完成後，直接把真數據灌進來即可。</p>
+              <p>這裡已經改成讀取實際回測資料，不再顯示占位圖。這一版只反映日線代理結果。</p>
             </div>
             <span class="status-chip">Charts</span>
           </div>
@@ -1322,43 +1322,11 @@
             <section class="chart-shell">
               <div class="chart-title">
                 <strong>累積投報率曲線</strong>
-                <span class="mini-pill">placeholder curve</span>
+                <span class="mini-pill">daily proxy</span>
               </div>
-              <div class="chart-wrap">
-                <svg viewBox="0 0 640 260" width="100%" height="260" aria-label="equity curve">
-                  <defs>
-                    <linearGradient id="curveFillV3" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0%" stop-color="#23d4b2" stop-opacity="0.44"></stop>
-                      <stop offset="100%" stop-color="#23d4b2" stop-opacity="0"></stop>
-                    </linearGradient>
-                  </defs>
-                  <g stroke="rgba(164,191,219,0.10)" stroke-width="1">
-                    <line x1="30" y1="30" x2="610" y2="30"></line>
-                    <line x1="30" y1="85" x2="610" y2="85"></line>
-                    <line x1="30" y1="140" x2="610" y2="140"></line>
-                    <line x1="30" y1="195" x2="610" y2="195"></line>
-                    <line x1="30" y1="230" x2="610" y2="230"></line>
-                  </g>
-                  <path d="M30 210 L30 186 L90 176 L150 162 L210 151 L270 158 L330 136 L390 127 L450 109 L510 96 L570 85 L610 70 L610 230 L30 230 Z" fill="url(#curveFillV3)"></path>
-                  <polyline fill="none" stroke="#23d4b2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
-                    points="30,186 90,176 150,162 210,151 270,158 330,136 390,127 450,109 510,96 570,85 610,70"></polyline>
-                  <g fill="#9bb1c7" font-size="11" font-family="Inter, sans-serif">
-                    <text x="22" y="34">+8%</text>
-                    <text x="22" y="89">+4%</text>
-                    <text x="22" y="144">0%</text>
-                    <text x="18" y="199">-4%</text>
-                    <text x="12" y="234">-8%</text>
-                  </g>
-                  <circle cx="610" cy="70" r="5" fill="#23d4b2"></circle>
-                </svg>
-                <div class="chart-axis">
-                  <span>Month 1</span>
-                  <span>Month 2</span>
-                  <span>Month 3</span>
-                </div>
-              </div>
+              <div class="chart-wrap" id="equityChart"></div>
               <div class="legend-row">
-                <span class="legend"><span class="dot" style="background:#23d4b2;"></span>含 6 小時強制離場的累積表現</span>
+                <span class="legend"><span class="dot" style="background:#23d4b2;"></span>每次訊號做完後的累積資金曲線</span>
               </div>
             </section>
 
@@ -1369,17 +1337,11 @@
                   <span class="mini-pill">win / loss</span>
                 </div>
                 <div class="donut-wrap">
-                  <svg viewBox="0 0 120 120" width="132" height="132" aria-label="win loss">
-                    <circle cx="60" cy="60" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="16"></circle>
-                    <circle cx="60" cy="60" r="42" fill="none" stroke="#39d88f" stroke-width="16" stroke-linecap="round" stroke-dasharray="188 76" transform="rotate(-90 60 60)"></circle>
-                    <circle cx="60" cy="60" r="42" fill="none" stroke="#ff7b87" stroke-width="16" stroke-linecap="round" stroke-dasharray="52 212" stroke-dashoffset="-196" transform="rotate(-90 60 60)"></circle>
-                    <text x="60" y="56" text-anchor="middle" fill="#eef6ff" font-size="24" font-weight="800">00</text>
-                    <text x="60" y="74" text-anchor="middle" fill="#8ea5bc" font-size="11">trades</text>
-                  </svg>
+                  <div id="winLossChart"></div>
                   <div class="breakdown-list">
-                    <div class="breakdown-item"><span>獲利單</span><b class="mono" style="color:#89f4bd;">00</b></div>
-                    <div class="breakdown-item"><span>虧損單</span><b class="mono" style="color:#ffb1b8;">00</b></div>
-                    <div class="breakdown-item"><span>未交易日</span><b class="mono" style="color:#95c6ff;">00</b></div>
+                    <div class="breakdown-item"><span>獲利單</span><b class="mono" id="winCount" style="color:#89f4bd;">7</b></div>
+                    <div class="breakdown-item"><span>虧損單</span><b class="mono" id="lossCount" style="color:#ffb1b8;">11</b></div>
+                    <div class="breakdown-item"><span>觀望日</span><b class="mono" id="noTradeCount" style="color:#95c6ff;">17</b></div>
                   </div>
                 </div>
               </section>
@@ -1392,24 +1354,24 @@
                 <div class="breakdown-list">
                   <div class="breakdown-item">
                     <div style="flex:1;">
-                      <span>止盈</span>
-                      <div class="bar"><span style="width:58%;"></span></div>
+                      <span>獲利出場</span>
+                      <div class="bar"><span id="winsBar" style="width:38.89%;"></span></div>
                     </div>
-                    <b class="mono">00</b>
+                    <b class="mono" id="winsBarCount">7</b>
                   </div>
                   <div class="breakdown-item">
                     <div style="flex:1;">
-                      <span>止損</span>
-                      <div class="bar"><span style="width:30%; background:linear-gradient(90deg,#ff7b87,#ff9c75);"></span></div>
+                      <span>虧損出場</span>
+                      <div class="bar"><span id="lossBar" style="width:61.11%; background:linear-gradient(90deg,#ff7b87,#ff9c75);"></span></div>
                     </div>
-                    <b class="mono">00</b>
+                    <b class="mono" id="lossBarCount">11</b>
                   </div>
                   <div class="breakdown-item">
                     <div style="flex:1;">
-                      <span>6 小時強制離場</span>
-                      <div class="bar"><span style="width:44%; background:linear-gradient(90deg,#ffbf5f,#ffd58b);"></span></div>
+                      <span>固定時間離場</span>
+                      <div class="bar"><span id="timeExitBar" style="width:100%; background:linear-gradient(90deg,#ffbf5f,#ffd58b);"></span></div>
                     </div>
-                    <b class="mono">00</b>
+                    <b class="mono" id="timeExitBarCount">18</b>
                   </div>
                 </div>
               </section>
@@ -1423,49 +1385,12 @@
           <div class="panel-head">
             <div>
               <h3>月度拆解</h3>
-              <p>用月份切開後，你比較容易看出「當月有沒有比較常碰到 6 小時強制離場」或「哪個月其實只是靠少數大單撐起來」。</p>
+              <p>把表現拆成月份後，可以直接看到 2 月還撐得住，但 3 月這套規則開始明顯失靈。</p>
             </div>
             <span class="status-chip">Monthly Breakdown</span>
           </div>
 
-          <div class="month-list">
-            <section class="month-card">
-              <div class="month-head">
-                <strong>Month 1</strong>
-                <span class="mini-pill">prototype</span>
-              </div>
-              <div class="month-metrics">
-                <div>交易次數<b class="mono">00</b></div>
-                <div>勝率<b class="mono">00%</b></div>
-                <div>投報率<b class="mono">+00%</b></div>
-                <div>Time Exit<b class="mono">00</b></div>
-              </div>
-            </section>
-            <section class="month-card">
-              <div class="month-head">
-                <strong>Month 2</strong>
-                <span class="mini-pill">validation</span>
-              </div>
-              <div class="month-metrics">
-                <div>交易次數<b class="mono">00</b></div>
-                <div>勝率<b class="mono">00%</b></div>
-                <div>投報率<b class="mono">+00%</b></div>
-                <div>Time Exit<b class="mono">00</b></div>
-              </div>
-            </section>
-            <section class="month-card">
-              <div class="month-head">
-                <strong>Month 3</strong>
-                <span class="mini-pill">holdout</span>
-              </div>
-              <div class="month-metrics">
-                <div>交易次數<b class="mono">00</b></div>
-                <div>勝率<b class="mono">00%</b></div>
-                <div>投報率<b class="mono">+00%</b></div>
-                <div>Time Exit<b class="mono">00</b></div>
-              </div>
-            </section>
-          </div>
+          <div class="month-list" id="monthlyList"></div>
         </div>
       </article>
 
@@ -1474,16 +1399,16 @@
           <div class="panel-head">
             <div>
               <h3>交易歷史</h3>
-              <p>這一區資料量最大，所以不一次全部展開。你先選月份，再按「載入下一週」逐次追加那一週的交易紀錄，模擬未來實際的按需載入方式。</p>
+              <p>這裡已改成顯示真實交易明細。你先切月份，再按「載入下一批」逐次追加，避免一次塞滿整張表。</p>
             </div>
-            <span class="status-chip">Weekly Incremental Loading</span>
+            <span class="status-chip">Incremental Loading</span>
           </div>
 
           <div class="trade-controls">
             <div class="month-tabs" id="monthTabs" aria-label="交易歷史月份切換"></div>
             <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
-              <button class="load-next" id="loadNextWeek" type="button">載入下一週交易歷史</button>
-              <span class="helper" id="tradeStatus">尚未載入任何週資料</span>
+              <button class="load-next" id="loadNextWeek" type="button">載入下一批交易</button>
+              <span class="helper" id="tradeStatus">尚未載入任何交易資料</span>
             </div>
             <div class="week-progress" id="weekProgress"></div>
           </div>
@@ -1495,8 +1420,8 @@
                   <th>日期</th>
                   <th>策略</th>
                   <th>方向</th>
-                  <th>進場</th>
-                  <th>出場</th>
+                  <th>進場價</th>
+                  <th>出場價</th>
                   <th>持倉</th>
                   <th>出場原因</th>
                   <th>單筆報酬</th>
@@ -1505,7 +1430,7 @@
               </thead>
               <tbody id="tradeTableBody">
                 <tr>
-                  <td colspan="9" class="tiny">請先選擇月份，然後按「載入下一週交易歷史」。</td>
+                  <td colspan="9" class="tiny">請先選擇月份，然後按「載入下一批交易」。</td>
                 </tr>
               </tbody>
             </table>
@@ -1518,7 +1443,7 @@
           <div class="panel-head">
             <div>
               <h3>策略說明</h3>
-              <p>這一塊就是你指定要放在最後一個選項卡的位置。它保留產品說明性質，不跟大量數據混在一起。</p>
+              <p>這裡保留方法論、限制與下一步，不把它混進交易表裡。這一版最重要的事是把「哪些是真的、哪些還沒接」講清楚。</p>
             </div>
             <span class="status-chip">Final Tab</span>
           </div>
@@ -1528,9 +1453,10 @@
               <h4>核心原理</h4>
               <ul>
                 <li>不使用傳統技術指標，例如 RSI、MACD、布林帶與均線。</li>
-                <li>以美股風險偏好、時段、盤中狀態作為主要交易依據。</li>
-                <li>止盈與止損邏輯沿用文章策略，不在這個框架階段改動。</li>
-                <li>即使未達止盈止損，只要滿 6 小時就強制離場。</li>
+                <li>以 SPY / QQQ 的同向收盤強弱作為主要交易依據。</li>
+                <li>目前門檻是兩者平均絕對日變動至少 0.75%，否則直接觀望。</li>
+                <li>進場先用 BTC 當日收盤，出場先用下一個可用收盤代理。</li>
+                <li>正式 6 小時出場、TP / SL 仍未接入，這一版先不假裝它已完成。</li>
               </ul>
             </section>
 
@@ -1538,30 +1464,32 @@
               <h4>風險管理</h4>
               <ul>
                 <li>不能只看勝率，還要同時看最大回撤與強制離場比例。</li>
-                <li>若 Time Exit 比例過高，通常代表進場邏輯不夠集中。</li>
-                <li>之後正式回測時必須納入手續費與滑價。</li>
-                <li>若日後加入多標的，也要拆開看不同市場的 regime 表現。</li>
+                <li>這次 18 筆代理交易只有 38.89% 勝率，總報酬 -4.03%，不能把最新偏多訊號直接視為可實盤照抄。</li>
+                <li>最大回撤來到 -17.89%，代表規則即使不是天天出手，虧損聚集時仍會很痛。</li>
+                <li>之後正式回測必須納入手續費、滑價、TP / SL 與 6 小時固定離場。</li>
+                <li>如果 3 月這種 regime 持續惡化，可能要先改規則而不是只加更多圖表。</li>
               </ul>
             </section>
 
             <section class="deploy-card">
               <strong>靜態部署建議</strong>
-              <p>現階段最合理：本機回測完成後輸出 HTML/JSON，再部署到 GitHub Pages、Cloudflare Pages 或 Vercel。這樣維護成本最低，也最不受技術棧限制。</p>
+              <p>現階段最合理：把資料打成靜態 `backtest-data.js`，讓 GitHub Pages 直接讀。這樣更新路徑最短，也最不容易壞。</p>
             </section>
 
             <section class="deploy-card">
-              <strong>何時升級成動態</strong>
-              <p>只有當你真的需要前端篩選器、多人共用、即時查詢、多策略切換，才值得加 API 或資料庫。現在先用靜態版是對的。</p>
+              <strong>下一步應補什麼</strong>
+              <p>先補正式資料抓取與 6 小時 TP / SL 回測，再決定要不要升級成動態。現在最大缺口不是介面，而是策略驗證深度還不夠。</p>
             </section>
           </div>
         </div>
         <div class="footer">
-          這個 `v4` 是靜態展示版。互動只有前端 tab 切換、月份切換與每週逐次載入，占位資料全部為示意，目的是把未來產品的閱讀流程先定下來，尤其是收盤後第一眼要看的進場建議。
+          這個 v4 已經不是純展示稿。頁面目前讀取的是 2026-02-01 到 2026-03-23 的日線代理回測，但 6 小時正式版、TP / SL 與成本模型仍待補完。
         </div>
       </article>
     </section>
   </main>
 
+  <script src="backtest-data.js"></script>
   <script>
     const tabButtons = Array.from(document.querySelectorAll('[data-tab-target]'));
     const tabPanes = Array.from(document.querySelectorAll('[data-tab-pane]'));
@@ -1579,55 +1507,22 @@
       button.addEventListener('click', () => activateTab(button.dataset.tabTarget));
     });
 
-    const now = new Date();
-    const monthFormatter = new Intl.DateTimeFormat('zh-Hant', { year: 'numeric', month: 'long' });
-    const shortDateFormatter = new Intl.DateTimeFormat('sv-SE');
-    const monthBuckets = [];
-
-    for (let offset = 0; offset < 3; offset += 1) {
-      const date = new Date(now.getFullYear(), now.getMonth() - offset, 1);
-      const label = monthFormatter.format(date);
-      const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-      const weeks = Array.from({ length: 4 }, (_, weekIndex) => {
-        const baseDay = 2 + weekIndex * 7;
-        return {
-          label: `第 ${weekIndex + 1} 週`,
-          rows: Array.from({ length: 3 }, (_, rowIndex) => {
-            const day = baseDay + rowIndex * 2;
-            const dateValue = new Date(date.getFullYear(), date.getMonth(), day);
-            const direction = rowIndex === 2 ? 'No Trade' : (weekIndex + rowIndex) % 2 === 0 ? 'Long' : 'Short';
-            const exitReason = direction === 'No Trade'
-              ? '美股情境不符合'
-              : rowIndex === 1
-                ? '止損'
-                : weekIndex % 2 === 0
-                  ? '止盈'
-                  : '6 小時強制離場';
-            const result = direction === 'No Trade'
-              ? 'Flat'
-              : exitReason === '止損'
-                ? 'Loss'
-                : exitReason === '6 小時強制離場'
-                  ? 'Time Exit'
-                  : 'Win';
-            const ret = result === 'Loss' ? '-00.00%' : result === 'Flat' ? '0.00%' : '+00.00%';
-            const hold = result === 'Time Exit' ? '06:00' : result === 'Flat' ? '--' : rowIndex === 1 ? '02:14' : '03:52';
-            return {
-              date: shortDateFormatter.format(dateValue),
-              strategy: direction === 'No Trade' ? '--' : weekIndex % 2 === 0 ? '策略 A' : '策略 B',
-              direction,
-              entry: direction === 'No Trade' ? '--' : weekIndex % 2 === 0 ? '22:00' : '00:00',
-              exit: direction === 'No Trade' ? '--' : result === 'Time Exit' ? '04:00' : result === 'Loss' ? '02:14' : '01:52',
-              hold,
-              exitReason,
-              ret,
-              result
-            };
-          })
-        };
-      });
-      monthBuckets.push({ key: monthKey, label, weeks });
-    }
+    const data = window.STRATEGY_LAB_BACKTEST;
+    const monthBuckets = data.monthly.map((month) => {
+      const trades = data.trades.filter((trade) => trade.signalDate.startsWith(month.key));
+      const chunks = [];
+      for (let index = 0; index < trades.length; index += 3) {
+        chunks.push({
+          label: `第 ${Math.floor(index / 3) + 1} 批`,
+          rows: trades.slice(index, index + 3)
+        });
+      }
+      return {
+        key: month.key,
+        label: month.label,
+        chunks
+      };
+    });
 
     const monthTabs = document.getElementById('monthTabs');
     const weekProgress = document.getElementById('weekProgress');
@@ -1637,6 +1532,22 @@
 
     let activeMonth = monthBuckets[0];
     let loadedWeeks = 0;
+
+    function formatSignedPct(value) {
+      const number = Number(value || 0);
+      return `${number >= 0 ? '+' : ''}${number.toFixed(2)}%`;
+    }
+
+    function formatPlainPct(value) {
+      return `${Number(value || 0).toFixed(2)}%`;
+    }
+
+    function formatPrice(value) {
+      return Number(value || 0).toLocaleString('en-US', {
+        minimumFractionDigits: value % 1 === 0 ? 0 : 1,
+        maximumFractionDigits: 1
+      });
+    }
 
     function directionBadge(direction) {
       if (direction === 'Long') return '<span class="trade-badge long">Long</span>';
@@ -1649,6 +1560,132 @@
       if (result === 'Loss') return '<span class="result-badge loss">Loss</span>';
       if (result === 'Time Exit') return '<span class="result-badge time">Time Exit</span>';
       return '<span class="result-badge time">Flat</span>';
+    }
+
+    function renderHero() {
+      document.getElementById('metaDataCutoff').textContent = data.dataCutoff;
+      document.getElementById('signalHeadline').textContent = data.latestSignal.headline;
+      document.getElementById('signalNote').textContent = data.latestSignal.planNote;
+      document.getElementById('signalScore').textContent = `${Math.min(100, Math.round(data.latestSignal.scorePct * 100))} / 100`;
+      document.getElementById('signalPlanLabel').textContent = data.latestSignal.planLabel;
+      document.getElementById('signalSpyRet').textContent = formatSignedPct(data.latestSignal.spyRetPct);
+      document.getElementById('signalQqqRet').textContent = formatSignedPct(data.latestSignal.qqqRetPct);
+      document.getElementById('signalBtcRef').textContent = formatPrice(data.latestSignal.btcReference);
+      document.getElementById('signalCutoff').textContent = data.dataCutoff;
+      document.getElementById('signalUpdatedAt').textContent = data.generatedAt.replace('T', ' ').slice(0, 16);
+    }
+
+    function renderOverview() {
+      document.getElementById('overviewTrades').textContent = data.overview.tradeCount;
+      document.getElementById('overviewWinRate').textContent = formatPlainPct(data.overview.winRatePct);
+      document.getElementById('overviewReturn').textContent = formatSignedPct(data.overview.totalReturnPct);
+      document.getElementById('overviewTimeExit').textContent = formatPlainPct(data.overview.timeExitPct);
+      document.getElementById('overviewDrawdown').textContent = formatSignedPct(data.overview.maxDrawdownPct);
+      document.getElementById('overviewHold').textContent = data.overview.avgHoldLabel;
+    }
+
+    function renderEquityChart() {
+      const equitySeries = [1];
+      let equity = 1;
+      data.trades.forEach((trade) => {
+        equity *= 1 + trade.returnPct / 100;
+        equitySeries.push(equity);
+      });
+
+      const chartValues = equitySeries.map((value) => (value - 1) * 100);
+      const minValue = Math.min(...chartValues, -18);
+      const maxValue = Math.max(...chartValues, 2);
+      const width = 640;
+      const height = 260;
+      const left = 30;
+      const right = 610;
+      const top = 30;
+      const bottom = 230;
+      const range = maxValue - minValue || 1;
+      const step = (right - left) / (chartValues.length - 1);
+      const points = chartValues.map((value, index) => {
+        const x = left + step * index;
+        const y = bottom - ((value - minValue) / range) * (bottom - top);
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(' ');
+      const area = `M${points.split(' ').join(' L')} L${right} ${bottom} L${left} ${bottom} Z`;
+      const labels = [
+        maxValue,
+        maxValue - range * 0.33,
+        maxValue - range * 0.66,
+        minValue
+      ];
+
+      document.getElementById('equityChart').innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="260" aria-label="equity curve">
+          <defs>
+            <linearGradient id="curveFillV4Live" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#23d4b2" stop-opacity="0.42"></stop>
+              <stop offset="100%" stop-color="#23d4b2" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <g stroke="rgba(164,191,219,0.10)" stroke-width="1">
+            <line x1="${left}" y1="${top}" x2="${right}" y2="${top}"></line>
+            <line x1="${left}" y1="${(top + bottom) / 2}" x2="${right}" y2="${(top + bottom) / 2}"></line>
+            <line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}"></line>
+          </g>
+          <path d="${area}" fill="url(#curveFillV4Live)"></path>
+          <polyline fill="none" stroke="#23d4b2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="${points}"></polyline>
+          <g fill="#9bb1c7" font-size="11" font-family="Inter, sans-serif">
+            <text x="8" y="${top + 4}">${formatSignedPct(labels[0])}</text>
+            <text x="8" y="${((top + bottom) / 2) + 4}">${formatSignedPct(labels[1])}</text>
+            <text x="8" y="${bottom - 18}">${formatSignedPct(labels[2])}</text>
+            <text x="8" y="${bottom + 4}">${formatSignedPct(labels[3])}</text>
+          </g>
+        </svg>
+        <div class="chart-axis">
+          <span>${data.monthly[0].label}</span>
+          <span>${data.monthly[data.monthly.length - 1].label}</span>
+        </div>
+      `;
+    }
+
+    function renderWinLoss() {
+      const total = data.overview.tradeCount || 1;
+      const circumference = 264;
+      const winArc = (data.overview.winCount / total) * circumference;
+      const lossArc = (data.overview.lossCount / total) * circumference;
+      document.getElementById('winLossChart').innerHTML = `
+        <svg viewBox="0 0 120 120" width="132" height="132" aria-label="win loss">
+          <circle cx="60" cy="60" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="16"></circle>
+          <circle cx="60" cy="60" r="42" fill="none" stroke="#39d88f" stroke-width="16" stroke-linecap="round" stroke-dasharray="${winArc} ${circumference - winArc}" transform="rotate(-90 60 60)"></circle>
+          <circle cx="60" cy="60" r="42" fill="none" stroke="#ff7b87" stroke-width="16" stroke-linecap="round" stroke-dasharray="${lossArc} ${circumference - lossArc}" stroke-dashoffset="-${winArc + 8}" transform="rotate(-90 60 60)"></circle>
+          <text x="60" y="56" text-anchor="middle" fill="#eef6ff" font-size="24" font-weight="800">${data.overview.tradeCount}</text>
+          <text x="60" y="74" text-anchor="middle" fill="#8ea5bc" font-size="11">trades</text>
+        </svg>
+      `;
+      document.getElementById('winCount').textContent = data.overview.winCount;
+      document.getElementById('lossCount').textContent = data.overview.lossCount;
+      document.getElementById('noTradeCount').textContent = data.overview.noTradeCount;
+      document.getElementById('winsBar').style.width = `${data.overview.winRatePct}%`;
+      document.getElementById('lossBar').style.width = `${(data.overview.lossCount / data.overview.tradeCount) * 100}%`;
+      document.getElementById('timeExitBar').style.width = `${data.overview.timeExitPct}%`;
+      document.getElementById('winsBarCount').textContent = data.overview.winCount;
+      document.getElementById('lossBarCount').textContent = data.overview.lossCount;
+      document.getElementById('timeExitBarCount').textContent = data.overview.tradeCount;
+    }
+
+    function renderMonthly() {
+      const monthlyList = document.getElementById('monthlyList');
+      monthlyList.innerHTML = data.monthly.map((month) => `
+        <section class="month-card">
+          <div class="month-head">
+            <strong>${month.label}</strong>
+            <span class="mini-pill">${month.totalReturnPct >= 0 ? 'holding up' : 'under water'}</span>
+          </div>
+          <div class="month-metrics">
+            <div>交易次數<b class="mono">${month.trades}</b></div>
+            <div>勝率<b class="mono">${formatPlainPct(month.winRatePct)}</b></div>
+            <div>投報率<b class="mono">${formatSignedPct(month.totalReturnPct)}</b></div>
+            <div>Time Exit<b class="mono">${month.timeExitCount}</b></div>
+          </div>
+        </section>
+      `).join('');
     }
 
     function renderMonthTabs() {
@@ -1671,49 +1708,54 @@
 
     function renderWeekProgress() {
       weekProgress.innerHTML = '';
-      activeMonth.weeks.forEach((week, index) => {
+      activeMonth.chunks.forEach((week, index) => {
         const pill = document.createElement('span');
         pill.className = `week-pill${index < loadedWeeks ? ' loaded' : ''}`;
         pill.textContent = week.label;
         weekProgress.appendChild(pill);
       });
-      loadNextWeekButton.disabled = loadedWeeks >= activeMonth.weeks.length;
+      loadNextWeekButton.disabled = loadedWeeks >= activeMonth.chunks.length;
     }
 
     function renderTradeTable() {
       if (loadedWeeks === 0) {
-        tradeTableBody.innerHTML = '<tr><td colspan="9" class="tiny">目前顯示：' + activeMonth.label + '。尚未載入任何週資料，請按「載入下一週交易歷史」。</td></tr>';
-        tradeStatus.textContent = activeMonth.label + ' 尚未載入任何週資料';
+        tradeTableBody.innerHTML = '<tr><td colspan="9" class="tiny">目前顯示：' + activeMonth.label + '。尚未載入任何交易資料，請按「載入下一批交易」。</td></tr>';
+        tradeStatus.textContent = activeMonth.label + ' 尚未載入任何交易資料';
         return;
       }
 
-      const rows = activeMonth.weeks.slice(0, loadedWeeks).flatMap((week) => week.rows);
+      const rows = activeMonth.chunks.slice(0, loadedWeeks).flatMap((week) => week.rows);
       tradeTableBody.innerHTML = rows.map((row) => {
         return `
           <tr>
-            <td class="mono">${row.date}</td>
+            <td class="mono">${row.signalDate}</td>
             <td>${row.strategy}</td>
             <td>${directionBadge(row.direction)}</td>
-            <td class="mono">${row.entry}</td>
-            <td class="mono">${row.exit}</td>
-            <td class="mono">${row.hold}</td>
+            <td class="mono">${formatPrice(row.entryPrice)}</td>
+            <td class="mono">${formatPrice(row.exitPrice)}</td>
+            <td class="mono">${row.holdLabel}</td>
             <td>${row.exitReason}</td>
-            <td class="mono">${row.ret}</td>
+            <td class="mono">${formatSignedPct(row.returnPct)}</td>
             <td>${resultBadge(row.result)}</td>
           </tr>
         `;
       }).join('');
-      tradeStatus.textContent = `${activeMonth.label} 已載入 ${loadedWeeks} / ${activeMonth.weeks.length} 週`;
+      tradeStatus.textContent = `${activeMonth.label} 已載入 ${rows.length} / ${activeMonth.chunks.reduce((sum, chunk) => sum + chunk.rows.length, 0)} 筆`;
     }
 
     loadNextWeekButton.addEventListener('click', () => {
-      if (loadedWeeks < activeMonth.weeks.length) {
+      if (loadedWeeks < activeMonth.chunks.length) {
         loadedWeeks += 1;
         renderWeekProgress();
         renderTradeTable();
       }
     });
 
+    renderHero();
+    renderOverview();
+    renderEquityChart();
+    renderWinLoss();
+    renderMonthly();
     renderMonthTabs();
     renderWeekProgress();
     renderTradeTable();
