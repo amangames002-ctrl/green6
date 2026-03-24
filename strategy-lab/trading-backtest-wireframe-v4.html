@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美股聯動策略回測框架 v4</title>
+  <style>
+    :root {
+      --bg: #08111b;
+      --panel: rgba(10, 21, 33, 0.88);
+      --panel-soft: rgba(13, 27, 43, 0.78);
+      --card: rgba(18, 34, 53, 0.85);
+      --line: rgba(164, 191, 219, 0.13);
+      --line-strong: rgba(164, 191, 219, 0.22);
+      --ink: #eef6ff;
+      --muted: #8ea5bc;
+      --teal: #23d4b2;
+      --blue: #5aa8ff;
+      --amber: #ffbf5f;
+      --red: #ff7b87;
+      --green: #39d88f;
+      --violet: #a27eff;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Inter", "Avenir Next", "PingFang TC", "Noto Sans TC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(90, 168, 255, 0.18), transparent 24rem),
+        radial-gradient(circle at 85% 15%, rgba(35, 212, 178, 0.16), transparent 26rem),
+        linear-gradient(180deg, #06101a 0%, #09131d 48%, #08111b 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 15, 24, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .shell {
+      width: min(1380px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: #06231e;
+      background: linear-gradient(135deg, #86f7e3, #1cc3aa);
+      box-shadow: 0 12px 32px rgba(35, 212, 178, 0.35);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand p,
+    .meta,
+    .hero-copy,
+    .panel p,
+    .tiny,
+    .legend,
+    .helper {
+      color: var(--muted);
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      font-size: 13px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .pill,
+    .mini-pill,
+    .switch-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .pill,
+    .mini-pill {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .pill {
+      padding: 10px 14px;
+    }
+
+    .mini-pill {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+
+    .switch-link {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 13px;
+      color: var(--muted);
+      transition: 160ms ease;
+    }
+
+    .switch-link:hover,
+    .switch-link.active {
+      color: var(--ink);
+      border-color: rgba(35, 212, 178, 0.45);
+      background: rgba(35, 212, 178, 0.12);
+    }
+
+    .page {
+      padding: 24px 0 48px;
+    }
+
+    .hero,
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      background:
+        linear-gradient(135deg, rgba(90, 168, 255, 0.12), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255,255,255,0.01)),
+        var(--panel);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -60px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(35, 212, 178, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(35, 212, 178, 0.13);
+      color: #89f0dd;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 24px;
+      align-items: end;
+    }
+
+    .hero h2 {
+      margin: 16px 0 0;
+      font-size: clamp(36px, 5vw, 76px);
+      line-height: 0.93;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+    }
+
+    .hero-copy {
+      margin-top: 18px;
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 68ch;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-box {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(6, 14, 23, 0.46);
+    }
+
+    .hero-box strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #d7ebff;
+    }
+
+    .hero-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-box li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero-box li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .hero-box b {
+      color: var(--ink);
+    }
+
+    .version-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .tab-button {
+      padding: 11px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+
+    .tab-button:hover,
+    .tab-button.active {
+      color: var(--ink);
+      border-color: rgba(90, 168, 255, 0.35);
+      background: rgba(90, 168, 255, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(90, 168, 255, 0.06);
+    }
+
+    .tab-button.alert-tab {
+      border-color: rgba(255, 191, 95, 0.28);
+      background: rgba(255, 191, 95, 0.08);
+      color: #ffe2a8;
+    }
+
+    .tab-button.alert-tab:hover,
+    .tab-button.alert-tab.active {
+      border-color: rgba(255, 191, 95, 0.52);
+      background: rgba(255, 191, 95, 0.16);
+      color: #fff0cc;
+      box-shadow: inset 0 0 0 1px rgba(255, 191, 95, 0.1);
+    }
+
+    .content {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .panel-inner {
+      padding: 22px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .panel-head h3 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .panel-head p {
+      margin: 8px 0 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .status-chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 191, 95, 0.12);
+      color: #ffd58b;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      position: relative;
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), rgba(35,212,178,0));
+    }
+
+    .stat-card.warn::before {
+      background: linear-gradient(90deg, var(--amber), rgba(255,191,95,0));
+    }
+
+    .stat-card.risk::before {
+      background: linear-gradient(90deg, var(--red), rgba(255,123,135,0));
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      margin-top: 14px;
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .stat-sub {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .summary-row,
+    .deploy-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .summary-box,
+    .deploy-card,
+    .note-card {
+      flex: 1 1 260px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .summary-box strong,
+    .deploy-card strong,
+    .note-card h4 {
+      display: block;
+      margin-bottom: 8px;
+      color: #d7ebff;
+      font-size: 15px;
+    }
+
+    .summary-box p,
+    .deploy-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .strategy-card {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .strategy-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .strategy-card h4 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .strategy-card p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .dir {
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      height: fit-content;
+    }
+
+    .dir.long {
+      background: rgba(57, 216, 143, 0.14);
+      color: #89f4bd;
+    }
+
+    .dir.short {
+      background: rgba(255, 123, 135, 0.14);
+      color: #ffb1b8;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .kpi {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(164, 191, 219, 0.09);
+    }
+
+    .kpi span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .kpi b {
+      display: block;
+      margin-top: 8px;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+    }
+
+    .mini-grid,
+    .month-list,
+    .breakdown-list,
+    .notes-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .chart-shell,
+    .month-card,
+    .notes-card {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .chart-title,
+    .month-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .chart-title strong {
+      font-size: 16px;
+    }
+
+    .chart-wrap {
+      padding: 14px 12px 10px;
+      border-radius: 18px;
+      background: rgba(4, 10, 18, 0.42);
+      border: 1px solid rgba(164,191,219,0.08);
+    }
+
+    .chart-axis {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #7890a8;
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      font-size: 13px;
+    }
+
+    .bar {
+      position: relative;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .bar > span {
+      position: absolute;
+      inset: 0 auto 0 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+
+    .month-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .month-metrics b {
+      display: block;
+      margin-top: 6px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .trade-controls {
+      display: grid;
+      gap: 14px;
+    }
+
+    .month-tabs,
+    .week-progress {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .month-tab {
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+
+    .month-tab.active,
+    .month-tab:hover {
+      color: var(--ink);
+      border-color: rgba(162, 126, 255, 0.35);
+      background: rgba(162, 126, 255, 0.12);
+    }
+
+    .load-next {
+      width: fit-content;
+      padding: 11px 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(35, 212, 178, 0.3);
+      background: rgba(35, 212, 178, 0.1);
+      color: #8ff3df;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+
+    .load-next:hover:not(:disabled) {
+      background: rgba(35, 212, 178, 0.16);
+    }
+
+    .load-next:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .week-pill {
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+    }
+
+    .week-pill.loaded {
+      border-color: rgba(255, 191, 95, 0.35);
+      background: rgba(255, 191, 95, 0.13);
+      color: #ffd58b;
+    }
+
+    .table-shell {
+      overflow: auto;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(7, 15, 24, 0.48);
+    }
+
+    table {
+      width: 100%;
+      min-width: 860px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(164,191,219,0.09);
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: rgba(8, 17, 27, 0.94);
+      color: #9db2c7;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .trade-badge,
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .trade-badge.long {
+      background: rgba(57, 216, 143, 0.13);
+      color: #89f4bd;
+    }
+
+    .trade-badge.short {
+      background: rgba(255, 123, 135, 0.13);
+      color: #ffb1b8;
+    }
+
+    .trade-badge.flat {
+      background: rgba(90, 168, 255, 0.12);
+      color: #95c6ff;
+    }
+
+    .result-badge.win {
+      background: rgba(57, 216, 143, 0.12);
+      color: #89f4bd;
+    }
+
+    .result-badge.loss {
+      background: rgba(255, 123, 135, 0.12);
+      color: #ffb1b8;
+    }
+
+    .result-badge.time {
+      background: rgba(255, 191, 95, 0.12);
+      color: #ffd58b;
+    }
+
+    .notes-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .note-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 18px;
+      padding: 18px 22px 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .closecall-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+    }
+
+    .signal-panel,
+    .action-panel,
+    .plan-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .signal-panel {
+      padding: 20px;
+      background:
+        radial-gradient(circle at top right, rgba(255, 191, 95, 0.18), transparent 15rem),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .signal-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 191, 95, 0.28);
+      background: rgba(255, 191, 95, 0.11);
+      color: #ffe2a8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .signal-main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .signal-main h4 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .signal-main p {
+      margin: 14px 0 0;
+      max-width: 58ch;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .signal-score {
+      min-width: 180px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 191, 95, 0.22);
+      background: rgba(6, 14, 23, 0.34);
+    }
+
+    .signal-score span,
+    .plan-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .signal-score b {
+      display: block;
+      margin-top: 12px;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .signal-metrics,
+    .action-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .signal-metrics {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .plan-card {
+      padding: 16px;
+    }
+
+    .plan-card b {
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+      color: var(--ink);
+    }
+
+    .plan-card p,
+    .action-panel p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .action-panel {
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .action-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .action-list li {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .action-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .action-step {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #08111b;
+      background: linear-gradient(135deg, #ffdf9e, #ffbf5f);
+    }
+
+    .push-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .push-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1140px) {
+      .hero-grid,
+      .chart-grid,
+      .notes-grid,
+      .closecall-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .overview-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 800px) {
+      .topbar-inner,
+      .panel-head,
+      .chart-title,
+      .month-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .overview-grid,
+      .strategy-grid,
+      .kpi-grid,
+      .signal-metrics,
+      .month-metrics,
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .donut-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">AI</div>
+        <div>
+          <h1>AI 美股聯動交易回測框架</h1>
+          <p>v4 · 收盤後進場建議高亮頁籤 + 交易歷史按月按週載入</p>
+        </div>
+      </div>
+      <div class="meta">
+        <span class="pill">展示模式 <span class="mono">Static Preview</span></span>
+        <span class="pill">持倉上限 <span class="mono">6h fixed exit</span></span>
+        <span class="pill">資料狀態 <span class="mono">placeholder</span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell page">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">US Market Driven / No Indicators / Weekly Incremental Trade Loading</span>
+          <h2>更接近正式產品的 v4 版面</h2>
+          <p class="hero-copy">
+            這一版把每天收盤後真正要先看的答案拉到最前面。
+            你打開頁面後不需要先翻圖表，而是先看「今晚建議做多、做空還是觀望」，以及實際進場、停損、止盈、6 小時強制離場與推送狀態。
+            交易歷史仍維持按月切換、按週逐次載入，而策略說明仍保留在最後一個頁籤。
+          </p>
+
+          <div class="version-nav">
+            <a class="switch-link" href="trading-backtest-wireframe.html">v1</a>
+            <a class="switch-link" href="trading-backtest-wireframe-v2.html">v2</a>
+            <a class="switch-link" href="trading-backtest-wireframe-v3.html">v3</a>
+            <a class="switch-link active" href="trading-backtest-wireframe-v4.html">v4</a>
+          </div>
+
+          <div class="tab-nav" role="tablist" aria-label="頁面內容區塊">
+            <button class="tab-button alert-tab active" type="button" data-tab-target="closecall" role="tab">收盤進場建議</button>
+            <button class="tab-button" type="button" data-tab-target="overview" role="tab">總覽</button>
+            <button class="tab-button" type="button" data-tab-target="strategies" role="tab">策略配置</button>
+            <button class="tab-button" type="button" data-tab-target="charts" role="tab">績效圖表</button>
+            <button class="tab-button" type="button" data-tab-target="monthly" role="tab">月度拆解</button>
+            <button class="tab-button" type="button" data-tab-target="trades" role="tab">交易歷史</button>
+            <button class="tab-button" type="button" data-tab-target="notes" role="tab">策略說明</button>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <section class="hero-box">
+            <strong>v4 版面重點</strong>
+            <ul>
+              <li><b>第一個選項卡</b><span>收盤進場建議</span></li>
+              <li><b>最後一個選項卡</b><span>策略說明</span></li>
+              <li><b>倒數第二個選項卡</b><span>交易歷史</span></li>
+              <li><b>交易歷史互動</b><span>當月 / 上月 / 上上月，按週逐次載入</span></li>
+              <li><b>圖表呈現</b><span>累積績效、勝負比例、出場原因分布</span></li>
+            </ul>
+          </section>
+
+          <section class="hero-box">
+            <strong>部署判斷</strong>
+            <ul>
+              <li><b>現在最適合</b><span>靜態頁 + 本機回測產出 JSON/HTML</span></li>
+              <li><b>免費空間相容</b><span>GH / CF / Vercel / Firebase / Surge</span></li>
+              <li><b>未來升級條件</b><span>只有要即時查詢或多用戶共用時再轉動態</span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <article class="panel tab-pane active" data-tab-pane="closecall">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>收盤進場建議</h3>
+              <p>這一頁專門留給每天美股收盤後的策略結論。未來你的回測或分析更新完後，這裡會高亮顯示今晚建議做多、做空或觀望，並同步推送到 GitHub Pages 與 Discord。</p>
+            </div>
+            <span class="status-chip">Close Signal</span>
+          </div>
+
+          <div class="closecall-grid">
+            <section class="signal-panel">
+              <span class="signal-kicker">After Market Close / Primary Signal</span>
+              <div class="signal-main">
+                <div>
+                  <h4>今晚建議：偏多進場</h4>
+                  <p>這裡是未來收盤後最重要的一張卡。它不只是方向判斷，還要直接告訴你什麼時候等、什麼價位進、哪裡失效，以及若 6 小時內沒達標就自動離場。</p>
+                </div>
+                <div class="signal-score">
+                  <span>Decision Score</span>
+                  <b class="mono">00 / 100</b>
+                  <p>高於門檻才推送「做多 / 做空」，否則顯示「觀望」。</p>
+                </div>
+              </div>
+
+              <div class="signal-metrics">
+                <div class="plan-card">
+                  <span>進場策略</span>
+                  <b>美股強勢延續做多</b>
+                  <p>Placeholder，之後由收盤分析自動改寫成做多、做空或觀望。</p>
+                </div>
+                <div class="plan-card">
+                  <span>進場區間</span>
+                  <b class="mono">00.00 - 00.00</b>
+                  <p>收盤後等待你定義的觸發條件，不追價亂進。</p>
+                </div>
+                <div class="plan-card">
+                  <span>失效條件</span>
+                  <b class="mono">跌破 00.00</b>
+                  <p>失效就取消單，或進場後直接按既定止損處理。</p>
+                </div>
+                <div class="plan-card">
+                  <span>止盈</span>
+                  <b class="mono">+00.00%</b>
+                  <p>沿用文章策略，不額外加指標判斷。</p>
+                </div>
+                <div class="plan-card">
+                  <span>止損</span>
+                  <b class="mono">-00.00%</b>
+                  <p>風險先寫死，避免收盤後臨場改規則。</p>
+                </div>
+                <div class="plan-card">
+                  <span>時間離場</span>
+                  <b>6 小時強制平倉</b>
+                  <p>即使沒有碰到止盈止損，滿 6 小時也直接出場。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="action-panel">
+              <div>
+                <strong>今晚執行步驟</strong>
+                <p>把收盤後的操作拆成固定流程，避免看到推送後還要自己重想一次怎麼下單。</p>
+              </div>
+
+              <ol class="action-list">
+                <li>
+                  <span class="action-step">1</span>
+                  <div><b>先看方向</b><br>做多、做空或觀望。若顯示觀望，今晚就不進場。</div>
+                </li>
+                <li>
+                  <span class="action-step">2</span>
+                  <div><b>等觸發區間</b><br>只有進到指定價位或指定條件才入場，不因情緒提前進。</div>
+                </li>
+                <li>
+                  <span class="action-step">3</span>
+                  <div><b>照既定風控</b><br>止盈、止損與 6 小時強制離場固定化，不手動凹單。</div>
+                </li>
+                <li>
+                  <span class="action-step">4</span>
+                  <div><b>看推送狀態</b><br>頁面更新與 Discord 通知都要成功，避免你外出時漏看最新結論。</div>
+                </li>
+              </ol>
+
+              <div>
+                <strong>更新與推送狀態</strong>
+                <div class="push-strip">
+                  <span class="push-pill">分析更新時間 <span class="mono">00:00</span></span>
+                  <span class="push-pill">GH 推送 <span class="mono">Queued</span></span>
+                  <span class="push-pill">DC 通知 <span class="mono">Pending</span></span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="overview">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>回測總覽</h3>
+              <p>最先看整體回測答案：你每天交易到底有沒有勝算，不只看勝率，還要看總報酬、回撤與 6 小時強制離場比例。</p>
+            </div>
+            <span class="status-chip">Overview</span>
+          </div>
+
+          <div class="overview-grid">
+            <div class="stat-card">
+              <div class="stat-label">總交易次數</div>
+              <div class="stat-value mono">00</div>
+              <div class="stat-sub">至少 3 個月逐日統計。</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">勝率</div>
+              <div class="stat-value mono">00.00%</div>
+              <div class="stat-sub">依單筆最終盈虧判斷。</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">總投報率</div>
+              <div class="stat-value mono">+00.00%</div>
+              <div class="stat-sub">未來可切 gross / net。</div>
+            </div>
+            <div class="stat-card warn">
+              <div class="stat-label">6H 強制離場占比</div>
+              <div class="stat-value mono">00.00%</div>
+              <div class="stat-sub">判斷策略是否常常拖到時間出場。</div>
+            </div>
+            <div class="stat-card risk">
+              <div class="stat-label">最大回撤</div>
+              <div class="stat-value mono">-00.00%</div>
+              <div class="stat-sub">勝率高不等於回撤小。</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">平均持倉時間</div>
+              <div class="stat-value mono">05:12</div>
+              <div class="stat-sub">上限固定為 6 小時。</div>
+            </div>
+          </div>
+
+          <div class="summary-row">
+            <section class="summary-box">
+              <strong>你真正要驗證的問題</strong>
+              <p>如果美股條件每天都能產生交易，而且未達止盈止損就 6 小時離場，整體是否仍為正期望值。這裡就是未來最先顯示那個答案的位置。</p>
+            </section>
+            <section class="summary-box">
+              <strong>之後腳本要回填的欄位</strong>
+              <p>交易次數、勝率、投報率、最大回撤、平均持倉、強制離場占比、每月表現、每筆交易結果與出場原因。</p>
+            </section>
+            <section class="summary-box">
+              <strong>先做靜態的理由</strong>
+              <p>回測資料一天更新一次就夠，先由本機產生新結果，再重新部署靜態頁，不需要一開始就上後端。</p>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="strategies">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>策略配置</h3>
+              <p>這裡先把兩個策略框位固定好，未來你可以直接對應文章規則或自己的改版規則。</p>
+            </div>
+            <span class="status-chip">Strategy Cards</span>
+          </div>
+
+          <div class="strategy-grid">
+            <section class="strategy-card">
+              <div class="strategy-top">
+                <div>
+                  <h4>策略 A · 美股風險延續</h4>
+                  <p>適用在美股偏強、風險偏好延續的盤面。未來方向由文章規則與美股條件映射。</p>
+                </div>
+                <span class="dir long">Long Bias</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi"><span>訊號依據</span><b>美股偏強 / 00</b></div>
+                <div class="kpi"><span>進場時段</span><b class="mono">00:00</b></div>
+                <div class="kpi"><span>止盈</span><b class="mono">+00.00%</b></div>
+                <div class="kpi"><span>止損</span><b class="mono">-00.00%</b></div>
+                <div class="kpi"><span>持倉上限</span><b>6 小時</b></div>
+                <div class="kpi"><span>風報比</span><b>00 : 1</b></div>
+              </div>
+            </section>
+
+            <section class="strategy-card">
+              <div class="strategy-top">
+                <div>
+                  <h4>策略 B · 美股回落映射</h4>
+                  <p>適用在美股承壓或風險偏好退潮的盤面，依文章條件決定做空或不交易。</p>
+                </div>
+                <span class="dir short">Short Bias</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi"><span>訊號依據</span><b>美股偏弱 / 00</b></div>
+                <div class="kpi"><span>進場時段</span><b class="mono">00:00</b></div>
+                <div class="kpi"><span>止盈</span><b class="mono">+00.00%</b></div>
+                <div class="kpi"><span>止損</span><b class="mono">-00.00%</b></div>
+                <div class="kpi"><span>持倉上限</span><b>6 小時</b></div>
+                <div class="kpi"><span>風報比</span><b>00 : 1</b></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="charts">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>績效圖表</h3>
+              <p>這些圖現在是占位資料，但結構已經固定。等腳本完成後，直接把真數據灌進來即可。</p>
+            </div>
+            <span class="status-chip">Charts</span>
+          </div>
+
+          <div class="chart-grid">
+            <section class="chart-shell">
+              <div class="chart-title">
+                <strong>累積投報率曲線</strong>
+                <span class="mini-pill">placeholder curve</span>
+              </div>
+              <div class="chart-wrap">
+                <svg viewBox="0 0 640 260" width="100%" height="260" aria-label="equity curve">
+                  <defs>
+                    <linearGradient id="curveFillV3" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#23d4b2" stop-opacity="0.44"></stop>
+                      <stop offset="100%" stop-color="#23d4b2" stop-opacity="0"></stop>
+                    </linearGradient>
+                  </defs>
+                  <g stroke="rgba(164,191,219,0.10)" stroke-width="1">
+                    <line x1="30" y1="30" x2="610" y2="30"></line>
+                    <line x1="30" y1="85" x2="610" y2="85"></line>
+                    <line x1="30" y1="140" x2="610" y2="140"></line>
+                    <line x1="30" y1="195" x2="610" y2="195"></line>
+                    <line x1="30" y1="230" x2="610" y2="230"></line>
+                  </g>
+                  <path d="M30 210 L30 186 L90 176 L150 162 L210 151 L270 158 L330 136 L390 127 L450 109 L510 96 L570 85 L610 70 L610 230 L30 230 Z" fill="url(#curveFillV3)"></path>
+                  <polyline fill="none" stroke="#23d4b2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+                    points="30,186 90,176 150,162 210,151 270,158 330,136 390,127 450,109 510,96 570,85 610,70"></polyline>
+                  <g fill="#9bb1c7" font-size="11" font-family="Inter, sans-serif">
+                    <text x="22" y="34">+8%</text>
+                    <text x="22" y="89">+4%</text>
+                    <text x="22" y="144">0%</text>
+                    <text x="18" y="199">-4%</text>
+                    <text x="12" y="234">-8%</text>
+                  </g>
+                  <circle cx="610" cy="70" r="5" fill="#23d4b2"></circle>
+                </svg>
+                <div class="chart-axis">
+                  <span>Month 1</span>
+                  <span>Month 2</span>
+                  <span>Month 3</span>
+                </div>
+              </div>
+              <div class="legend-row">
+                <span class="legend"><span class="dot" style="background:#23d4b2;"></span>含 6 小時強制離場的累積表現</span>
+              </div>
+            </section>
+
+            <div class="mini-grid">
+              <section class="chart-shell">
+                <div class="chart-title">
+                  <strong>勝負比例</strong>
+                  <span class="mini-pill">win / loss</span>
+                </div>
+                <div class="donut-wrap">
+                  <svg viewBox="0 0 120 120" width="132" height="132" aria-label="win loss">
+                    <circle cx="60" cy="60" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="16"></circle>
+                    <circle cx="60" cy="60" r="42" fill="none" stroke="#39d88f" stroke-width="16" stroke-linecap="round" stroke-dasharray="188 76" transform="rotate(-90 60 60)"></circle>
+                    <circle cx="60" cy="60" r="42" fill="none" stroke="#ff7b87" stroke-width="16" stroke-linecap="round" stroke-dasharray="52 212" stroke-dashoffset="-196" transform="rotate(-90 60 60)"></circle>
+                    <text x="60" y="56" text-anchor="middle" fill="#eef6ff" font-size="24" font-weight="800">00</text>
+                    <text x="60" y="74" text-anchor="middle" fill="#8ea5bc" font-size="11">trades</text>
+                  </svg>
+                  <div class="breakdown-list">
+                    <div class="breakdown-item"><span>獲利單</span><b class="mono" style="color:#89f4bd;">00</b></div>
+                    <div class="breakdown-item"><span>虧損單</span><b class="mono" style="color:#ffb1b8;">00</b></div>
+                    <div class="breakdown-item"><span>未交易日</span><b class="mono" style="color:#95c6ff;">00</b></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="chart-shell">
+                <div class="chart-title">
+                  <strong>出場原因分佈</strong>
+                  <span class="mini-pill">exit mix</span>
+                </div>
+                <div class="breakdown-list">
+                  <div class="breakdown-item">
+                    <div style="flex:1;">
+                      <span>止盈</span>
+                      <div class="bar"><span style="width:58%;"></span></div>
+                    </div>
+                    <b class="mono">00</b>
+                  </div>
+                  <div class="breakdown-item">
+                    <div style="flex:1;">
+                      <span>止損</span>
+                      <div class="bar"><span style="width:30%; background:linear-gradient(90deg,#ff7b87,#ff9c75);"></span></div>
+                    </div>
+                    <b class="mono">00</b>
+                  </div>
+                  <div class="breakdown-item">
+                    <div style="flex:1;">
+                      <span>6 小時強制離場</span>
+                      <div class="bar"><span style="width:44%; background:linear-gradient(90deg,#ffbf5f,#ffd58b);"></span></div>
+                    </div>
+                    <b class="mono">00</b>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="monthly">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>月度拆解</h3>
+              <p>用月份切開後，你比較容易看出「當月有沒有比較常碰到 6 小時強制離場」或「哪個月其實只是靠少數大單撐起來」。</p>
+            </div>
+            <span class="status-chip">Monthly Breakdown</span>
+          </div>
+
+          <div class="month-list">
+            <section class="month-card">
+              <div class="month-head">
+                <strong>Month 1</strong>
+                <span class="mini-pill">prototype</span>
+              </div>
+              <div class="month-metrics">
+                <div>交易次數<b class="mono">00</b></div>
+                <div>勝率<b class="mono">00%</b></div>
+                <div>投報率<b class="mono">+00%</b></div>
+                <div>Time Exit<b class="mono">00</b></div>
+              </div>
+            </section>
+            <section class="month-card">
+              <div class="month-head">
+                <strong>Month 2</strong>
+                <span class="mini-pill">validation</span>
+              </div>
+              <div class="month-metrics">
+                <div>交易次數<b class="mono">00</b></div>
+                <div>勝率<b class="mono">00%</b></div>
+                <div>投報率<b class="mono">+00%</b></div>
+                <div>Time Exit<b class="mono">00</b></div>
+              </div>
+            </section>
+            <section class="month-card">
+              <div class="month-head">
+                <strong>Month 3</strong>
+                <span class="mini-pill">holdout</span>
+              </div>
+              <div class="month-metrics">
+                <div>交易次數<b class="mono">00</b></div>
+                <div>勝率<b class="mono">00%</b></div>
+                <div>投報率<b class="mono">+00%</b></div>
+                <div>Time Exit<b class="mono">00</b></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="trades">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>交易歷史</h3>
+              <p>這一區資料量最大，所以不一次全部展開。你先選月份，再按「載入下一週」逐次追加那一週的交易紀錄，模擬未來實際的按需載入方式。</p>
+            </div>
+            <span class="status-chip">Weekly Incremental Loading</span>
+          </div>
+
+          <div class="trade-controls">
+            <div class="month-tabs" id="monthTabs" aria-label="交易歷史月份切換"></div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+              <button class="load-next" id="loadNextWeek" type="button">載入下一週交易歷史</button>
+              <span class="helper" id="tradeStatus">尚未載入任何週資料</span>
+            </div>
+            <div class="week-progress" id="weekProgress"></div>
+          </div>
+
+          <div class="table-shell" style="margin-top:16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>日期</th>
+                  <th>策略</th>
+                  <th>方向</th>
+                  <th>進場</th>
+                  <th>出場</th>
+                  <th>持倉</th>
+                  <th>出場原因</th>
+                  <th>單筆報酬</th>
+                  <th>結果</th>
+                </tr>
+              </thead>
+              <tbody id="tradeTableBody">
+                <tr>
+                  <td colspan="9" class="tiny">請先選擇月份，然後按「載入下一週交易歷史」。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel tab-pane" data-tab-pane="notes">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div>
+              <h3>策略說明</h3>
+              <p>這一塊就是你指定要放在最後一個選項卡的位置。它保留產品說明性質，不跟大量數據混在一起。</p>
+            </div>
+            <span class="status-chip">Final Tab</span>
+          </div>
+
+          <div class="notes-grid">
+            <section class="note-card">
+              <h4>核心原理</h4>
+              <ul>
+                <li>不使用傳統技術指標，例如 RSI、MACD、布林帶與均線。</li>
+                <li>以美股風險偏好、時段、盤中狀態作為主要交易依據。</li>
+                <li>止盈與止損邏輯沿用文章策略，不在這個框架階段改動。</li>
+                <li>即使未達止盈止損，只要滿 6 小時就強制離場。</li>
+              </ul>
+            </section>
+
+            <section class="note-card">
+              <h4>風險管理</h4>
+              <ul>
+                <li>不能只看勝率，還要同時看最大回撤與強制離場比例。</li>
+                <li>若 Time Exit 比例過高，通常代表進場邏輯不夠集中。</li>
+                <li>之後正式回測時必須納入手續費與滑價。</li>
+                <li>若日後加入多標的，也要拆開看不同市場的 regime 表現。</li>
+              </ul>
+            </section>
+
+            <section class="deploy-card">
+              <strong>靜態部署建議</strong>
+              <p>現階段最合理：本機回測完成後輸出 HTML/JSON，再部署到 GitHub Pages、Cloudflare Pages 或 Vercel。這樣維護成本最低，也最不受技術棧限制。</p>
+            </section>
+
+            <section class="deploy-card">
+              <strong>何時升級成動態</strong>
+              <p>只有當你真的需要前端篩選器、多人共用、即時查詢、多策略切換，才值得加 API 或資料庫。現在先用靜態版是對的。</p>
+            </section>
+          </div>
+        </div>
+        <div class="footer">
+          這個 `v4` 是靜態展示版。互動只有前端 tab 切換、月份切換與每週逐次載入，占位資料全部為示意，目的是把未來產品的閱讀流程先定下來，尤其是收盤後第一眼要看的進場建議。
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const tabButtons = Array.from(document.querySelectorAll('[data-tab-target]'));
+    const tabPanes = Array.from(document.querySelectorAll('[data-tab-pane]'));
+
+    function activateTab(name) {
+      tabButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.tabTarget === name);
+      });
+      tabPanes.forEach((pane) => {
+        pane.classList.toggle('active', pane.dataset.tabPane === name);
+      });
+    }
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => activateTab(button.dataset.tabTarget));
+    });
+
+    const now = new Date();
+    const monthFormatter = new Intl.DateTimeFormat('zh-Hant', { year: 'numeric', month: 'long' });
+    const shortDateFormatter = new Intl.DateTimeFormat('sv-SE');
+    const monthBuckets = [];
+
+    for (let offset = 0; offset < 3; offset += 1) {
+      const date = new Date(now.getFullYear(), now.getMonth() - offset, 1);
+      const label = monthFormatter.format(date);
+      const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      const weeks = Array.from({ length: 4 }, (_, weekIndex) => {
+        const baseDay = 2 + weekIndex * 7;
+        return {
+          label: `第 ${weekIndex + 1} 週`,
+          rows: Array.from({ length: 3 }, (_, rowIndex) => {
+            const day = baseDay + rowIndex * 2;
+            const dateValue = new Date(date.getFullYear(), date.getMonth(), day);
+            const direction = rowIndex === 2 ? 'No Trade' : (weekIndex + rowIndex) % 2 === 0 ? 'Long' : 'Short';
+            const exitReason = direction === 'No Trade'
+              ? '美股情境不符合'
+              : rowIndex === 1
+                ? '止損'
+                : weekIndex % 2 === 0
+                  ? '止盈'
+                  : '6 小時強制離場';
+            const result = direction === 'No Trade'
+              ? 'Flat'
+              : exitReason === '止損'
+                ? 'Loss'
+                : exitReason === '6 小時強制離場'
+                  ? 'Time Exit'
+                  : 'Win';
+            const ret = result === 'Loss' ? '-00.00%' : result === 'Flat' ? '0.00%' : '+00.00%';
+            const hold = result === 'Time Exit' ? '06:00' : result === 'Flat' ? '--' : rowIndex === 1 ? '02:14' : '03:52';
+            return {
+              date: shortDateFormatter.format(dateValue),
+              strategy: direction === 'No Trade' ? '--' : weekIndex % 2 === 0 ? '策略 A' : '策略 B',
+              direction,
+              entry: direction === 'No Trade' ? '--' : weekIndex % 2 === 0 ? '22:00' : '00:00',
+              exit: direction === 'No Trade' ? '--' : result === 'Time Exit' ? '04:00' : result === 'Loss' ? '02:14' : '01:52',
+              hold,
+              exitReason,
+              ret,
+              result
+            };
+          })
+        };
+      });
+      monthBuckets.push({ key: monthKey, label, weeks });
+    }
+
+    const monthTabs = document.getElementById('monthTabs');
+    const weekProgress = document.getElementById('weekProgress');
+    const tradeTableBody = document.getElementById('tradeTableBody');
+    const tradeStatus = document.getElementById('tradeStatus');
+    const loadNextWeekButton = document.getElementById('loadNextWeek');
+
+    let activeMonth = monthBuckets[0];
+    let loadedWeeks = 0;
+
+    function directionBadge(direction) {
+      if (direction === 'Long') return '<span class="trade-badge long">Long</span>';
+      if (direction === 'Short') return '<span class="trade-badge short">Short</span>';
+      return '<span class="trade-badge flat">No Trade</span>';
+    }
+
+    function resultBadge(result) {
+      if (result === 'Win') return '<span class="result-badge win">Win</span>';
+      if (result === 'Loss') return '<span class="result-badge loss">Loss</span>';
+      if (result === 'Time Exit') return '<span class="result-badge time">Time Exit</span>';
+      return '<span class="result-badge time">Flat</span>';
+    }
+
+    function renderMonthTabs() {
+      monthTabs.innerHTML = '';
+      monthBuckets.forEach((month) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `month-tab${month.key === activeMonth.key ? ' active' : ''}`;
+        button.textContent = month.label;
+        button.addEventListener('click', () => {
+          activeMonth = month;
+          loadedWeeks = 0;
+          renderMonthTabs();
+          renderWeekProgress();
+          renderTradeTable();
+        });
+        monthTabs.appendChild(button);
+      });
+    }
+
+    function renderWeekProgress() {
+      weekProgress.innerHTML = '';
+      activeMonth.weeks.forEach((week, index) => {
+        const pill = document.createElement('span');
+        pill.className = `week-pill${index < loadedWeeks ? ' loaded' : ''}`;
+        pill.textContent = week.label;
+        weekProgress.appendChild(pill);
+      });
+      loadNextWeekButton.disabled = loadedWeeks >= activeMonth.weeks.length;
+    }
+
+    function renderTradeTable() {
+      if (loadedWeeks === 0) {
+        tradeTableBody.innerHTML = '<tr><td colspan="9" class="tiny">目前顯示：' + activeMonth.label + '。尚未載入任何週資料，請按「載入下一週交易歷史」。</td></tr>';
+        tradeStatus.textContent = activeMonth.label + ' 尚未載入任何週資料';
+        return;
+      }
+
+      const rows = activeMonth.weeks.slice(0, loadedWeeks).flatMap((week) => week.rows);
+      tradeTableBody.innerHTML = rows.map((row) => {
+        return `
+          <tr>
+            <td class="mono">${row.date}</td>
+            <td>${row.strategy}</td>
+            <td>${directionBadge(row.direction)}</td>
+            <td class="mono">${row.entry}</td>
+            <td class="mono">${row.exit}</td>
+            <td class="mono">${row.hold}</td>
+            <td>${row.exitReason}</td>
+            <td class="mono">${row.ret}</td>
+            <td>${resultBadge(row.result)}</td>
+          </tr>
+        `;
+      }).join('');
+      tradeStatus.textContent = `${activeMonth.label} 已載入 ${loadedWeeks} / ${activeMonth.weeks.length} 週`;
+    }
+
+    loadNextWeekButton.addEventListener('click', () => {
+      if (loadedWeeks < activeMonth.weeks.length) {
+        loadedWeeks += 1;
+        renderWeekProgress();
+        renderTradeTable();
+      }
+    });
+
+    renderMonthTabs();
+    renderWeekProgress();
+    renderTradeTable();
+  </script>
+</body>
+</html>
