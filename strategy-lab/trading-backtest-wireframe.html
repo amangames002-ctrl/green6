@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美股聯動策略回測框架</title>
+  <style>
+    :root {
+      --bg: #f2ede3;
+      --panel: rgba(255, 251, 244, 0.86);
+      --panel-strong: #fffaf2;
+      --ink: #1f1b18;
+      --muted: #6a625a;
+      --line: rgba(31, 27, 24, 0.12);
+      --accent: #0e6b5b;
+      --accent-soft: rgba(14, 107, 91, 0.12);
+      --warn: #a94d1f;
+      --gold: #b5882f;
+      --shadow: 0 20px 60px rgba(41, 28, 17, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Avenir Next", "Helvetica Neue", "PingFang TC", "Noto Sans TC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(181, 136, 47, 0.16), transparent 24rem),
+        radial-gradient(circle at right 20%, rgba(14, 107, 91, 0.18), transparent 22rem),
+        linear-gradient(180deg, #f7f3ea 0%, #ece5d8 100%);
+    }
+
+    .shell {
+      width: min(1280px, calc(100% - 32px));
+      margin: 24px auto 40px;
+    }
+
+    .hero,
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--panel);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -110px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(14, 107, 91, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      margin-top: 16px;
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: 0.95;
+      max-width: 10ch;
+    }
+
+    .hero p {
+      margin: 18px 0 0;
+      max-width: 64ch;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .hero-card {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(31, 27, 24, 0.08);
+    }
+
+    .hero-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .rule-list,
+    .signal-list,
+    .risk-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .rule-list li,
+    .signal-list li,
+    .risk-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .rule-list li:first-child,
+    .signal-list li:first-child,
+    .risk-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .rule-list strong,
+    .signal-list strong,
+    .risk-list strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .panel-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .stamp {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(181, 136, 47, 0.12);
+      color: #7f5e16;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      padding: 16px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      margin-top: 12px;
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .stat-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .process {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      padding: 16px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 248, 239, 0.92));
+    }
+
+    .step small {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .step strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid var(--line);
+    }
+
+    thead {
+      background: rgba(31, 27, 24, 0.04);
+    }
+
+    th,
+    td {
+      padding: 14px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .mono {
+      font-family: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+      font-size: 13px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(14, 107, 91, 0.1);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pill.loss {
+      background: rgba(169, 77, 31, 0.1);
+      color: var(--warn);
+    }
+
+    .footnote {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .layout,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <span class="eyebrow">US Market-Led Backtest Wireframe</span>
+      <h1>美股聯動交易策略回測儀表板</h1>
+      <p>
+        這一版只定義頁面框架，不寫回測腳本。核心概念是依文章的交易邏輯做「美股情境判斷 -> 進場 -> 止盈/止損 -> 6 小時強制離場」，
+        先把未來要灌入的欄位、摘要卡片、交易紀錄表與風險假設區固定下來。
+      </p>
+
+      <div class="hero-grid">
+        <article class="hero-card">
+          <h3>策略規則骨架</h3>
+          <ul class="rule-list">
+            <li><strong>市場依據</strong><span>只看美股風險情緒與時段表現，不放技術指標</span></li>
+            <li><strong>進場方向</strong><span>依文章策略條件決定做多 / 做空 / 不交易</span></li>
+            <li><strong>止盈止損</strong><span>完全沿用文章設定，之後由腳本帶入</span></li>
+            <li><strong>時間出場</strong><span>即使未碰 TP / SL，持倉滿 6 小時就強制離場</span></li>
+          </ul>
+        </article>
+
+        <article class="hero-card">
+          <h3>回測設定占位</h3>
+          <ul class="signal-list">
+            <li><strong>回測區間</strong><span class="mono">2026-00-00 → 2026-00-00</span></li>
+            <li><strong>資料頻率</strong><span class="mono">00m / 1h / 4h</span></li>
+            <li><strong>交易標的</strong><span class="mono">SPY / QQQ / BTC / 00</span></li>
+            <li><strong>資料來源</strong><span class="mono">API / CSV / 00</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div class="stack">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>回測總覽</h2>
+              <p>之後這裡會由回測腳本寫入至少 3 個月、逐日交易結果的核心數字。</p>
+            </div>
+            <span class="stamp">Dashboard Preview</span>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="stat-label">總進場次數</div>
+              <div class="stat-value mono">00</div>
+              <div class="stat-note">含多單、空單與 6 小時強制出場交易</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">勝率</div>
+              <div class="stat-value mono">00.00%</div>
+              <div class="stat-note">依單筆交易最終盈虧判定</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">總投報率</div>
+              <div class="stat-value mono">+00.00%</div>
+              <div class="stat-note">未來可切換 gross / net 回報</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">平均持倉</div>
+              <div class="stat-value mono">06:00</div>
+              <div class="stat-note">預設上限 6 小時</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">平均單筆報酬</div>
+              <div class="stat-value mono">00.00%</div>
+              <div class="stat-note">可拆分多單 / 空單 / 強制出場</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">最大回撤</div>
+              <div class="stat-value mono">-00.00%</div>
+              <div class="stat-note">先保留框位，之後可接 equity curve</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>每日交易紀錄</h2>
+              <p>這裡預留每天是否交易、進出場時間、出場原因與單筆結果。先做視覺結構，不接資料。</p>
+            </div>
+            <span class="stamp">90 Days Table</span>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>方向</th>
+                <th>進場</th>
+                <th>出場</th>
+                <th>出場原因</th>
+                <th>單筆報酬</th>
+                <th>結果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mono">2026-00-00</td>
+                <td><span class="pill">Long</span></td>
+                <td class="mono">09:30</td>
+                <td class="mono">15:30</td>
+                <td>6 小時強制離場</td>
+                <td class="mono">+00.00%</td>
+                <td><span class="pill">Win</span></td>
+              </tr>
+              <tr>
+                <td class="mono">2026-00-00</td>
+                <td><span class="pill loss">Short</span></td>
+                <td class="mono">09:30</td>
+                <td class="mono">11:12</td>
+                <td>止損</td>
+                <td class="mono">-00.00%</td>
+                <td><span class="pill loss">Loss</span></td>
+              </tr>
+              <tr>
+                <td class="mono">2026-00-00</td>
+                <td><span class="pill">No Trade</span></td>
+                <td class="mono">--</td>
+                <td class="mono">--</td>
+                <td>訊號不足</td>
+                <td class="mono">0.00%</td>
+                <td><span class="pill">Flat</span></td>
+              </tr>
+              <tr>
+                <td class="mono">2026-00-00</td>
+                <td><span class="pill">Long</span></td>
+                <td class="mono">09:30</td>
+                <td class="mono">12:48</td>
+                <td>止盈</td>
+                <td class="mono">+00.00%</td>
+                <td><span class="pill">Win</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="footnote">
+            之後這張表可以延伸成可篩選版本：只看獲利單、只看 6 小時強制平倉、只看美股偏弱日、只看特定標的。
+          </p>
+        </article>
+      </div>
+
+      <div class="stack">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>決策流程</h2>
+              <p>先把「不看指標、主要看美股表現」的邏輯拆成未來要接腳本的流程塊。</p>
+            </div>
+          </div>
+
+          <div class="process">
+            <div class="step">
+              <small>Step 01</small>
+              <strong>讀取美股當日狀態</strong>
+              <p>預留欄位給 SPY / QQQ / 期貨夜盤 / 開盤情緒 / 風險偏好分類。</p>
+            </div>
+            <div class="step">
+              <small>Step 02</small>
+              <strong>映射成交易方向</strong>
+              <p>只保留文章策略所需條件，不加入 RSI、MACD、均線等指標判斷。</p>
+            </div>
+            <div class="step">
+              <small>Step 03</small>
+              <strong>依 TP / SL 管理部位</strong>
+              <p>止盈、止損完全沿用文章邏輯，未來由腳本填入實際數值與出場順序。</p>
+            </div>
+            <div class="step">
+              <small>Step 04</small>
+              <strong>6 小時一到強制平倉</strong>
+              <p>未達止盈止損也出場，並單獨統計這類交易對勝率與總報酬的影響。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>策略假設與風險</h2>
+              <p>先把之後回測一定要顯示的假設列清楚，避免只看漂亮數字。</p>
+            </div>
+          </div>
+
+          <ul class="risk-list">
+            <li><strong>美股依據</strong><span>00: 開盤方向 / 波動 / 收盤延續</span></li>
+            <li><strong>手續費</strong><span>00.00% / 單邊</span></li>
+            <li><strong>滑價</strong><span>00.00% / 每次進出場</span></li>
+            <li><strong>持倉上限</strong><span class="mono">6h fixed exit</span></li>
+            <li><strong>資料缺漏處理</strong><span>跳過 / 補值 / 00</span></li>
+          </ul>
+
+          <div class="tag-row">
+            <span class="tag">至少 3 個月逐日回測</span>
+            <span class="tag">每日是否交易可見</span>
+            <span class="tag">進出場次數可累計</span>
+            <span class="tag">勝率 / 投報率獨立顯示</span>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>你之後會看到的延伸模組</h2>
+              <p>這一版先保留位置，等你確認框架後再補腳本和真資料。</p>
+            </div>
+          </div>
+
+          <div class="process">
+            <div class="step">
+              <small>Module A</small>
+              <strong>Equity Curve</strong>
+              <p>畫出 3 個月以上的累積損益曲線、回撤區段與月度報酬。</p>
+            </div>
+            <div class="step">
+              <small>Module B</small>
+              <strong>Win / Loss Breakdown</strong>
+              <p>把止盈、止損、6 小時強制離場分開算次數與貢獻。</p>
+            </div>
+            <div class="step">
+              <small>Module C</small>
+              <strong>Market Regime Panel</strong>
+              <p>之後可以看美股偏強、偏弱、震盪時，各自的勝率與投報率差異。</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

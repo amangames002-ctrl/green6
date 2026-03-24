@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美股聯動策略回測框架 v2</title>
+  <style>
+    :root {
+      --bg: #08111c;
+      --bg-soft: #0f1d2d;
+      --panel: rgba(11, 22, 36, 0.84);
+      --panel-strong: rgba(15, 29, 45, 0.96);
+      --card: rgba(18, 34, 52, 0.78);
+      --ink: #eef6ff;
+      --muted: #93a7bd;
+      --line: rgba(166, 192, 218, 0.14);
+      --teal: #25d0b1;
+      --teal-soft: rgba(37, 208, 177, 0.14);
+      --blue: #58a6ff;
+      --amber: #f7b955;
+      --red: #ff7a84;
+      --green: #31d28d;
+      --violet: #9b7bff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Inter", "Avenir Next", "PingFang TC", "Noto Sans TC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(88, 166, 255, 0.18), transparent 24rem),
+        radial-gradient(circle at 85% 20%, rgba(37, 208, 177, 0.16), transparent 26rem),
+        radial-gradient(circle at 50% 100%, rgba(155, 123, 255, 0.14), transparent 24rem),
+        linear-gradient(180deg, #07111b 0%, #0a1521 48%, #09131e 100%);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(6, 14, 24, 0.76);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner,
+    .shell {
+      width: min(1380px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #06261f;
+      background: linear-gradient(135deg, #79f5de, #1cc3aa);
+      box-shadow: 0 10px 32px rgba(37, 208, 177, 0.34);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand p,
+    .top-meta,
+    .meta-inline,
+    .panel p,
+    .legend,
+    .tiny {
+      color: var(--muted);
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      font-size: 13px;
+    }
+
+    .top-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .pill,
+    .mini-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .mini-pill {
+      padding: 7px 11px;
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .shell {
+      padding: 24px 0 48px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(88, 166, 255, 0.11), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+        var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -70px;
+      top: -50px;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 208, 177, 0.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--teal-soft);
+      color: #89f0dd;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.95fr;
+      gap: 22px;
+      align-items: end;
+    }
+
+    .hero h2 {
+      margin: 16px 0 0;
+      font-size: clamp(34px, 5vw, 74px);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+    }
+
+    .hero-copy {
+      margin-top: 18px;
+      max-width: 66ch;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #b2c3d5;
+    }
+
+    .hero-tags,
+    .legend-row,
+    .deploy-grid,
+    .summary-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-tags {
+      margin-top: 20px;
+    }
+
+    .hero-statbox {
+      display: grid;
+      gap: 14px;
+      padding: 18px;
+      border-radius: 26px;
+      border: 1px solid rgba(166, 192, 218, 0.16);
+      background: rgba(5, 12, 21, 0.46);
+    }
+
+    .hero-statbox strong {
+      display: block;
+      font-size: 13px;
+      color: #d5e8ff;
+      margin-bottom: 8px;
+    }
+
+    .hero-statbox ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-statbox li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-statbox li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .hero-statbox b {
+      color: var(--ink);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.95fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-inner {
+      padding: 22px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .panel-head h3 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .panel-head p {
+      margin: 8px 0 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .status-chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(247, 185, 85, 0.12);
+      color: #ffd487;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      position: relative;
+      padding: 16px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), rgba(37, 208, 177, 0));
+      opacity: 0.9;
+    }
+
+    .stat-card.warn::before {
+      background: linear-gradient(90deg, var(--amber), rgba(247, 185, 85, 0));
+    }
+
+    .stat-card.risk::before {
+      background: linear-gradient(90deg, var(--red), rgba(255, 122, 132, 0));
+    }
+
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .stat-value {
+      margin-top: 14px;
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .stat-sub {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .summary-row {
+      margin-top: 18px;
+    }
+
+    .summary-block {
+      flex: 1 1 240px;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+    }
+
+    .summary-block strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: #d5e8ff;
+    }
+
+    .summary-block p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .strategy-card {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .strategy-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .strategy-card h4 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .strategy-card p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .dir {
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .dir.long {
+      background: rgba(49, 210, 141, 0.14);
+      color: #84f2bc;
+    }
+
+    .dir.short {
+      background: rgba(255, 122, 132, 0.14);
+      color: #ffadb4;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .kpi {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(166, 192, 218, 0.09);
+    }
+
+    .kpi span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .kpi b {
+      display: block;
+      margin-top: 8px;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .chart-shell {
+      position: relative;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+    }
+
+    .chart-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .chart-title strong {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .chart-wrap {
+      padding: 14px 12px 10px;
+      border-radius: 18px;
+      background: rgba(4, 10, 18, 0.42);
+      border: 1px solid rgba(166, 192, 218, 0.08);
+    }
+
+    .chart-axis {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #7890a8;
+    }
+
+    .legend-row {
+      margin-top: 12px;
+    }
+
+    .legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 14px;
+    }
+
+    .mini-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .breakdown-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      font-size: 13px;
+    }
+
+    .bar {
+      position: relative;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .bar > span {
+      position: absolute;
+      inset: 0 auto 0 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+
+    .month-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .month-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .month-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .month-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .month-metrics b {
+      display: block;
+      margin-top: 6px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .table-shell {
+      overflow: auto;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(7, 15, 24, 0.48);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(166, 192, 218, 0.09);
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: rgba(8, 18, 30, 0.94);
+      color: #9ab0c6;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .mono {
+      font-family: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+    }
+
+    .trade-badge,
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .trade-badge.long {
+      background: rgba(49, 210, 141, 0.13);
+      color: #84f2bc;
+    }
+
+    .trade-badge.short {
+      background: rgba(255, 122, 132, 0.13);
+      color: #ffadb4;
+    }
+
+    .trade-badge.flat {
+      background: rgba(88, 166, 255, 0.12);
+      color: #95c6ff;
+    }
+
+    .result-badge.win {
+      background: rgba(49, 210, 141, 0.12);
+      color: #84f2bc;
+    }
+
+    .result-badge.loss {
+      background: rgba(255, 122, 132, 0.12);
+      color: #ffadb4;
+    }
+
+    .result-badge.time {
+      background: rgba(247, 185, 85, 0.12);
+      color: #ffd487;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .note-card {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .note-card h4 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .note-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .deploy-grid {
+      margin-top: 10px;
+    }
+
+    .deploy-card {
+      flex: 1 1 240px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .deploy-card strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .deploy-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer {
+      margin-top: 18px;
+      padding: 18px 22px 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1120px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .main-grid,
+      .hero-grid,
+      .chart-grid,
+      .note-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .topbar-inner,
+      .panel-head,
+      .month-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .stats-grid,
+      .strategy-grid,
+      .month-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .donut-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">AI</div>
+        <div>
+          <h1>AI 美股聯動交易回測框架</h1>
+          <p>Static showcase v2 · 先看資訊架構與圖表呈現，不接腳本與即時資料</p>
+        </div>
+      </div>
+      <div class="top-meta">
+        <span class="pill">回測區間 <span class="mono">2026-00-00 → 2026-00-00</span></span>
+        <span class="pill">最後更新 <span class="mono">00:00 UTC</span></span>
+        <span class="pill">展示模式 <span class="mono">Static Preview</span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">US Session Driven / No Indicators / 6H Forced Exit</span>
+          <h2>依美股情境決策的回測儀表板</h2>
+          <p class="hero-copy">
+            這個版本綜合你給的兩個外部範例，保留它們值得學的重點：摘要卡、策略配置卡、圖表區、交易歷史、月度 breakdown，
+            同時加入更貼近你需求的幾個欄位：只依美股狀態做判斷、不使用傳統技術指標、TP/SL 沿用文章策略、6 小時強制平倉、以及後續靜態或動態部署路線。
+          </p>
+          <div class="hero-tags">
+            <span class="mini-pill">至少 3 個月每日回測</span>
+            <span class="mini-pill">進出場次數可見</span>
+            <span class="mini-pill">勝率 / 投報率 / 回撤</span>
+            <span class="mini-pill">圖表先用占位資料</span>
+          </div>
+        </div>
+
+        <aside class="hero-statbox">
+          <div>
+            <strong>策略規則摘要</strong>
+            <ul>
+              <li><b>訊號來源</b><span>依美股開盤/盤中/風險偏好狀態映射方向</span></li>
+              <li><b>交易依據</b><span>不看 RSI / MACD / 布林 / 均線等技術指標</span></li>
+              <li><b>風險控制</b><span>沿用文章 TP / SL 設定，未來由腳本注入</span></li>
+              <li><b>時間出場</b><span>持倉 6 小時未觸發 TP / SL 也必須平倉</span></li>
+            </ul>
+          </div>
+          <div>
+            <strong>這版先展示什麼</strong>
+            <ul>
+              <li><b>資訊層級</b><span>你之後每天真正會看的摘要與圖表位置</span></li>
+              <li><b>交易表格</b><span>單筆勝負、出場原因、持倉時長預留完成</span></li>
+              <li><b>部署方向</b><span>先靜態，未來再視需求升級成動態或 hybrid</span></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="main-grid">
+      <div class="stack">
+        <article class="panel">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <div>
+                <h3>回測總覽</h3>
+                <p>吸收了外部範例的摘要卡形式，但我把重點換成你真正要用的交易欄位：交易次數、勝率、總投報率、平均持倉、最大回撤與強制平倉比例。</p>
+              </div>
+              <span class="status-chip">Summary Dashboard</span>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-label">總交易次數</div>
+                <div class="stat-value mono">00</div>
+                <div class="stat-sub">至少 3 個月逐日統計，若每天有交易就會累積在這裡。</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">勝率</div>
+                <div class="stat-value mono">00.00%</div>
+                <div class="stat-sub">依單筆最終盈虧判斷，未來可切換 gross / net。</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">總投報率</div>
+                <div class="stat-value mono">+00.00%</div>
+                <div class="stat-sub">預留給回測腳本輸出的最終報酬。</div>
+              </div>
+              <div class="stat-card warn">
+                <div class="stat-label">6H 強制離場占比</div>
+                <div class="stat-value mono">00.00%</div>
+                <div class="stat-sub">這個數字很重要，能看出策略是否常常沒走到 TP / SL。</div>
+              </div>
+              <div class="stat-card risk">
+                <div class="stat-label">最大回撤</div>
+                <div class="stat-value mono">-00.00%</div>
+                <div class="stat-sub">不只看勝率，回撤也必須和總回報一起看。</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">平均持倉時間</div>
+                <div class="stat-value mono">05:12</div>
+                <div class="stat-sub">上限 6 小時，之後可拆為 TP / SL / Time Exit。</div>
+              </div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-block">
+                <strong>你現在在問的核心問題</strong>
+                <p>「如果每天都有交易，而且沒到止盈止損就 6 小時後賣出，還有沒有勝算？」這個頁面就是為了讓你直觀看到這件事，不只看故事，而是看次數、勝率與報酬的結構。</p>
+              </div>
+              <div class="summary-block">
+                <strong>未來回測腳本要填入的關鍵答案</strong>
+                <p>每日是否交易、進場方向、實際出場原因、單筆報酬、月度表現、強制平倉對整體績效的貢獻，這些都會落到下面的圖表與表格。</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <div>
+                <h3>策略配置</h3>
+                <p>這裡保留了外部範例的雙策略卡片邏輯，但改成更適合你之後對照文章規則與自己調整版本的樣子。</p>
+              </div>
+              <span class="status-chip">Strategy Cards</span>
+            </div>
+
+            <div class="strategy-grid">
+              <section class="strategy-card">
+                <div class="strategy-top">
+                  <div>
+                    <h4>策略 A · 美股風險延續</h4>
+                    <p>主要用在美股偏強、風險偏好明顯延續的日子，方向由文章規則決定。</p>
+                  </div>
+                  <span class="dir long">Long Bias</span>
+                </div>
+                <div class="kpis">
+                  <div class="kpi"><span>訊號依據</span><b>美股偏強 / 00</b></div>
+                  <div class="kpi"><span>進場時段</span><b class="mono">00:00</b></div>
+                  <div class="kpi"><span>止盈</span><b class="mono">+00.00%</b></div>
+                  <div class="kpi"><span>止損</span><b class="mono">-00.00%</b></div>
+                  <div class="kpi"><span>持倉上限</span><b>6 小時</b></div>
+                  <div class="kpi"><span>風報比</span><b>00 : 1</b></div>
+                </div>
+              </section>
+
+              <section class="strategy-card">
+                <div class="strategy-top">
+                  <div>
+                    <h4>策略 B · 美股回落映射</h4>
+                    <p>主要用在美股承壓或風險偏好退潮的日子，依文章條件做空或不交易。</p>
+                  </div>
+                  <span class="dir short">Short Bias</span>
+                </div>
+                <div class="kpis">
+                  <div class="kpi"><span>訊號依據</span><b>美股偏弱 / 00</b></div>
+                  <div class="kpi"><span>進場時段</span><b class="mono">00:00</b></div>
+                  <div class="kpi"><span>止盈</span><b class="mono">+00.00%</b></div>
+                  <div class="kpi"><span>止損</span><b class="mono">-00.00%</b></div>
+                  <div class="kpi"><span>持倉上限</span><b>6 小時</b></div>
+                  <div class="kpi"><span>風報比</span><b>00 : 1</b></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <div>
+                <h3>績效圖表</h3>
+                <p>這一區是我特別補強的。你之前那版只有表格，現在我把你之後最需要看的三種圖先做出來：累積績效、勝負結構、出場原因結構。</p>
+              </div>
+              <span class="status-chip">Charts Preview</span>
+            </div>
+
+            <div class="chart-grid">
+              <section class="chart-shell">
+                <div class="chart-title">
+                  <strong>累積投報率曲線</strong>
+                  <span class="mini-pill">假資料示意</span>
+                </div>
+                <div class="chart-wrap">
+                  <svg viewBox="0 0 640 260" width="100%" height="260" aria-label="equity curve preview">
+                    <defs>
+                      <linearGradient id="fillCurve" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#25d0b1" stop-opacity="0.42" />
+                        <stop offset="100%" stop-color="#25d0b1" stop-opacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <rect width="640" height="260" fill="transparent" />
+                    <g stroke="rgba(166,192,218,0.10)" stroke-width="1">
+                      <line x1="30" y1="30" x2="610" y2="30" />
+                      <line x1="30" y1="85" x2="610" y2="85" />
+                      <line x1="30" y1="140" x2="610" y2="140" />
+                      <line x1="30" y1="195" x2="610" y2="195" />
+                      <line x1="30" y1="230" x2="610" y2="230" />
+                    </g>
+                    <path d="M30 210 L30 180 L90 170 L150 164 L210 152 L270 160 L330 139 L390 127 L450 111 L510 95 L570 84 L610 66 L610 230 L30 230 Z" fill="url(#fillCurve)" />
+                    <polyline
+                      fill="none"
+                      stroke="#25d0b1"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      points="30,180 90,170 150,164 210,152 270,160 330,139 390,127 450,111 510,95 570,84 610,66"
+                    />
+                    <g fill="#9ab0c6" font-size="11" font-family="Inter, sans-serif">
+                      <text x="22" y="34">+8%</text>
+                      <text x="22" y="89">+4%</text>
+                      <text x="22" y="144">0%</text>
+                      <text x="18" y="199">-4%</text>
+                      <text x="12" y="234">-8%</text>
+                    </g>
+                    <circle cx="610" cy="66" r="5" fill="#25d0b1" />
+                  </svg>
+                  <div class="chart-axis">
+                    <span>Month 1</span>
+                    <span>Month 2</span>
+                    <span>Month 3</span>
+                  </div>
+                </div>
+                <div class="legend-row">
+                  <span class="legend"><span class="dot" style="background:#25d0b1;"></span>含 6 小時強制出場的累積結果</span>
+                </div>
+              </section>
+
+              <div class="mini-grid">
+                <section class="chart-shell">
+                  <div class="chart-title">
+                    <strong>勝負比例</strong>
+                    <span class="mini-pill">Win Rate</span>
+                  </div>
+                  <div class="donut-wrap">
+                    <svg viewBox="0 0 120 120" width="132" height="132" aria-label="win loss donut">
+                      <circle cx="60" cy="60" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="16"></circle>
+                      <circle cx="60" cy="60" r="42" fill="none" stroke="#31d28d" stroke-width="16"
+                        stroke-linecap="round" stroke-dasharray="185 79" transform="rotate(-90 60 60)"></circle>
+                      <circle cx="60" cy="60" r="42" fill="none" stroke="#ff7a84" stroke-width="16"
+                        stroke-linecap="round" stroke-dasharray="55 209" stroke-dashoffset="-194" transform="rotate(-90 60 60)"></circle>
+                      <text x="60" y="56" text-anchor="middle" fill="#eef6ff" font-size="24" font-weight="800">00</text>
+                      <text x="60" y="74" text-anchor="middle" fill="#93a7bd" font-size="11">trades</text>
+                    </svg>
+                    <div class="breakdown-list">
+                      <div class="breakdown-item"><span>獲利單</span><b class="mono" style="color:#84f2bc;">00</b></div>
+                      <div class="breakdown-item"><span>虧損單</span><b class="mono" style="color:#ffadb4;">00</b></div>
+                      <div class="breakdown-item"><span>未交易日</span><b class="mono" style="color:#95c6ff;">00</b></div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="chart-shell">
+                  <div class="chart-title">
+                    <strong>出場原因分佈</strong>
+                    <span class="mini-pill">Exit Mix</span>
+                  </div>
+                  <div class="breakdown-list">
+                    <div class="breakdown-item">
+                      <div style="flex:1;">
+                        <span>止盈</span>
+                        <div class="bar"><span style="width:56%;"></span></div>
+                      </div>
+                      <b class="mono" style="margin-left:10px;">00</b>
+                    </div>
+                    <div class="breakdown-item">
+                      <div style="flex:1;">
+                        <span>止損</span>
+                        <div class="bar"><span style="width:28%; background:linear-gradient(90deg,#ff7a84,#ff9c75);"></span></div>
+                      </div>
+                      <b class="mono" style="margin-left:10px;">00</b>
+                    </div>
+                    <div class="breakdown-item">
+                      <div style="flex:1;">
+                        <span>6 小時強制離場</span>
+                        <div class="bar"><span style="width:42%; background:linear-gradient(90deg,#f7b955,#ffd487);"></span></div>
+                      </div>
+                      <b class="mono" style="margin-left:10px;">00</b>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <div>
+                <h3>交易歷史</h3>
+                <p>這裡直接對應你要看的單筆結果：有沒有交易、進出場、持倉多久、為什麼出場、最後賺賠多少。</p>
+              </div>
+              <span class="status-chip">Trade Log Preview</span>
+            </div>
+
+            <div class="table-shell">
+              <table>
+                <thead>
+                  <tr>
+                    <th>日期</th>
+                    <th>策略</th>
+                    <th>方向</th>
+                    <th>進場</th>
+                    <th>出場</th>
+                    <th>持倉</th>
+                    <th>出場原因</th>
+                    <th>單筆報酬</th>
+                    <th>結果</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mono">2026-00-01</td>
+                    <td>策略 A</td>
+                    <td><span class="trade-badge long">Long</span></td>
+                    <td class="mono">22:00</td>
+                    <td class="mono">01:48</td>
+                    <td class="mono">03:48</td>
+                    <td>止盈</td>
+                    <td class="mono">+00.00%</td>
+                    <td><span class="result-badge win">Win</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono">2026-00-02</td>
+                    <td>策略 B</td>
+                    <td><span class="trade-badge short">Short</span></td>
+                    <td class="mono">00:00</td>
+                    <td class="mono">02:11</td>
+                    <td class="mono">02:11</td>
+                    <td>止損</td>
+                    <td class="mono">-00.00%</td>
+                    <td><span class="result-badge loss">Loss</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono">2026-00-03</td>
+                    <td>策略 A</td>
+                    <td><span class="trade-badge long">Long</span></td>
+                    <td class="mono">22:00</td>
+                    <td class="mono">04:00</td>
+                    <td class="mono">06:00</td>
+                    <td>6 小時強制離場</td>
+                    <td class="mono">+00.00%</td>
+                    <td><span class="result-badge time">Time Exit</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono">2026-00-04</td>
+                    <td>--</td>
+                    <td><span class="trade-badge flat">No Trade</span></td>
+                    <td class="mono">--</td>
+                    <td class="mono">--</td>
+                    <td class="mono">--</td>
+                    <td>美股情境不符合</td>
+                    <td class="mono">0.00%</td>
+                    <td><span class="result-badge time">Flat</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono">2026-00-05</td>
+                    <td>策略 B</td>
+                    <td><span class="trade-badge short">Short</span></td>
+                    <td class="mono">00:00</td>
+                    <td class="mono">05:26</td>
+                    <td class="mono">05:26</td>
+                    <td>止盈</td>
+                    <td class="mono">+00.00%</td>
+                    <td><span class="result-badge win">Win</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="panel">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <div>
+                <h3>月度 Breakdown</h3>
+                <p>這是從 `v0` 那版借來的好想法，但我保留成更貼近回測用途的月度卡片格式。</p>
+              </div>
+            </div>
+
+            <div class="month-list">
+              <section class="month-card">
+                <div class="month-head">
+                  <strong>Month 1</strong>
+                  <span class="mini-pill">Prototype</span>
+                </div>
+                <div class="month-metrics">
+                  <div>交易次數<b class="mono">00</b></div>
+                  <div>勝率<b class="mono">00%</b></div>
+                  <div>投報率<b class="mono">+00%</b></div>
+                  <div>Time Exit<b class="mono">00</b></div>
+                </div>
+              </section>
+              <section class="month-card">
+                <div class="month-head">
+                  <strong>Month 2</strong>
+                  <span class="mini-pill">Validation</span>
+                </div>
+                <div class="month-metrics">
+                  <div>交易次數<b class="mono">00</b></div>
+                  <div>勝率<b class="mono">00%</b></div>
+                  <div>投報率<b class="mono">+00%</b></div>
+                  <div>Time Exit<b class="mono">00</b></div>
+                </div>
+              </section>
+              <section class="month-card">
+                <div class="month-head">
+                  <strong>Month 3</strong>
+                  <span class="mini-pill">Holdout</span>
+                </div>
+                <div class="month-metrics">
+                  <div>交易次數<b class="mono">00</b></div>
+                  <div>勝率<b class="mono">00%</b></div>
+                  <div>投報率<b class="mono">+00%</b></div>
+                  <div>Time Exit<b class="mono">00</b></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <div>
+                <h3>資料假設與風險</h3>
+                <p>這區是我額外加的，因為你後面如果真的拿這頁當產品雛形，不能只放漂亮數字。</p>
+              </div>
+            </div>
+
+            <div class="breakdown-list">
+              <div class="breakdown-item"><span>美股情境欄位</span><b class="mono">SPY / QQQ / Futures / 00</b></div>
+              <div class="breakdown-item"><span>標的</span><b class="mono">BTC / SPY / QQQ / 00</b></div>
+              <div class="breakdown-item"><span>手續費</span><b class="mono">00.00%</b></div>
+              <div class="breakdown-item"><span>滑價</span><b class="mono">00.00%</b></div>
+              <div class="breakdown-item"><span>資料頻率</span><b class="mono">1h / 15m / 00</b></div>
+              <div class="breakdown-item"><span>持倉上限</span><b class="mono">6h fixed</b></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <div>
+                <h3>未來部署方向</h3>
+                <p>你問到靜態還是動態，我的結論是：先靜態，後面視資料來源與更新頻率再升級。</p>
+              </div>
+            </div>
+
+            <div class="deploy-grid">
+              <div class="deploy-card">
+                <strong>Phase 1 · 純靜態頁</strong>
+                <p>最適合現在。回測腳本在本機跑完後輸出 `json/html`，再直接部署到 `GitHub Pages / Cloudflare Pages / Vercel` 都行，成本最低、最穩。</p>
+              </div>
+              <div class="deploy-card">
+                <strong>Phase 2 · 靜態 + 自動更新</strong>
+                <p>用 GitHub Actions 或 Cloudflare Workers Cron 每天收盤後跑一次回測，重新生成靜態頁，還是維持免後端。</p>
+              </div>
+              <div class="deploy-card">
+                <strong>Phase 3 · Hybrid 動態</strong>
+                <p>只有在你真的要做篩選器、即時查詢、多標的互動比較時，才需要前端 + API。免費平台可再看 `CF / Vercel / Firebase`。</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <div>
+                <h3>目前建議</h3>
+                <p>這一版就是我對你現在需求的產品化理解。</p>
+              </div>
+            </div>
+
+            <div class="note-grid">
+              <section class="note-card">
+                <h4>先做靜態比較合理</h4>
+                <ul>
+                  <li>回測本身不是即時互動需求</li>
+                  <li>你每天收盤後更新一次就夠</li>
+                  <li>免費部署空間都能輕鬆支援</li>
+                </ul>
+              </section>
+              <section class="note-card">
+                <h4>之後再升級成動態</h4>
+                <ul>
+                  <li>當你需要多標的、多策略切換</li>
+                  <li>需要篩選條件與日期範圍互動</li>
+                  <li>需要即時查詢或多人共用</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="panel">
+      <div class="panel-inner">
+        <div class="panel-head">
+          <div>
+            <h3>這個 v2 跟前一版的差別</h3>
+            <p>不是單純把內容塞更多，而是把它更像一個你真的會每天打開看的回測儀表板。</p>
+          </div>
+          <span class="status-chip">What Changed</span>
+        </div>
+
+        <div class="deploy-grid">
+          <div class="deploy-card">
+            <strong>從資訊頁變成儀表板</strong>
+            <p>加入固定頂部摘要、儀表卡、圖表組、月度 breakdown，視覺上更接近你未來產品的樣子。</p>
+          </div>
+          <div class="deploy-card">
+            <strong>圖表先做好</strong>
+            <p>即使現在沒有腳本，也先把 equity curve、勝負比例、出場原因分佈做出來，方便你理解未來資料灌入後的閱讀方式。</p>
+          </div>
+          <div class="deploy-card">
+            <strong>保留靜態優勢</strong>
+            <p>整頁仍然是單一 HTML，之後很容易丟到任何免費空間展示，不被技術棧綁住。</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        這是一個純展示版框架。所有數值、圖表與交易紀錄目前都是占位資料，用來確認版型、資訊優先級與後續部署方向。
+        等你確認這個方向，我下一步就可以把回測輸出格式和前端欄位一一對上。
+      </div>
+    </section>
+  </main>
+</body>
+</html>
