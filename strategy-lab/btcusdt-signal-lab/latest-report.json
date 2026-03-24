@@ -2,8 +2,8 @@
   "meta": {
     "symbol": "BTCUSDT",
     "interval": "1h",
-    "generated_at_utc": "2026-03-24T14:33:43.409211+00:00",
-    "generated_at_local": "2026-03-24T22:33:43.409211+08:00",
+    "generated_at_utc": "2026-03-24T14:55:39.349143+00:00",
+    "generated_at_local": "2026-03-24T22:55:39.349143+08:00",
     "start_date": "2024-06-01",
     "end_date": "2026-03-24",
     "cached_bars": 15879,
