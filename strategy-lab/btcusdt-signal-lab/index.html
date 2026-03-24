@@ -121,7 +121,7 @@
         <span class="pill">市場 <span class="mono">BTCUSDT 1 小時</span></span>
         <span class="pill">正式回測區間 <span class="mono">2024-06-01 → 2026-03-24</span></span>
         <span class="pill">近期摘要區間 <span class="mono">近 1 週 / 近 2 週 / 近 1 月</span></span>
-        <span class="pill">更新時間 <span class="mono">2026-03-24T23:38:01.053285+08:00</span></span>
+        <span class="pill">更新時間 <span class="mono">2026-03-24T23:48:49.573251+08:00</span></span>
       </div>
     </div>
   </header>
@@ -130,11 +130,11 @@
     <section class="hero">
       <div class="hero-grid">
         <div>
-          <span class="eyebrow">先觀望</span>
+          <span class="eyebrow">策略失準</span>
           <h2>暫不進場</h2>
           <p>
             目前沒有符合規則的訊號，先等待下一個時間窗口。
-            下一次檢查時間：2026-03-25 00:01 UTC+08:00
+            近 1 週、近 2 週、近 1 月整體報酬都為負，先不要照單執行。 下一次檢查時間：2026-03-25 00:01 UTC+08:00
           </p>
         </div>
         <div class="hero-side">
@@ -174,7 +174,7 @@
         </div>
         <div class="signal-grid">
           <section class="signal-panel wait">
-            <span class="signal-kicker wait">先觀望</span>
+            <span class="signal-kicker wait">策略失準</span>
             <div class="signal-main">
               <div>
                 <h4>暫不進場</h4>
@@ -196,8 +196,10 @@
             </div>
           </section>
           <section class="card">
-            <strong>進場前先看這四個數字</strong>
+            <strong>進場前先看策略健康度</strong>
             <div class="two-col">
+              <div class="plan-card"><span>健康狀態</span><b class="down">策略失準</b><p>近 1 週、近 2 週、近 1 月整體報酬都為負，先不要照單執行。</p></div>
+              <div class="plan-card"><span>當前建議</span><b class="down">先觀望</b><p>反向策略在最近 3 個區間表現更好。</p></div>
               <div class="plan-card"><span>目前價格</span><b class="mono">69991.71 USDT</b><p>BTCUSDT 最新收盤價</p></div>
               <div class="plan-card"><span>12 小時趨勢</span><b class="mono">-0.78%</b><p>正數偏強，負數偏弱</p></div>
               <div class="plan-card"><span>波動大小</span><b class="mono">433.50 USDT</b><p>用來決定停損和止盈距離</p></div>
@@ -293,6 +295,109 @@
       <div class="panel-inner">
         <div class="panel-head">
           <div>
+            <h3>正向 / 反向比較</h3>
+            <p>這裡比較「照原策略做」和「同一時點反著做」的結果。不是憑感覺猜，而是重新跑止盈、止損與 6 小時離場後的真實回測。</p>
+          </div>
+          <span class="status-chip">模式對比</span>
+        </div>
+        <div class="tab-bar">
+          <button class="tab-btn active reverse-tab" type="button" data-roll-tab="reverse-week">近 1 週</button>
+          <button class="tab-btn reverse-tab" type="button" data-roll-tab="reverse-biweek">近 2 週</button>
+          <button class="tab-btn reverse-tab" type="button" data-roll-tab="reverse-month">近 1 月</button>
+          <button class="tab-btn reverse-tab" type="button" data-roll-tab="reverse-full">全回測</button>
+        </div>
+        
+            <div class="rolling-panel active" data-pane="reverse-week">
+              <div class="summary-grid">
+                <div class="stat-card"><div class="stat-label">原策略報酬率</div><div class="stat-value mono down">-3.14%</div></div>
+                <div class="stat-card"><div class="stat-label">反向策略報酬率</div><div class="stat-value mono up">2.17%</div></div>
+                <div class="stat-card"><div class="stat-label">差距</div><div class="stat-value mono up">5.31%</div></div>
+                <div class="stat-card"><div class="stat-label">目前較強</div><div class="stat-value up">反向策略較強</div></div>
+                <div class="stat-card"><div class="stat-label">原策略勝率</div><div class="stat-value mono down">14.29%</div></div>
+                <div class="stat-card"><div class="stat-label">反向策略勝率</div><div class="stat-value mono up">57.14%</div></div>
+              </div>
+              <div class="two-col" style="margin-top:18px;">
+                <section class="card">
+                  <strong>策略 E 對比</strong>
+                  <p class="sub">原策略 <span class="down">-1.20%</span>，反向 <span class="up">0.74%</span>，目前判讀：<span class="up">反向策略較強</span></p>
+                </section>
+                <section class="card">
+                  <strong>策略 C 對比</strong>
+                  <p class="sub">原策略 <span class="down">-1.94%</span>，反向 <span class="up">1.43%</span>，目前判讀：<span class="up">反向策略較強</span></p>
+                </section>
+              </div>
+            </div>
+            
+            <div class="rolling-panel" data-pane="reverse-biweek">
+              <div class="summary-grid">
+                <div class="stat-card"><div class="stat-label">原策略報酬率</div><div class="stat-value mono down">-5.05%</div></div>
+                <div class="stat-card"><div class="stat-label">反向策略報酬率</div><div class="stat-value mono up">2.92%</div></div>
+                <div class="stat-card"><div class="stat-label">差距</div><div class="stat-value mono up">7.97%</div></div>
+                <div class="stat-card"><div class="stat-label">目前較強</div><div class="stat-value up">反向策略較強</div></div>
+                <div class="stat-card"><div class="stat-label">原策略勝率</div><div class="stat-value mono down">20.00%</div></div>
+                <div class="stat-card"><div class="stat-label">反向策略勝率</div><div class="stat-value mono flat">53.33%</div></div>
+              </div>
+              <div class="two-col" style="margin-top:18px;">
+                <section class="card">
+                  <strong>策略 E 對比</strong>
+                  <p class="sub">原策略 <span class="down">-1.62%</span>，反向 <span class="down">-0.71%</span>，目前判讀：<span class="up">反向策略較強</span></p>
+                </section>
+                <section class="card">
+                  <strong>策略 C 對比</strong>
+                  <p class="sub">原策略 <span class="down">-3.43%</span>，反向 <span class="up">3.62%</span>，目前判讀：<span class="up">反向策略較強</span></p>
+                </section>
+              </div>
+            </div>
+            
+            <div class="rolling-panel" data-pane="reverse-month">
+              <div class="summary-grid">
+                <div class="stat-card"><div class="stat-label">原策略報酬率</div><div class="stat-value mono down">-3.15%</div></div>
+                <div class="stat-card"><div class="stat-label">反向策略報酬率</div><div class="stat-value mono up">7.82%</div></div>
+                <div class="stat-card"><div class="stat-label">差距</div><div class="stat-value mono up">10.97%</div></div>
+                <div class="stat-card"><div class="stat-label">目前較強</div><div class="stat-value up">反向策略較強</div></div>
+                <div class="stat-card"><div class="stat-label">原策略勝率</div><div class="stat-value mono down">32.26%</div></div>
+                <div class="stat-card"><div class="stat-label">反向策略勝率</div><div class="stat-value mono flat">51.61%</div></div>
+              </div>
+              <div class="two-col" style="margin-top:18px;">
+                <section class="card">
+                  <strong>策略 E 對比</strong>
+                  <p class="sub">原策略 <span class="up">0.07%</span>，反向 <span class="up">2.58%</span>，目前判讀：<span class="up">反向策略較強</span></p>
+                </section>
+                <section class="card">
+                  <strong>策略 C 對比</strong>
+                  <p class="sub">原策略 <span class="down">-3.23%</span>，反向 <span class="up">5.24%</span>，目前判讀：<span class="up">反向策略較強</span></p>
+                </section>
+              </div>
+            </div>
+            
+            <div class="rolling-panel" data-pane="reverse-full">
+              <div class="summary-grid">
+                <div class="stat-card"><div class="stat-label">原策略報酬率</div><div class="stat-value mono up">33.98%</div></div>
+                <div class="stat-card"><div class="stat-label">反向策略報酬率</div><div class="stat-value mono down">-25.64%</div></div>
+                <div class="stat-card"><div class="stat-label">差距</div><div class="stat-value mono down">-59.62%</div></div>
+                <div class="stat-card"><div class="stat-label">目前較強</div><div class="stat-value flat">原策略較強</div></div>
+                <div class="stat-card"><div class="stat-label">原策略勝率</div><div class="stat-value mono down">38.70%</div></div>
+                <div class="stat-card"><div class="stat-label">反向策略勝率</div><div class="stat-value mono down">40.06%</div></div>
+              </div>
+              <div class="two-col" style="margin-top:18px;">
+                <section class="card">
+                  <strong>策略 E 對比</strong>
+                  <p class="sub">原策略 <span class="up">22.61%</span>，反向 <span class="down">-6.62%</span>，目前判讀：<span class="down">原策略較強</span></p>
+                </section>
+                <section class="card">
+                  <strong>策略 C 對比</strong>
+                  <p class="sub">原策略 <span class="up">11.37%</span>，反向 <span class="down">-19.02%</span>，目前判讀：<span class="down">原策略較強</span></p>
+                </section>
+              </div>
+            </div>
+            
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-inner">
+        <div class="panel-head">
+          <div>
             <h3>歷史回測重點</h3>
             <p>這一區統計的是整段回測，自 2024-06-01 開始到 2026-03-24。下列 USDT 損益以每筆 1 BTC 名義倉位計算。</p>
           </div>
@@ -366,12 +471,18 @@
     </section>
   </main>
   <script>
-    document.querySelectorAll('.tab-btn').forEach((button) => {
-      button.addEventListener('click', () => {
-        const target = button.dataset.rollTab;
-        document.querySelectorAll('.tab-btn').forEach((item) => item.classList.toggle('active', item === button));
-        document.querySelectorAll('.rolling-panel').forEach((panel) => {
-          panel.classList.toggle('active', panel.dataset.pane === target);
+    document.querySelectorAll('.tab-bar').forEach((bar) => {
+      const buttons = Array.from(bar.querySelectorAll('.tab-btn'));
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = button.dataset.rollTab;
+          const reverseGroup = target.startsWith('reverse-');
+          buttons.forEach((item) => item.classList.toggle('active', item === button));
+          document.querySelectorAll('.rolling-panel').forEach((panel) => {
+            const panelReverseGroup = panel.dataset.pane.startsWith('reverse-');
+            if (panelReverseGroup !== reverseGroup) return;
+            panel.classList.toggle('active', panel.dataset.pane === target);
+          });
         });
       });
     });
