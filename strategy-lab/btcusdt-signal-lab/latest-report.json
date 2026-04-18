@@ -2,26 +2,26 @@
   "meta": {
     "symbol": "BTCUSDT",
     "interval": "1h",
-    "generated_at_utc": "2026-04-18T14:01:01.649837+00:00",
-    "generated_at_local": "2026-04-18T22:01:01.649837+08:00",
+    "generated_at_utc": "2026-04-18T16:01:01.418533+00:00",
+    "generated_at_local": "2026-04-19T00:01:01.418533+08:00",
     "start_date": "2024-06-01",
     "end_date": "2026-04-18",
-    "cached_bars": 16479,
-    "completed_bars": 16478
+    "cached_bars": 16481,
+    "completed_bars": 16480
   },
   "signal": {
-    "status": "no_trade",
-    "message": "策略 E｜晚間順勢多單 時段命中，但 trend_12h_pct 不符合",
-    "active_strategy": "策略 E｜晚間順勢多單",
-    "latest_bar_time_utc": "2026-04-18T14:00:00+00:00",
-    "latest_bar_time_local": "2026-04-18T22:00:00+08:00",
-    "latest_price": 76158.01,
-    "latest_hour_utc": 14,
-    "trend_12h_pct": -1.4678,
-    "atr_14": 299.6536,
-    "next_window_local": "2026-04-19T00:01:00+08:00",
-    "next_strategy": "策略 C｜深夜順勢空單",
-    "next_strategy_key": "strategy_c",
+    "status": "short",
+    "message": "策略 C｜深夜順勢空單 觸發，符合做空條件",
+    "active_strategy": "策略 C｜深夜順勢空單",
+    "latest_bar_time_utc": "2026-04-18T16:00:00+00:00",
+    "latest_bar_time_local": "2026-04-19T00:00:00+08:00",
+    "latest_price": 76032.79,
+    "latest_hour_utc": 16,
+    "trend_12h_pct": -1.3851,
+    "atr_14": 298.6329,
+    "next_window_local": "2026-04-19T22:01:00+08:00",
+    "next_strategy": "策略 E｜晚間順勢多單",
+    "next_strategy_key": "strategy_e",
     "windows": [
       {
         "strategy": "策略 E｜晚間順勢多單",
@@ -41,14 +41,13 @@
       }
     ],
     "health_filter": {
-      "status": "off",
-      "badge": "策略失準",
+      "status": "caution",
+      "badge": "減倉模式",
       "action": "僅供參考",
-      "note": "近 1 週、近 2 週、近 1 月整體報酬都為負，代表近期表現偏弱，但不覆蓋原始進場訊號。",
+      "note": "近期有兩個以上區間轉弱，代表最近較不順，但不覆蓋原始進場訊號。",
       "negative_windows": [
         "week",
-        "biweek",
-        "month"
+        "biweek"
       ],
       "weak_winrate_windows": [
         "week",
@@ -62,17 +61,16 @@
       ],
       "reverse_hint": "反向策略在最近 3 個區間表現更好。"
     },
-    "next_window_local_display": "2026-04-19 00:01 UTC+08:00"
+    "next_window_local_display": "2026-04-19 22:01 UTC+08:00"
   },
   "health_filter": {
-    "status": "off",
-    "badge": "策略失準",
+    "status": "caution",
+    "badge": "減倉模式",
     "action": "僅供參考",
-    "note": "近 1 週、近 2 週、近 1 月整體報酬都為負，代表近期表現偏弱，但不覆蓋原始進場訊號。",
+    "note": "近期有兩個以上區間轉弱，代表最近較不順，但不覆蓋原始進場訊號。",
     "negative_windows": [
       "week",
-      "biweek",
-      "month"
+      "biweek"
     ],
     "weak_winrate_windows": [
       "week",
@@ -237,19 +235,19 @@
         "label": "近 1 月",
         "days": 30,
         "combined": {
-          "trade_count": 29,
+          "trade_count": 28,
           "wins": 12,
-          "losses": 17,
+          "losses": 16,
           "flat": 0,
-          "win_rate": 0.41379310344827586,
-          "total_return_pct": -0.6035937897777371,
-          "avg_return_pct": -0.020813578957853004,
-          "profit_factor": 0.9387112562234948,
-          "time_exit_ratio": 0.1724137931034483,
-          "max_drawdown_pct": 2.1614469757127814,
-          "avg_holding_bars": 2.586206896551724,
-          "total_pnl_abs": -563.1035714285827,
-          "avg_pnl_abs": -19.41736453202009
+          "win_rate": 0.42857142857142855,
+          "total_return_pct": 0.34767120890529,
+          "avg_return_pct": 0.012416828889474643,
+          "profit_factor": 1.039076922964747,
+          "time_exit_ratio": 0.17857142857142858,
+          "max_drawdown_pct": 1.8593654830924475,
+          "avg_holding_bars": 2.5714285714285716,
+          "total_pnl_abs": 97.60571428570256,
+          "avg_pnl_abs": 3.48591836734652
         },
         "strategy_e": {
           "trade_count": 13,
@@ -267,19 +265,19 @@
           "avg_pnl_abs": 53.09478021977926
         },
         "strategy_c": {
-          "trade_count": 16,
+          "trade_count": 15,
           "wins": 5,
-          "losses": 11,
+          "losses": 10,
           "flat": 0,
-          "win_rate": 0.3125,
-          "total_return_pct": -1.692282715649598,
-          "avg_return_pct": -0.10576766972809988,
-          "profit_factor": 0.7314163925044148,
-          "time_exit_ratio": 0.0625,
+          "win_rate": 0.3333333333333333,
+          "total_return_pct": -0.741017716966571,
+          "avg_return_pct": -0.049401181131104734,
+          "profit_factor": 0.8614791199959845,
+          "time_exit_ratio": 0.06666666666666667,
           "max_drawdown_pct": 3.308344110011456,
-          "avg_holding_bars": 2.375,
-          "total_pnl_abs": -1253.335714285713,
-          "avg_pnl_abs": -78.33348214285706
+          "avg_holding_bars": 2.3333333333333335,
+          "total_pnl_abs": -592.6264285714278,
+          "avg_pnl_abs": -39.508428571428524
         }
       }
     },
@@ -433,19 +431,19 @@
         "label": "近 1 月",
         "days": 30,
         "combined": {
-          "trade_count": 29,
-          "wins": 12,
+          "trade_count": 28,
+          "wins": 11,
           "losses": 17,
           "flat": 0,
-          "win_rate": 0.41379310344827586,
-          "total_return_pct": 5.11308520886607,
-          "avg_return_pct": 0.17631328306434724,
-          "profit_factor": 1.6731641456858908,
-          "time_exit_ratio": 0.20689655172413793,
+          "win_rate": 0.39285714285714285,
+          "total_return_pct": 4.064750338345419,
+          "avg_return_pct": 0.14516965494090783,
+          "profit_factor": 1.5351454312152069,
+          "time_exit_ratio": 0.17857142857142858,
           "max_drawdown_pct": 1.9034236599633814,
-          "avg_holding_bars": 2.4827586206896552,
-          "total_pnl_abs": 3609.727857142818,
-          "avg_pnl_abs": 124.4733743842351
+          "avg_holding_bars": 2.357142857142857,
+          "total_pnl_abs": 2881.597857142813,
+          "avg_pnl_abs": 102.9142091836719
         },
         "strategy_e": {
           "trade_count": 13,
@@ -463,19 +461,19 @@
           "avg_pnl_abs": 75.4207692307682
         },
         "strategy_c": {
-          "trade_count": 16,
-          "wins": 7,
+          "trade_count": 15,
+          "wins": 6,
           "losses": 9,
           "flat": 0,
-          "win_rate": 0.4375,
-          "total_return_pct": 3.7848344901991173,
-          "avg_return_pct": 0.23655215563744483,
-          "profit_factor": 2.0139079262690918,
-          "time_exit_ratio": 0.3125,
+          "win_rate": 0.4,
+          "total_return_pct": 2.7364996196784666,
+          "avg_return_pct": 0.18243330797856444,
+          "profit_factor": 1.7330726513429082,
+          "time_exit_ratio": 0.26666666666666666,
           "max_drawdown_pct": 1.9908206303409515,
-          "avg_holding_bars": 3.25,
-          "total_pnl_abs": 2629.257857142831,
-          "avg_pnl_abs": 164.32861607142695
+          "avg_holding_bars": 3.066666666666667,
+          "total_pnl_abs": 1901.1278571428265,
+          "avg_pnl_abs": 126.7418571428551
         }
       }
     },
@@ -704,37 +702,37 @@
         "combined": {
           "leader": "reverse",
           "leader_label": "反向策略較強",
-          "delta_return_pct": 5.716678998643808,
-          "delta_pnl_abs": 4172.8314285714005,
+          "delta_return_pct": 3.7170791294401293,
+          "delta_pnl_abs": 2783.9921428571106,
           "original": {
-            "trade_count": 29,
+            "trade_count": 28,
             "wins": 12,
-            "losses": 17,
+            "losses": 16,
             "flat": 0,
-            "win_rate": 0.41379310344827586,
-            "total_return_pct": -0.6035937897777371,
-            "avg_return_pct": -0.020813578957853004,
-            "profit_factor": 0.9387112562234948,
-            "time_exit_ratio": 0.1724137931034483,
-            "max_drawdown_pct": 2.1614469757127814,
-            "avg_holding_bars": 2.586206896551724,
-            "total_pnl_abs": -563.1035714285827,
-            "avg_pnl_abs": -19.41736453202009
+            "win_rate": 0.42857142857142855,
+            "total_return_pct": 0.34767120890529,
+            "avg_return_pct": 0.012416828889474643,
+            "profit_factor": 1.039076922964747,
+            "time_exit_ratio": 0.17857142857142858,
+            "max_drawdown_pct": 1.8593654830924475,
+            "avg_holding_bars": 2.5714285714285716,
+            "total_pnl_abs": 97.60571428570256,
+            "avg_pnl_abs": 3.48591836734652
           },
           "reverse": {
-            "trade_count": 29,
-            "wins": 12,
+            "trade_count": 28,
+            "wins": 11,
             "losses": 17,
             "flat": 0,
-            "win_rate": 0.41379310344827586,
-            "total_return_pct": 5.11308520886607,
-            "avg_return_pct": 0.17631328306434724,
-            "profit_factor": 1.6731641456858908,
-            "time_exit_ratio": 0.20689655172413793,
+            "win_rate": 0.39285714285714285,
+            "total_return_pct": 4.064750338345419,
+            "avg_return_pct": 0.14516965494090783,
+            "profit_factor": 1.5351454312152069,
+            "time_exit_ratio": 0.17857142857142858,
             "max_drawdown_pct": 1.9034236599633814,
-            "avg_holding_bars": 2.4827586206896552,
-            "total_pnl_abs": 3609.727857142818,
-            "avg_pnl_abs": 124.4733743842351
+            "avg_holding_bars": 2.357142857142857,
+            "total_pnl_abs": 2881.597857142813,
+            "avg_pnl_abs": 102.9142091836719
           }
         },
         "strategy_e": {
@@ -776,37 +774,37 @@
         "strategy_c": {
           "leader": "reverse",
           "leader_label": "反向策略較強",
-          "delta_return_pct": 5.477117205848716,
-          "delta_pnl_abs": 3882.5935714285442,
+          "delta_return_pct": 3.477517336645038,
+          "delta_pnl_abs": 2493.7542857142544,
           "original": {
-            "trade_count": 16,
+            "trade_count": 15,
             "wins": 5,
-            "losses": 11,
+            "losses": 10,
             "flat": 0,
-            "win_rate": 0.3125,
-            "total_return_pct": -1.692282715649598,
-            "avg_return_pct": -0.10576766972809988,
-            "profit_factor": 0.7314163925044148,
-            "time_exit_ratio": 0.0625,
+            "win_rate": 0.3333333333333333,
+            "total_return_pct": -0.741017716966571,
+            "avg_return_pct": -0.049401181131104734,
+            "profit_factor": 0.8614791199959845,
+            "time_exit_ratio": 0.06666666666666667,
             "max_drawdown_pct": 3.308344110011456,
-            "avg_holding_bars": 2.375,
-            "total_pnl_abs": -1253.335714285713,
-            "avg_pnl_abs": -78.33348214285706
+            "avg_holding_bars": 2.3333333333333335,
+            "total_pnl_abs": -592.6264285714278,
+            "avg_pnl_abs": -39.508428571428524
           },
           "reverse": {
-            "trade_count": 16,
-            "wins": 7,
+            "trade_count": 15,
+            "wins": 6,
             "losses": 9,
             "flat": 0,
-            "win_rate": 0.4375,
-            "total_return_pct": 3.7848344901991173,
-            "avg_return_pct": 0.23655215563744483,
-            "profit_factor": 2.0139079262690918,
-            "time_exit_ratio": 0.3125,
+            "win_rate": 0.4,
+            "total_return_pct": 2.7364996196784666,
+            "avg_return_pct": 0.18243330797856444,
+            "profit_factor": 1.7330726513429082,
+            "time_exit_ratio": 0.26666666666666666,
             "max_drawdown_pct": 1.9908206303409515,
-            "avg_holding_bars": 3.25,
-            "total_pnl_abs": 2629.257857142831,
-            "avg_pnl_abs": 164.32861607142695
+            "avg_holding_bars": 3.066666666666667,
+            "total_pnl_abs": 1901.1278571428265,
+            "avg_pnl_abs": 126.7418571428551
           }
         }
       },
