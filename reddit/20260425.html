@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reddit 時間線 · 78 則貼文 · Tailwind CSS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        reddit: '#ff4500',
+        dark: { 900: '#0f1419', 800: '#1a1f2e', 700: '#252d3a' }
+      }
+    }
+  }
+}
+</script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <header class="mb-8">
+    <a href="./" class="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      返回日期列表
+    </a>
+    <div class="flex items-center gap-4 mb-4">
+      <svg viewBox="0 0 24 24" class="w-12 h-12 fill-reddit">
+        <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.705-.543-.8 2.747c1.816.07 3.48.632 4.654 1.474.44-.368 1.004-.592 1.62-.592a2.498 2.498 0 1 1 0 4.996c-.104 0-.203-.016-.303-.03-.33 1.688-2.147 3.09-4.693 3.535.115.22.18.468.18.73 0 .879-.713 1.593-1.592 1.593-.878 0-1.591-.714-1.591-1.592 0-.263.065-.511.18-.731-2.545-.445-4.362-1.847-4.693-3.535-.1.014-.199.03-.303.03a2.498 2.498 0 1 1 0-4.996c.616 0 1.18.224 1.62.592 1.175-.842 2.84-1.404 4.656-1.474l.8-2.747-2.705.543a1.25 1.25 0 0 1-2.498-.056 1.25 1.25 0 0 1 1.25-1.25c.57 0 1.05.388 1.203.916l3.3.66.3-.66a1.25 1.25 0 0 1 1.203-.916z"/>
+      </svg>
+      <div>
+        <h1 class="text-3xl font-bold text-white">Reddit 時間線報告</h1>
+        <p class="text-gray-400">78 則貼文 · 50 次滾動 · 推送類別分類 · 英翻中</p>
+      </div>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      
+      <a href="#cat-訂閱的社群" class="px-3 py-1.5 rounded-full bg-reddit/20 text-reddit text-xs font-bold hover:bg-reddit/30 transition">
+        📌 訂閱的社群 (78)
+      </a>
+      
+    </div>
+  </header>
+
+  
+  <section id="cat-訂閱的社群" class="mb-10">
+    <div class="flex items-center gap-3 mb-4 sticky top-0 bg-gray-900/90 py-2 z-10">
+      <h2 class="text-xl font-bold text-white">📌 訂閱的社群</h2>
+      <span class="text-gray-500 text-sm">78 則</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#1</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">收留一個無家可歸的女孩，這成了人生的一課</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/confession/comments/1suohmi/took_a_homeless_girl_in_and_it_became_a_life/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#2</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">MrBeast 員工聲稱她多年來受到騷擾，並在休完產假後在一項新訴訟中被解僱</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/news/comments/1suflr9/mrbeast_employee_alleges_she_was_harassed_for/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#3</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">AITA 想為我的戒指投保，儘管我的丈夫說這顆鑽石太小了，不值得打擾？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AITApod/comments/1sugl76/aita_for_wanting_to_insure_my_ring_even_though_my/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#4</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我車庫裡的這些蛋是什麼？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/whatisit/comments/1sukjxx/what_are_these_egg_things_in_my_garage/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#5</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">青少年男孩選擇人工智慧女朋友而不是真正的女朋友是為了「最大程度的控制，零拒絕」——專家表示這可能會讓他們失業</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/technology/comments/1su3pad/teen_boys_are_choosing_ai_girlfriends_over_real/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#6</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我一段時間以來看過的最好的恐怖片之一。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/TikTokCringe/comments/1suci7w/one_of_the_best_horror_pieces_ive_seen_in_a_while/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#7</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">每個和拉丁裔約會過的白人都來過這裡</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/SipsTea/comments/1suq7eg/every_white_dude_who_has_dated_a_latina_has_been/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#8</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">你有什麼秘密要帶進墳墓，但願意與網路上的匿名陌生人分享？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AskReddit/comments/1suehah/what_is_a_secret_you_are_taking_to_your_grave_but/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#9</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">在《魔戒：魔戒》（2001）中，薩魯曼正在鑄造劍。這是指他實際上對武器鍛造知之甚少，因為你不會鑄造劍（除非</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/shittymoviedetails/comments/1sua45f/in_lord_of_the_rings_fellowship_of_the_ring_2001/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#10</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">人的雙重性</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/TikTokCringe/comments/1su0tu8/the_duality_of_man/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#11</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">從頭開始乾杯</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/StupidFood/comments/1su33hw/cheerios_from_scratch/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#12</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">櫻桃採摘機中未配戴安全帶。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Whatcouldgowrong/comments/1sucp9u/not_wearing_a_harness_in_a_cherry_picker/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#13</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">[喜愛的比喻]儘管他們是一個不可救藥的邪惡惡棍，但他們的行為在這一實例中幾乎是合理的</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/TopCharacterTropes/comments/1suif7w/loved_trope_despite_being_an_irredeemably_evil/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#14</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">先生請移走你的車</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Transportopia/comments/1su0eg9/sir_please_move_your_car/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#15</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">男人們對於包包有什麼看法呢？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/SipsTea/comments/1sunaah/what_do_men_think_of_the_pouch/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#16</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">意見如何變化</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/memes/comments/1sukerj/how_opinions_change/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#17</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">他因左腿無力去看醫生時才發現</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/interestingasfuck/comments/1su2sb6/he_only_found_out_when_he_went_to_see_a_doctor/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#18</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">艾塔告訴我妻子，我母親是對的，她今天需要成為家長，但她搞砸了</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AmItheAsshole/comments/1sukl3u/aita_for_telling_my_wife_my_mother_is_correct_and/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#19</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">卡什·帕特爾 (Kash Patel) 因醉酒後隨地大小便被捕</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/politics/comments/1sukrjf/kash_patel_got_arrested_for_public_urination/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#20</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">加洛 12 還是加洛 24？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/thefighterandthekid/comments/1sur6ar/gallo_12_or_gallo_24/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#21</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">法國政府宣布他們將用 Linux 取代 Windows 並且他們正在舉行遊行哈哈</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/pcmasterrace/comments/1sutyrm/the_french_government_announced_theyre_going_to/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#22</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我爸爸是同性戀嗎？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/NoStupidQuestions/comments/1su1nk3/is_my_dad_gay/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#23</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我讓她看起來像亡靈</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Nightreign/comments/1sutzk4/i_made_her_looks_like_revenant/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#24</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">大多數人不知道的 Android 功能是什麼？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AskReddit/comments/1su4vzd/whats_an_android_feature_most_people_dont_know/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#25</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">當我用“que onda”打招呼時，為什麼說西班牙語的人會笑？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/NoStupidQuestions/comments/1suf3qx/why_do_spanish_speakers_laugh_when_i_greet_them/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#26</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">AITAH 在“微影響者”試圖解僱我後拒絕為她提供免費咖啡升級？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AITAH/comments/1suhahx/aitah_for_refusing_to_give_a_microinfluencer_free/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#27</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">[問] 真的是這樣嗎？地球（其實是太陽系）會受到其引力的影響嗎？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/theydidthemath/comments/1su5sdp/request_would_it_actually_look_like_that_and/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#28</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">AIO 認為我女朋友的公寓要求太瘋狂了？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/AmIOverreacting/comments/1su0kpj/aio_for_thinking_that_my_girlfriends_apartment/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#29</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">路易斯？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/PeterExplainsTheJoke/comments/1su7f84/lois/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#30</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">☕</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/SipsTea/comments/1suc79o/_/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#31</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">哥哥醒了選擇心理戰</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/JustGuysBeingDudes/comments/1suay2s/bro_woke_up_and_choose_psychological_warfare/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#32</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">新溫迪店像犯罪高發地區的銀行一樣被封鎖，以防止暴力顧客與員工互動</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/whoathatsinteresting/comments/1suhy3l/new_wendys_is_locked_down_like_a_bank_in_a_high/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#33</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">羅伯·雷納 (Rob Reiner) 和米歇爾·雷納 (Michele Reiner) 的兒子傑克·雷納 (Jake Reiner) 寫下了關於父母去世的新內容：“他們應該平靜地享受餘生，一起變老。相反，這已經是成熟的做…</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Fauxmoi/comments/1suip6j/jake_reiner_son_of_rob_michele_reiner_pens_new/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#34</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">對我經常經歷的厭女症感到非常女性化的憤怒</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/BloodOnTheClocktower/comments/1sus7ad/feeling_so_much_feminine_rage_at_the_misogyny_ive/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#35</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">7年前，一位名叫蘇珊·博伊爾（Susan Boyle）的胖胖、口音很重、相貌正常的女性參加了英國達人秀。每個人都嘲笑她，直到她開始唱歌。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/MadeMeSmile/comments/1sunnh3/7_years_ago_a_chubby_heavy_accent_normallooking/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#36</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">賴清德難道不用負責嗎</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Taiwanese/comments/1sujywb/%E8%B3%B4%E6%B8%85%E5%BE%B7%E9%9B%A3%E9%81%93%E4%B8%8D%E7%94%A8%E8%B2%A0%E8%B2%AC%E5%97%8E/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#37</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">據報道，勇士隊厭倦了史蒂夫·科爾的政治活動</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/nba/comments/1suka0o/warriors_reportedly_grew_tired_of_steve_kerrs/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#38</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">當房子著火但機械戰警值班時</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/nextfuckinglevel/comments/1suj8dt/when_theres_a_house_fire_but_robocop_is_on_duty/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#39</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">AMD。又一周了。又一百萬。 +770 萬美元</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/wallstreetbets/comments/1sugb19/amd_another_week_another_million_77m/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#40</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">動漫少女</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/anime_irl/comments/1sut77j/anime_irl/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#41</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">世界首富</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/interesting/comments/1sus0l4/the_richest_man_in_the_world/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#42</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">更新了小勒博斯基城市成就者必讀清單</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/lebowski/comments/1suwev4/updated_little_lebowski_urban_achievers_required/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#43</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">坦克分為主坦克和副坦克</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ffxiv/comments/1suvowk/tanks_split_into_main_tank_and_off_tank/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#44</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">第 5 頻道報道 Peter Thiel 正在資助 Clavillary</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/LivestreamFail/comments/1su6nnz/channel_5_reports_peter_thiel_is_funding/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#45</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">8.0 進化模式</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ffxiv/comments/1suv1dx/80_evolved_modes/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#46</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">皮達？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/PeterExplainsTheJoke/comments/1sue8fj/peedahh/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#47</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">從 18 歲起，我就一直戴著兜帽、帽子和鬍鬚，這次我在公共場合嘗試禿頭。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/bald/comments/1su1gsx/ive_been_hiding_in_hoods_and_beanies_and_shitty/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#48</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">本傑明·內塔尼亞胡接受早期前列腺癌治療</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/news/comments/1suee6s/benjamin_netanyahu_treated_for_earlystage/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#49</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">測試你的耐心極限</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/KidsAreFuckingStupid/comments/1suqx72/testing_the_limits_of_your_patience/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#50</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">庫明加在談到幫助 NAW 防守布倫森的位置時說道：「我要讚揚德雷蒙。在他身邊長大，也經常看著他。我見過他這麼做很多次......我看著德雷蒙</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/nba/comments/1suqu0l/kuminga_on_helping_nudge_naw_into_position/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#51</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">這個機器人吸塵器正在為它的生命而戰，試圖完成它的工作</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/OneOrangeBraincell/comments/1sueleq/this_robot_vacuum_is_fighting_for_its_life_trying/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#52</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">新聯盟突襲以新世紀福音戰士為主題：</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ffxiv/comments/1suoldb/new_alliance_raid_is_evangelion_themed/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#53</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">一個人的名字會影響他的就業前景嗎？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/NoStupidQuestions/comments/1suhqcb/does_a_persons_name_affect_their_employment/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#54</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">如果你正在製作蝙蝠俠系列，誰會是你的第一代反派角色，為什麼？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/batman/comments/1sulaj6/if_you_were_making_a_batman_series_who_would_be/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#55</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">這母狗一點也不胖</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/okbuddyviltrum/comments/1sucqka/this_bitch_aint_fat_at_all/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#56</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">[Matheson] 新聞：傑夫霍夫曼 (Jeff Hoffman) 不再擔任 #BlueJays 的終結者。當霍夫曼在低槓桿領域工作時，他們將暫時由委員會終結。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/baseball/comments/1supel7/matheson_news_jeff_hoffman_is_out_as_the_bluejays/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#57</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">蔣介石後悔成立國民黨。。。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Taiwanese/comments/1supk2b/%E8%94%A3%E4%BB%8B%E7%9F%B3%E5%BE%8C%E6%82%94%E6%88%90%E7%AB%8B%E5%9C%8B%E6%B0%91%E9%BB%A8/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#58</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">黑曜石如何改變了你的生活？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ObsidianMD/comments/1sun7ev/how_did_obsidian_change_your_life/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#59</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">女士們、先生們和超越二元的朋友們，PROTO GARUDA 已經到來！</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Warframe/comments/1suohq6/ladies_gentlemen_and_friends_beyond_the_binary/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#60</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">狗的拒絕是最糟糕的拒絕形式</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/funny/comments/1suq5ym/dog_rejection_is_the_worst_form_of_rejection/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#61</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">艾略特和艾倫佩吉之間的相似度太高了……他們是兄弟姐妹嗎？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/okbuddycinephile/comments/1suodf9/the_resemblance_between_elliott_and_ellen_page_is/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#62</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">邁克爾·比斯利表示，在帕特·萊利拿走勒布朗的餅乾後，事情就不再一樣了：“那個男孩像薩諾斯一樣站起來……他站起來大喊……這是我第一次看到整個組織都變得團結起來。”</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/nba/comments/1sun7ue/michael_beasley_says_things_were_never_the_same/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#63</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">融化奶油</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/notinteresting/comments/1suiu5u/melting_butter/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#64</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">儘管是 UFC 排名選手，艾林「菲奧娜」佩雷斯 (Ailín &quot;Fiona&quot; Pérez) 仍必須從事最低工資工作來支付基本開支。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ufc/comments/1suo017/despite_being_a_ranked_ufc_fighter_ail%C3%ADn_fiona/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#65</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">8.0：永恆寒冷</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ffxiv/comments/1sulpmq/80_evercold/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#66</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">女士們說是啊！</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/comics/comments/1sutugr/ladies_say_yeah/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#67</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">日本目前有一座開滿 530 萬朵藍色花朵的小山。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/interestingasfuck/comments/1suell6/japan_is_currently_home_to_a_hill_covered_with_53/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#68</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">NA Fanfest 2026 - 主題演講 Megathread</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ffxivdiscussion/comments/1suleb9/na_fanfest_2026_keynote_megathread/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#69</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">無神論不適合培育道德社區</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/DebateReligion/comments/1suukzx/atheism_is_unfit_for_fostering_ethical_communities/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#70</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">川普向加拿大鋁業和鋼鐵公司提供關稅減免，條件是這些公司遷往美國。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/worldnews/comments/1suqy03/trump_offering_canadian_aluminum_and_steel/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#71</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">炒飯裡加番茄醬犯法嗎？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/Taipei/comments/1sun3hw/is_it_a_crime_to_put_ketchup_on_fried_rice/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#72</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">所以我猜他們確實聽了</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/ffxiv/comments/1suqeaf/so_i_guess_they_did_listen/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#73</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">兩人互相挑戰男子氣概後，緊張局勢加劇</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/JustGuysBeingDudes/comments/1suhduh/tensions_boiled_over_after_both_men_challenged/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#74</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">大家的創業電影是？</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/SteamDeck/comments/1suj9p7/what_is_everyones_startup_movie/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#75</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">我不知道對此有何感受</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/bjj/comments/1sutuj8/i_dont_know_how_to_feel_about_this/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#76</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">銀狼等級 999 推出時的貨幣戰爭。</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/HonkaiStarRail/comments/1sugb27/currency_wars_when_silverwolf_lvl_999_got/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#77</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">卡洛斯·阿爾卡拉斯退出法網</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/tennis/comments/1sujdit/carlos_alcaraz_withdraws_from_roland_garros/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+        <article class="group p-4 rounded-xl bg-gray-800 border border-gray-700 hover:border-reddit/50 transition-all hover:shadow-lg hover:shadow-reddit/10">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-400">#78</span>
+          </div>
+          <h3 class="font-semibold text-gray-100 leading-snug mb-3 line-clamp-3">安赫爾·馬丁內斯 (Angel Martinez) 在第 3 局追趕謝爾澤 (Scherzer)，打出了職業生涯首個 2 本壘打</h3>
+          <div class="mt-auto pt-2">
+            <a href="https://www.reddit.com/r/baseball/comments/1suwm42/angel_martinez_has_his_first_career_2_homer_game/" target="_blank" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-reddit text-white text-xs font-semibold hover:bg-reddit/90 transition-colors">
+              開啟原文
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </article>
+    </div>
+  </section>
+  
+
+  <footer class="mt-12 pt-6 border-t border-gray-800 text-gray-600 text-sm">
+    生成時間：2026-04-25T00:32:02.345Z · OpenClaw · Tailwind CSS · 推送類別分類 · 英文標題翻譯為繁體中文
+  </footer>
+</div>
+</body>
+</html>
