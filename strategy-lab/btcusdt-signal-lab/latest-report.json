@@ -2,26 +2,26 @@
   "meta": {
     "symbol": "BTCUSDT",
     "interval": "1h",
-    "generated_at_utc": "2026-04-27T14:01:01.495921+00:00",
-    "generated_at_local": "2026-04-27T22:01:01.495921+08:00",
+    "generated_at_utc": "2026-04-27T16:01:01.528868+00:00",
+    "generated_at_local": "2026-04-28T00:01:01.528868+08:00",
     "start_date": "2024-06-01",
     "end_date": "2026-04-27",
-    "cached_bars": 16695,
-    "completed_bars": 16694
+    "cached_bars": 16697,
+    "completed_bars": 16696
   },
   "signal": {
-    "status": "no_trade",
-    "message": "策略 E｜晚間順勢多單 時段命中，但 trend_12h_pct 不符合",
-    "active_strategy": "策略 E｜晚間順勢多單",
-    "latest_bar_time_utc": "2026-04-27T14:00:00+00:00",
-    "latest_bar_time_local": "2026-04-27T22:00:00+08:00",
-    "latest_price": 77816.77,
-    "latest_hour_utc": 14,
-    "trend_12h_pct": -1.6596,
-    "atr_14": 362.3293,
-    "next_window_local": "2026-04-28T00:01:00+08:00",
-    "next_strategy": "策略 C｜深夜順勢空單",
-    "next_strategy_key": "strategy_c",
+    "status": "short",
+    "message": "策略 C｜深夜順勢空單 觸發，符合做空條件",
+    "active_strategy": "策略 C｜深夜順勢空單",
+    "latest_bar_time_utc": "2026-04-27T16:00:00+00:00",
+    "latest_bar_time_local": "2026-04-28T00:00:00+08:00",
+    "latest_price": 76755.11,
+    "latest_hour_utc": 16,
+    "trend_12h_pct": -2.7483,
+    "atr_14": 383.6721,
+    "next_window_local": "2026-04-28T22:01:00+08:00",
+    "next_strategy": "策略 E｜晚間順勢多單",
+    "next_strategy_key": "strategy_e",
     "windows": [
       {
         "strategy": "策略 E｜晚間順勢多單",
@@ -61,7 +61,7 @@
       ],
       "reverse_hint": "反向策略在最近 3 個區間表現更好。"
     },
-    "next_window_local_display": "2026-04-28 00:01 UTC+08:00"
+    "next_window_local_display": "2026-04-28 22:01 UTC+08:00"
   },
   "health_filter": {
     "status": "caution",
